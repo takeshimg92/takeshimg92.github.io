@@ -3,7 +3,7 @@ layout: page
 title: Hello!
 ---
 
-![A picture of a happy man enjoying a tasting of sake (2022)](/assets/images/sake.jpg)
+![A picture of a happy man enjoying a tasting of sake (2022)](/assets/img/sake.jpg)
 
 I enjoy, in this order:
 

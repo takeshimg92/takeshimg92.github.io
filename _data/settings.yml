@@ -1,23 +1,21 @@
 # Change 'comments' to true for Disqus comments
 disqus:
   comments: false
-  disqus_shortname: 'https-lenpaul-github-io-lagrange'
+  disqus_shortname: 'https-takeshimg92-github-io-lagrange'
 
 # If you are not using Google Analytics, please change 'google-ID' to an empty string
 google-ID: ''
 
 menu:
 - {name: 'About', path: 'menu', url: 'about.html'}
-- {name: 'Writing', path: 'menu', url: 'writing.html'}
+- {name: 'Posts', path: 'menu', url: 'writing.html'}
 - {name: 'Contact', path: 'menu', url: 'contact.html'}
 
 # Available social icons are powered by Font Awesome, so you can use any icon that they offer
 social:
-- {icon: 'github', link: 'https://www.github.com/lmc2179'}
-#- {icon: 'twitter', link: 'https://twitter.com/paululele'}
-- {icon: 'linkedin', link: 'https://www.linkedin.com/in/louis-cialdella/'}
-- {icon: 'envelope', link: 'mailto:louiscialdella@gmail.com'}
-- {icon: 'stack-overflow', link: 'https://stats.stackexchange.com/users/29694/louis-cialdella'}
+- {icon: 'github', link: 'https://www.github.com/takeshimg92'}
+- {icon: 'linkedin', link: 'https://www.linkedin.com/in/atmg92/'}
+- {icon: 'envelope', link: 'mailto:takeshi.gagliardi@gmail.com'}
 #- {icon: 'rss-square', link: '/feed.xml'}
 # - {icon: 'rss-square', link: '/rss-feed.xml'}
 
