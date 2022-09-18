@@ -56,7 +56,12 @@ social:
     share_link:
 
   - icon:   linkedin
-    url: 
+    url:    https://www.linkedin.com/in/atmg92/
+    desc:   Connect with me on LinkedIn
+    share_url:
+    share_title:
+    share_link:
+    
 #  - icon:	google-plus
 #    url:	https://google.com/???
 #    desc:	Add me on google+
