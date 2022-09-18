@@ -4,7 +4,7 @@ gems:
   - jekyll-paginate
 
 # Site settings
-title: "Alê's blog （仮）"
+title: "KakkoKari （仮）"
 description: > # this means to ignore newlines until "email:"
    Yet another blog of personal notes on machine learning, applied mathematics, probability theory, and whatever else.
 
@@ -55,7 +55,7 @@ social:
     share_title:
     share_link:
 
-  - icon:   linkedin
+  - icon:   linkedin-square
     url:    https://www.linkedin.com/in/atmg92/
     desc:   Connect with me on LinkedIn
     share_url:
