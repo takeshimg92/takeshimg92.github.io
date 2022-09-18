@@ -7,7 +7,7 @@ tags: [datascience]
 image: simplex.jpg
 ---
 
-*This post is based on [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2423493/)*
+*This post is based on [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2423493/).*
 
 # A vector space structure for probabilities
 
@@ -29,7 +29,7 @@ Element-wise multiplication by a scalar suffers from the same issue.
 
 ## Going to $\mathbb{R}^n$ and back again
 
-Let $\Delta_{K}$ be the $K+1$-dimensional probability simplex,
+Let $\Delta_{K}$ be the $K+1$-dimensional [probability simplex](https://en.wikipedia.org/wiki/Simplex#Probability), which is the natural place for probabilities to live in:
 
 $$\Delta_K := \left\{ p \in [0,1]^{K+1}: \sum_{k=1}^{K+1} p_k = 1 \right\}$$
 
@@ -39,7 +39,9 @@ $$\boxed{\phi(p)_i = \log \frac{p_i}{p_{K+1}}}\quad\mbox{(logit function)}$$
 
 where the last component $p_{K+1}$ is equal to $1 - \sum_{k=1}^K p_k$.
 
-Similarly, we can compute its inverse as
+*This function, for the case of binary distributions, is the common logit function used in logistic regression, $\log (p/(1-p))$. This is a natural multidimensional extension.*
+
+It is easy to show that the **inverse logit function** will be given by
 
 $$\phi^{-1}(x)_i = \begin{cases}
 \displaystyle \frac{e^{x_i}}{Z} & \mbox{ if } i \in \{1,\cdots,K\}\\
@@ -50,24 +52,32 @@ where the normalization is
 
 $$Z = 1 + \sum_{k=1}^K e^{x_k}$$
 
-We *define* the sum of two points in the simplex as
+In order for us to endow $\Delta_K$ with a vector space structure, we will *define all vector space operations* by 
+
+* first going from $\Delta_K$ to $\mathbb R^K$ via the logit function...
+* then doing linear algebra in $\mathbb R^K$...
+* and finally mapping back to $\Delta_K$ via the inverse logit function.
+
+To make notation a bit clearer, we will start writing probability vectors by borrowing the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) from quantum mechanics. This is just a fancy way to tell **vectors in $\Delta_K$** apart from their components in $\mathbb R^{K+1}$, which have no vector structure.
+
+Let us **define* the sum of two points in the simplex** as
 
 $$\boxed{|p\rangle + |q\rangle := \phi^{-1}(\phi(p) + \phi(q))}$$
 
-and the multiplication by scalar $\cdot$ as
+and the **multiplication by scalar**  as
 
 $$\boxed{\alpha |p\rangle := \phi^{-1}(\alpha\, \phi(p))}$$
 
-It is easy to show that these two yield
+It is easy to show that these two yield 
 
-$$\boxed{|p\rangle+|q\rangle = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} \sum_i p_i q_i |i\rangle}$$
+$$\boxed{(|p\rangle+|q\rangle_i = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} p_i q_i}$$
 
-$$\boxed{\alpha | p\rangle = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} \sum_i p_i^\alpha |i\rangle}$$
+$$\boxed{(\alpha | p\rangle_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha }$$
 
 Some important results:
     
 * The **null vector** in $\Delta_K$ is the one relative to the uniform distribution:
-  $$|0\rangle= \sum_{i=1}^{K+1} \frac{1}{K+1} |i\rangle $$
+  $$|0\rangle_i= \frac{1}{K+1}$$
   
   It is easy to show that $|p\rangle + | 0\rangle = |p\rangle$ for any $p$.
   
@@ -77,13 +87,11 @@ Some important results:
 
 With these operations, $(\Delta_K, +, \cdot)$ is a real vector space!
 
+## Implementing this in Python
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-```
+Python allows us to overload the `+` operation. Below, we implement a class `Prob` which takes the components of a probability vector and transforms it into a proper vector space element.
 
-
+Obs: so far, we only implemented a 3D version (ie. $K=2$), but this can be easily rewritten for any $K$.
 ```python
 from __future__ import annotations
 
@@ -121,25 +129,21 @@ class Prob:
         return Prob(1/3*np.ones((3)))
 ```
 
-
-```python
-z = Prob.zero()
-```
+Let us run some tests. First, we start from two vectors and the zero vector:
 
 
 ```python
 p = Prob([0.3, 0.3, 0.4])
 q = Prob([0.2, 0.1, 0.7])
 
+# see if zero is properly implemented
 zero = Prob.zero()
 zero
 
 # >> (0.3333, 0.3333, 0.3333)
 ```
 
-
-
-
+Try summing vector $|p\rangle$ with $|0\rangle$: nothing should change:
 
 ```python
 p+zero # zero doesn't do anything
@@ -147,80 +151,23 @@ p+zero # zero doesn't do anything
 
 ```
 
+We can also check the components of $|-p\rangle$; notice that Python requires us to write this as `p * (-1)` instead of `-1 * p`: 
 ```python
 p_bar = p * (-1) # how does the additive inverse look like?
 p_bar
 # >> (0.3636, 0.3636, 0.2727)
 ```
 
+By consistency, $|p\rangle + |-p\rangle$ should equal $|0\rangle$:
+
 ```python
 p+p_bar # should give the zero vector
 # >> (0.3333, 0.3333, 0.3333)
 ```
 
-```python
-def plot_simplex(probs_list, ax=None):
-    
-    simplex_coords = lambda x, y, z:  ((-x+y)/np.sqrt(2), (-x-y+2*z+1)/np.sqrt(6))
-    
-    coords = np.array([simplex_coords(*p.p) for p in probs_list])
-    xs, ys = coords[:,0], coords[:,1]
-    
-    if ax is None:
-        plt.plot(xs, ys, alpha=0.9)
-        plt.show()
-    else:
-        ax.plot(xs, ys, alpha=0.9)
-```
+We can also make some plots. Since our vectors live on the 2-simplex $\Delta_2$, which is basically a triangle (see the image on the top of this post).
 
-
-```python
-w.p.sum()
-# >>  1.04
-
-```
-
-
-```python
-fig, ax = plt.subplots()
-p_list = [p * a for a in np.arange(-3, 3, 0.01)]
-plot_simplex(p_list, ax=ax)
-    
-q_list = [q * a for a in np.arange(-3, 3, 0.01)]
-plot_simplex(q_list, ax=ax)
-
-w = Prob([0.1, 0.3, 0.6])
-w_list = [w * a for a in np.arange(-3,3, 0.01)]
-plot_simplex(w_list, ax=ax)
-
-w = Prob([0.18, 0.35, 0.47])
-w_list = [w * a for a in np.arange(-3,3, 0.01)]
-plot_simplex(w_list, ax=ax)
-
-w = p+q*0.01
-w_list = [w * a for a in np.arange(-3,3, 0.01)]
-plot_simplex(w_list, ax=ax)
-
-
-
-ax.plot([-1/np.sqrt(2), 0], [0, np.sqrt(3/2)], color='gray')
-ax.plot([0, 1/np.sqrt(2) ], [np.sqrt(3/2), 0], color='gray')
-ax.plot([-1/np.sqrt(2), 1/np.sqrt(2)], [0, 0], color='gray')
-```
-
-
-
-
-    [<matplotlib.lines.Line2D at 0x7fb122d9c8b0>]
-
-
-
-
-    
-![png](How%20to%20add%20probabilities%20-%20a%20vector%20space%20perspective_files%5Coutput_21_1.png)
-    
-
-
+Below, we make a simple experiment: we take a vector to Euclidean space, rotate it by some angle, and map it back via the inverse logit function.
 
 ```python
 def plot_simplex(y_true, y_probs, ax=None):
@@ -232,32 +179,6 @@ def plot_simplex(y_true, y_probs, ax=None):
         plt.show()
     else:
         ax.plot(xs, ys, c=y_true, alpha=0.5, marker='.')
-```
-
-
-```python
-from sklearn.datasets import make_classification
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import roc_auc_score
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-
-X, y = make_classification(n_classes=3,
-                           n_samples=3000,
-                           random_state=2, 
-                           n_features=10,
-                           n_informative=10,
-                           n_redundant=0,
-                           n_repeated=0)
-
-X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=23)
-
-model = RandomForestClassifier(random_state=3)
-model.fit(X_train, y_train)
-
-y_probs_rf = model.predict_proba(X_test)
-y_probs_train_rf = model.predict_proba(X_train)
-
 ```
 
 
@@ -274,11 +195,9 @@ def inv_logit2(x):
 
 p = np.array([0.3, 0.1, 0.6])
 assert np.all(inv_logit2(logit2(p)) == p)
-```
 
-
-```python
 def rot(theta):
+	'''2D vector rotation by angle theta'''
     c, s = np.cos(theta), np.sin(theta)
     return np.array([[c, s],[-s,c]])
 ```
@@ -292,8 +211,6 @@ for p in [
     np.array([0.99, 0.005, 0.005]),
     np.array([0.33, 0.33, 0.34]),
     np.array([0.6, 0.2, 0.2]),
-#    np.array([0.2, 0.2, 0.6]),
-#    np.array([0.2, 0.6, 0.2]),
 ]: 
     rotated_x = [rot(theta) @ logit2(p) for theta in np.arange(0, 6.28, 0.01)]
     rotate_p = [inv_logit2(xx) for xx in rotated_x]
@@ -302,5 +219,9 @@ for p in [
 ax.plot([-1/np.sqrt(2), 0], [0, np.sqrt(3/2)], color='gray')
 ax.plot([0, 1/np.sqrt(2) ], [np.sqrt(3/2), 0], color='gray')
 ax.plot([-1/np.sqrt(2), 1/np.sqrt(2)], [0, 0], color='gray')
+plt.show()
 ```
 
+![Balls in probability space](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/probabilities/balls.png)
+
+Notice how rotating and mapping back makes our circles bend, in order for them to stay inside the probability simplex.
