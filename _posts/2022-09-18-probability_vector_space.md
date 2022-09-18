@@ -60,7 +60,7 @@ In order for us to endow $\Delta_K$ with a vector space structure, we will *defi
 
 To make notation a bit clearer, we will start writing probability vectors by borrowing the [bra-ket notation](https://en.wikipedia.org/wiki/Bra%E2%80%93ket_notation) from quantum mechanics. This is just a fancy way to tell **vectors in $\Delta_K$** apart from their components in $\mathbb R^{K+1}$, which have no vector structure.
 
-Let us **define* the sum of two points in the simplex** as
+Let us *define* the sum of two points in the simplex** as
 
 $$\boxed{|p\rangle + |q\rangle := \phi^{-1}(\phi(p) + \phi(q))}$$
 
@@ -70,20 +70,21 @@ $$\boxed{\alpha |p\rangle := \phi^{-1}(\alpha\, \phi(p))}$$
 
 It is easy to show that these two yield 
 
-$$\boxed{(|p\rangle+|q\rangle_i = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} p_i q_i}$$
+$$(|p\rangle+|q\rangle_i = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} p_i q_i$$
 
-$$\boxed{(\alpha | p\rangle_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha }$$
+$$(\alpha | p\rangle_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha $$
 
 Some important results:
     
 * The **null vector** in $\Delta_K$ is the one relative to the uniform distribution:
-  $$|0\rangle_i= \frac{1}{K+1}$$
   
-  It is easy to show that $|p\rangle + | 0\rangle = |p\rangle$ for any $p$.
+$$|0\rangle_i= \frac{1}{K+1}.$$
+  
+* Indeed, it is easy to show that $|p\rangle + | 0\rangle = |p\rangle$ for any $p$.
   
 * The **additive inverse**, which we call $|- p\rangle$, is exactly $(-1)| p\rangle$:
   
-  $$|- p\rangle_i = (-1 |p\rangle)_i = \frac{1/p_i}{\sum_{k=1}^{K+1} 1/p_k}$$
+$$|- p\rangle_i = (-1 |p\rangle)_i = \frac{1/p_i}{\sum_{k=1}^{K+1} 1/p_k}$$
 
 With these operations, $(\Delta_K, +, \cdot)$ is a real vector space!
 
@@ -145,6 +146,7 @@ zero
 
 Try summing vector $|p\rangle$ with $|0\rangle$: nothing should change:
 
+
 ```python
 p+zero # zero doesn't do anything
 # >> (0.3, 0.3, 0.4)
@@ -160,12 +162,13 @@ p_bar
 
 By consistency, $|p\rangle + |-p\rangle$ should equal $|0\rangle$:
 
+
 ```python
 p+p_bar # should give the zero vector
 # >> (0.3333, 0.3333, 0.3333)
 ```
 
-We can also make some plots. Since our vectors live on the 2-simplex $\Delta_2$, which is basically a triangle (see the image on the top of this post).
+We can also make some plots. Since our vectors live on the 2-simplex $\Delta_2$, which is basically a triangle (see the image on the top of this post), visualization is pretty straightforward.
 
 Below, we make a simple experiment: we take a vector to Euclidean space, rotate it by some angle, and map it back via the inverse logit function.
 
@@ -225,3 +228,10 @@ plt.show()
 ![Balls in probability space](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/probabilities/balls.png)
 
 Notice how rotating and mapping back makes our circles bend, in order for them to stay inside the probability simplex.
+
+## Is that it?
+
+The space of probabilities is an important and rather misunderstood one. I have previously studied distance functions in these spaces (post to be written soon) as well as [clustering inside the probability simplex](https://arxiv.org/abs/1704.00454), but the future outlook is still open. 
+
+
+
