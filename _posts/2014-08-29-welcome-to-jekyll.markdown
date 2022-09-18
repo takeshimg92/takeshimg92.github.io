@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Testing out Python jere"
+title:  "Testing out Python here"
 date:   2022-09-18 00:00:00
 categories: data science machine learning
 tags: featured
@@ -22,6 +22,17 @@ y_probs = model.predict_proba(X_test)[:,1]
 print(roc_auc_score(y_test, y_probs)
 # >> 0.867
 {% endhighlight %}
+
+```python
+from sklearn.metrics import roc_auc_score
+from sklearn.linear_model import LogisticRegression
+
+model = LogisticRegression().fit(X_train, y_train)
+y_probs = model.predict_proba(X_test)[:,1]
+
+print(roc_auc_score(y_test, y_probs)
+# >> 0.867
+```
 
 Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
 
