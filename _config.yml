@@ -6,11 +6,13 @@ gems:
 # Site settings
 title: "KakkoKari （仮）"
 description: > # this means to ignore newlines until "email:"
-   Yet another blog of personal notes on machine learning, applied mathematics, probability theory, and whatever else.
+   I swear this is a blog about data science.
+   
+   By Alessandro Morita
 
 email: takeshi.gagliardi@gmail.com
 #blog logo
-logo: "/assets/images/df_logo.jpg"
+logo: "/assets/images/chuutoro.jpg"
 float_logo: true # true, false (default)
 
 # blog cover
@@ -22,7 +24,7 @@ author_image: "/assets/images/sake.jpg"
 
 paginate:	5
 
-url: "http://myblog.***.***" # the base hostname & protocol for your site
+url: "https://takeshimg92.github.io/" # the base hostname & protocol for your site
 baseurl: ""
 #used to display twitter cards
 #twitter_handle: '@dirkfabisch'

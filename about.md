@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-![screenshot](/assets/images/sake.jpg)
+![A picture of a happy man enjoying a tasting of sake (2022)](/assets/images/sake.jpg)
 
 I enjoy, in this order:
 
@@ -15,8 +15,10 @@ I enjoy, in this order:
 * Machine learning;
 * Probability theory;
 * Language learning;
-* Gravitational physics.
+* Anything physics-related.
 
 When not eating, I can also be seen studying data science. I also lead the data science teams at the Experian DataLabs in São Paulo, Brazil.
+
+In previous iterations, I was a management consultant and data scientist at the Boston Consulting Group. I was also a Masters student in Theoretical Physics, focusing on classical general relativity. 
 
 Connect with me [via LinkedIn](https://www.linkedin.com/in/atmg92/)
