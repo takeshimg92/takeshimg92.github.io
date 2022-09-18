@@ -76,13 +76,13 @@ $$(\alpha | p\rangle_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha $$
 
 Some important results:
     
-* The **null vector** in $\Delta_K$ is the one relative to the uniform distribution:
+1. The **null vector** in $\Delta_K$ is the one relative to the uniform distribution:
   
 $$|0\rangle_i= \frac{1}{K+1}.$$
   
-* Indeed, it is easy to show that $|p\rangle + | 0\rangle = |p\rangle$ for any $p$.
+> Indeed, it is easy to show that $\vert p\rangle + \vert 0\rangle = \vertp\rangle$ for any $p$.
   
-* The **additive inverse**, which we call $|- p\rangle$, is exactly $(-1)| p\rangle$:
+2. The **additive inverse**, which we call $|- p\rangle$, is exactly $(-1)| p\rangle$:
   
 $$|- p\rangle_i = (-1 |p\rangle)_i = \frac{1/p_i}{\sum_{k=1}^{K+1} 1/p_k}$$
 
@@ -144,7 +144,7 @@ zero
 # >> (0.3333, 0.3333, 0.3333)
 ```
 
-Try summing vector $|p\rangle$ with $|0\rangle$: nothing should change:
+Try summing vector $\vert p\rangle$ with $ \vert 0\rangle$; nothing should change:
 
 
 ```python
@@ -153,14 +153,14 @@ p+zero # zero doesn't do anything
 
 ```
 
-We can also check the components of $|-p\rangle$; notice that Python requires us to write this as `p * (-1)` instead of `-1 * p`: 
+We can also check the components of $\vert-p\rangle$; notice that Python requires us to write this as `p * (-1)` instead of `-1 * p`: 
 ```python
 p_bar = p * (-1) # how does the additive inverse look like?
 p_bar
 # >> (0.3636, 0.3636, 0.2727)
 ```
 
-By consistency, $|p\rangle + |-p\rangle$ should equal $|0\rangle$:
+By consistency, $\vert p\rangle + \vert -p\rangle$ should equal $\vert 0\rangle$:
 
 
 ```python
