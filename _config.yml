@@ -1,72 +1,29 @@
+# Site Build Settings
+
+# Jekyll-paginate-v2 configuration
+#  pagination:
+#   enabled: true
+#   per_page: 5
+#   permalink: '/page/:num/'
+#   title: ':title - page :num of :max'
+#   limit: 0
+#   sort_field: 'date'
+#   sort_reverse: true
+
+# jekyll-paginate configuration
+paginate:            5
+
 # Build settings
-gems:
-  - jemoji
-  - jekyll-paginate
+markdown:            kramdown
+highlighter:         rouge
+permalink:           none
+plugins:             [jekyll-paginate, jekyll-sitemap, jekyll-feed, jekyll-seo-tag]
 
-# Site settings
-title: "KakkoKari （仮）"
-description: > # this means to ignore newlines until "email:"
-   I swear this is a blog about data science.
-   
-   By Alessandro Morita
+# Customise atom feed settings (this is where Jekyll-Feed gets configuration information)
+title:		           'KakkoKari （仮）'
+description:	       'I swear this is a blog about data science.'
+author:              'Alessandro Morita'
 
-email: takeshi.gagliardi@gmail.com
-#blog logo
-logo: "/assets/images/chuutoro.jpg"
-float_logo: true # true, false (default)
-
-# blog cover
-cover: "/assets/images/ilhabela.jpg"
-
-name: 'Alessandro Morita'
-author: 'Alessandro Morita'
-author_image: "/assets/images/sake.jpg"
-
-paginate:	5
-
-url: "https://takeshimg92.github.io/" # the base hostname & protocol for your site
-baseurl: ""
-#used to display twitter cards
-#twitter_handle: '@dirkfabisch'
-
-#fill in disqus shortname to use disqus
-#disqus: disqus-shortname
-
-#google_analytics: UA-XXXXX-X
-
-# social icons and sharing options
-social:
-#  - icon:	twitter
-#    url:	https://twitter.com/dirkfabisch
-#    desc: Follow me on twitter
-#    share_url: http://twitter.com/share
-#    share_title: ?text=
-#    share_link: "&amp;url="
-
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: https://www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
-
-  - icon:	github
-    url:	https://github.com/takeshimg92
-    desc:	Fork me on github
-    share_url:
-    share_title:
-    share_link:
-
-  - icon:   linkedin-square
-    url:    https://www.linkedin.com/in/atmg92/
-    desc:   Connect with me on LinkedIn
-    share_url:
-    share_title:
-    share_link:
-    
-#  - icon:	google-plus
-#    url:	https://google.com/???
-#    desc:	Add me on google+
-#    share_url:
-#    share_title:
-#    share_link:
+# RSS 2.0 can be used instead of Atom by uncommenting following two lines
+#feed:
+#  path: rss-feed.xml

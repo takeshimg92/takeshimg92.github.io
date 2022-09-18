@@ -1,6 +1,7 @@
-<!-- header start -->
-
-{% if site.float_logo %}
-  <a href="{{ site.url }}{{ site.baseurl }}" class="logo-readium"><span class="logo" style="background-image: url({{ site.logo }})"></span></a>
-{% endif %}
-<!-- header end -->
+<header class="masthead">
+  <h3 class="masthead-title">
+    <a href="{{ site.github.url }}/">{{ site.title }}</a>
+    <small class="masthead-subtitle">{{ site.description }}</small>
+    {% include menu.html %}
+  </h3>
+</header>

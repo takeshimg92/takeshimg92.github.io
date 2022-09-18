@@ -1,4 +1,1 @@
-KakkoKari
-========
-
-My personal notes on data science.
+My personal blog on data science topics.
