@@ -70,9 +70,9 @@ $$\boxed{\alpha |p\rangle := \phi^{-1}(\alpha\, \phi(p))}$$
 
 It is easy to show that these two yield 
 
-$$(|p\rangle+|q\rangle_i = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} p_i q_i$$
+$$(|p\rangle+|q\rangle)_i = \frac{1}{ \sum_{k=1}^{K+1} p_k q_k} p_i q_i$$
 
-$$(\alpha | p\rangle_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha $$
+$$(\alpha | p\rangle)_i = \frac{1}{\sum_{k=1}^{K+1} p_k^\alpha} p_i^\alpha $$
 
 Some important results:
     
