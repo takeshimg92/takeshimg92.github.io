@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "The Carr-Madan decomposition of arbitrary (payoff) functions"
+title: "The Carr-Madan decomposition of arbitrary payoff functions"
 author: "Alessandro Morita"
 categories: posts
-tags: [datascience] [quantitative finance]
+tags: [datascience, quantitative finance] 
 image: carr_madan.png
 ---
 
-The [Carr-Madan decomposition](http://www.frouah.com/finance%20notes/Payoff%20function%20decomposition.pdf) is used in quant fintance to break any payoff into a (continuous) combination of calls and puts, plus a forward. Namely, for any twice differentiable function:
+The [Carr-Madan decomposition](http://www.frouah.com/finance%20notes/Payoff%20function%20decomposition.pdf) is used in quant finance to break any payoff into a (continuous) combination of calls and puts, plus a forward. Namely, for any twice differentiable function:
 
 $$\boxed{
 f(x) = f(y) + f'(y)(x-y) + \int_{-\infty}^y f''(z) (z-x)^+ dz + \int_{y}^\infty f''(z) (x-z)^+ dz
@@ -15,7 +15,7 @@ f(x) = f(y) + f'(y)(x-y) + \int_{-\infty}^y f''(z) (z-x)^+ dz + \int_{y}^\infty 
 
 where $(x)^+ \equiv \max(0, x)$ is the positive part function.
 
-This result translates what quants intuitively know: for a derivative with any given payoff, we can approximate it from calls and puts (plus a forward). 
+This result translates what quants intuitively know: for a derivative product with any given payoff, we can approximate it from calls and puts (plus a forward). 
 
 More specifically, we will approximate the integrals as Riemann sums: let $L >0 $ be some sufficiently large value. Then 
 
