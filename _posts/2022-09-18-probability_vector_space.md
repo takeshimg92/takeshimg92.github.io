@@ -86,7 +86,7 @@ $$|0\rangle_i= \frac{1}{K+1}.$$
   
 $$|- p\rangle_i = (-1 |p\rangle)_i = \frac{1/p_i}{\sum_{k=1}^{K+1} 1/p_k}$$
 
-With these operations, $(\Delta_K, +, \cdot)$ is a real vector space! We can, by extention, calculate linear combinations: it is straighforward to show that the components of $\alpha \vert p \rangle + \beta \vert q \rangle$ has components
+With these operations, $(\Delta_K, +, \cdot)$ is a real vector space! We can, by extention, calculate linear combinations: it is straighforward to show that the components of $\alpha \vert p \rangle + \beta \vert q \rangle$ are given by
 
 
 $$(\alpha \vert p \rangle + \beta \vert q \rangle)_i = \frac{\displaystyle1/(p_i^\alpha q_i^\beta)}{\displaystyle \prod_j 1/(p_j^\alpha q_j^\beta)}$$
