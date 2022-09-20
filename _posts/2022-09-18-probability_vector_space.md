@@ -9,8 +9,6 @@ image: simplex.jpg
 
 *This post is based on [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2423493/).*
 
-# A vector space structure for probabilities
-
 
 Does it even make sense to discuss about adding two probabilities? 
 

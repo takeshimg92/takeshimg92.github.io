@@ -1,13 +1,11 @@
 ---
 layout: post
-title: "A cost-based partial ROC AUC"
+title: "A ROC AUC partial to misclassification cost"
 author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: cost_aucs.png
 ---
-
-# A ROC AUC partial to misclassification cost
 
 Below, we consider the standard binary classification problem.
 
