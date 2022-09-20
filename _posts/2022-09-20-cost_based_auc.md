@@ -9,13 +9,13 @@ image: cost_aucs.png
 
 Below, we consider the standard binary classification problem.
 
-Assume we pay a cost $c_{FN} >0 $ in case we classify a point of the positive class as a negative, and, similarly, pay a cost $c_{FP} > 0$ in case of a false positive. 
+Assume we pay a cost $c_\mathrm{FN} >0 $ in case we classify a point of the positive class as a negative, and, similarly, pay a cost $c_\mathrm{FP} > 0$ in case of a false positive. 
 
 With no loss of generality, we assume these costs are normalized and sum to one:
 
-$$\boxed{c_{FN} + c_{FP} = 1.}$$
+$$\boxed{c_\mathrm{FN} + c_\mathrm{FP} = 1.}$$
 
-(if they are not, we can normalize via $c_{FN} \to c_{FN}/(c_{FN} + c_{FP})$ and similarly for $c_{FP}$).
+(if they are not, we can normalize via $c_\mathrm{FN} \to c_\mathrm{FN}/(c_\mathrm{FN} + c_\mathrm{FP})$ and similarly for $c_\mathrm{FP}$).
 
 For a given classification threshold $\lambda \in ]0,1[$, what is the total misclassification cost? Assume we have $n$ total points, out of which $P$ real positives and $N$ real negatives, where
 
@@ -32,10 +32,10 @@ $$
 multiplying these by the specific costs we get
 
 $$\begin{align*}
-C(\lambda) &= c_{FP} \mathrm{FP}(\lambda) + c_{FN} \mathrm{FN}(\lambda)\\
-           &= c_{FP} N\, \mathrm{FPR} (\lambda) + c_{FN} P (1 - \mathrm{TPR}(\lambda))\\
-           &= n c_{FP} (1-\pi) \mathrm{FPR} (\lambda) + n c_{FN} \pi (1 - \mathrm{TPR}(\lambda)) \\
-c(\lambda) \equiv \frac{C(\lambda)}{n}           &= (1- c_{FN}) (1-\pi) \mathrm{FPR} (\lambda) + c_{FN} \pi (1 - \mathrm{TPR}(\lambda)) \quad (*)
+C(\lambda) &= c_\mathrm{FP} \mathrm{FP}(\lambda) + c_\mathrm{FN} \mathrm{FN}(\lambda)\\
+           &= c_\mathrm{FP} N\, \mathrm{FPR} (\lambda) + c_\mathrm{FN} P (1 - \mathrm{TPR}(\lambda))\\
+           &= n c_\mathrm{FP} (1-\pi) \mathrm{FPR} (\lambda) + n c_\mathrm{FN} \pi (1 - \mathrm{TPR}(\lambda)) \\
+c(\lambda) \equiv \frac{C(\lambda)}{n}           &= (1- c_\mathrm{FN}) (1-\pi) \mathrm{FPR} (\lambda) + c_\mathrm{FN} \pi (1 - \mathrm{TPR}(\lambda)) \quad (*)
 \end{align*}$$
 
 Equation $(*)$ is the general cost at any given $\lambda$. 
@@ -47,17 +47,17 @@ $$\mathbb P(\hat y = 1) = \pi,\quad \mathbb P(\hat y = 0) = 1 - \pi$$
 It is easy to see that this model leads to $\mathrm{FPR} = \mathrm{TPR} = \pi$ regardless of the threshold, hence a cost of
 
 $$\begin{align*}
-c_\mathrm{random} &= (1-c_{FN}) (1-\pi) \pi + c_{FN} \pi (1-\pi)\\
+c_\mathrm{random} &= (1-c_\mathrm{FN}) (1-\pi) \pi + c_\mathrm{FN} \pi (1-\pi)\\
 &= \pi(1-\pi)
 \end{align*}$$
 
 Thus, a good model needs to give a cost *lower* than random guessing, ie. $c(\lambda) \leq \pi(1-\pi)$, ie. 
 
-$$(1- c_{FN}) (1-\pi) \mathrm{FPR} (\lambda) + c_{FN} \pi (1 - \mathrm{TPR}(\lambda)) \leq \pi(1-\pi)$$
+$$(1- c_\mathrm{FN}) (1-\pi) \mathrm{FPR} (\lambda) + c_\mathrm{FN} \pi (1 - \mathrm{TPR}(\lambda)) \leq \pi(1-\pi)$$
 
 or
 
-$$\mathrm{TPR} \geq 1 - \frac{1-\pi}{c_{FN}} + \frac{1-c_{FN}}{c_{FN}} \frac{1-\pi}{\pi} \mathrm{FPR}$$
+$$\mathrm{TPR} \geq 1 - \frac{1-\pi}{c_\mathrm{FN}} + \frac{1-c_\mathrm{FN}}{c_\mathrm{FN}} \frac{1-\pi}{\pi} \mathrm{FPR}$$
 
 We then arrive at the following criterion:
 
@@ -69,9 +69,9 @@ Then, the region in the $(x,y)$ ROC plane bounded below by
 
 $$\boxed{y = 1 - \frac{1-\pi}{\rho} + \frac{1-\rho}{\rho} \frac{1-\pi}{\pi} x}$$
 
-defines the useful lower bound on the ROC curve.
+and bounded above by the ROC curve defines the "useful" area from a cost perspective,
 
-### Example and implementation
+### Examples and implementation
 
 > A "clean" implementation follows after these first examples.
 
