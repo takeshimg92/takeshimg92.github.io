@@ -24,7 +24,7 @@ The ROC AUC [measures the likelihood that a point in class 1 is scored higher th
 
 $$\boxed{A := \mathbb P(f(X) \geq f(X') \vert Y=1, Y'=0).}$$
 
-If we write $P = \; [f(X)\vert Y=1]$ and $Q = \, [f(X)\vert Y=0]$, this can be rephrased as
+If we write $P =  [f(X)\vert Y=1]$ and $Q =  [f(X)\vert Y=0]$, this can be rephrased as
 $$A = \mathbb P(P \geq Q)$$
 
 
@@ -115,7 +115,11 @@ for any $Q, Q'$.
 
 ### Proof:
 
-In what follows, ${1}_{ij} \equiv {1}_{P_i \geq Q_j}$ will be a shorthand notation.
+In what follows, 
+
+$$1_{ij} \equiv 1_{P_i \geq Q_j}$$
+
+will be a shorthand notation.
 
 By definition,
 
@@ -160,7 +164,9 @@ Now, the summand in the last term is (explicitly) $\mathbb E[1_{P_i \geq Q_j,P_k
 
 which cancels the other $A^2$ term. 
 
-Furthermore, it is easy to see that the term $\mathbb E[1_{ij,il}]$ is exactly the $P_{XYY}$ term defined above: it is the probability that a single score in class 1 ($P_i$) is greater than two random scores from class 0 ($Q_j$ and $Q_l$). An analogous reasoning shows that $\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}$.
+Furthermore, it is easy to see that the term $\mathbb E[1_{ij,il}]$ is exactly the $P_{XYY}$ term defined above: it is the probability that a single score in class 1 (the P) is greater than two random scores from class 0 (the Q's). An analogous reasoning shows that 
+
+$$\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}.$$
 
 Putting these together, we are left with
 
@@ -560,7 +566,7 @@ $$p_{Z_i}(z) = \int p(z\vert P_i=p) p(P_i=p) dp;$$
 
 but $P_i \; \sim \; \mathrm{Uniform}([0,1])$, and hence its PDF is just the identity on $[0,1]$. Letting
 
-$$f(x \vert  \mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{(x-\mu)^2}{2\sigma^2} \right\}$$
+$$f(x \vert  \mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left[- \frac{(x-\mu)^2}{2\sigma^2} \right]$$
 
 be the Gaussian PDF, we obtain
 
@@ -592,7 +598,7 @@ $$\mathbb E[A] = \frac{n}{2};\qquad \mathrm{Var}(A) = \frac{n}{12};$$
 
 for the AUC, this gives 
 
-$$\boxed{\mathbb E[\widehat{\mathrm{AUC}}_\mathrm{random}] = \frac{1}{2};\qquad \mathrm{Var}[\widehat{\mathrm{AUC}}_\mathrm{random}] = \frac{1}{12 n}}$$
+$$\boxed{\mathbb E[\widehat{\mathrm{AUC}}_{\mathrm{random}}] = \frac{1}{2};\qquad \mathrm{Var}[\widehat{\mathrm{AUC}}_{\mathrm{random}}] = \frac{1}{12 n}}$$
 
 The first result is not surprising: we know that for a random scoring function the AUC should be 1/2. The second one is more surprising, and shows that as we increase $n$, we get an increasingly more precise AUC at 0.5 with a standard deviation that goes as $1/\sqrt{n}$.
 
@@ -621,7 +627,7 @@ for t in [0.1, 0.2, 0.3, 0.4]:
     Probability of AUC > 0.9 is less than 2.6%
 ```    
 
-## Proof that ROC AUC becomes the sum of scores for class 1 
+### Proof that ROC AUC becomes the sum of scores for class 1 
 
 Recall that, above, we defined $Z_i$ as
 
@@ -691,7 +697,7 @@ $$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\righ
 
 To do that, we compute the square
 
-$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right]}_{(*)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right]}_{(**)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right]}_{(***)}$$
+$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right]}_{(\star)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right]}_{(**)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right]}_{(***)}$$
 
 We compute one term at a time. ${(***)}$ is the easiest: since $P_i \,\sim\,\mathrm{Uniform}([0,1])$ is independent of $Q_J$, this is just 
 
@@ -722,11 +728,11 @@ With no loss of generality, order the $Q_j$'s in an ascending order, so that $Q_
 
 $$
 \begin{align*}
-\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right] &= \frac{1}{M^2}\left\{
+\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right] &= \frac{1}{M^2}\left[
     \sum_j \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right\vert Q_j\right] +
     2 \sum_j \sum_{k < j} \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right\vert Q_j\right]
-    \right\}\\
-&= \frac{1}{M^2}\left\{\sum_j (1-Q_j) + 2 \sum_j \sum_{k < j} (1-Q_j)\right\}\\
+    \right]\\
+&= \frac{1}{M^2}\left[\sum_j (1-Q_j) + 2 \sum_j \sum_{k < j} (1-Q_j)\right]\\
 &= \frac{1}{M} \left[\frac{1}{M}\sum_j (1-Q_j)\right] + \frac{2}{M^2} \sum_j \sum_{k < j} (1-Q_j)
 \end{align*}
 $$
@@ -741,7 +747,7 @@ $$
 \end{align*}
 $$
 
-Hence, putting all results $(*)$ to $(***)$ together, we get
+Hence, putting all results $(\star)$ to $(\star \star \star)$ together, we get
 
 $$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \frac 13 - 2 \cdot \frac 13 + \frac 13 = 0$$
 
