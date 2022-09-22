@@ -162,7 +162,7 @@ $$
  \sum_{ij} \mathrm{Var} (1_{ij}) +
     \sum_i \sum_{j\neq l} \left( P_{XYY} - A^2 \right) +
     \sum_j \sum_{i\neq k} \left( P_{XXY} - A^2 \right)
- \right] \qquad (*)
+ \right] \qquad (\star)
 \end{align*}
 $$
 
@@ -225,7 +225,7 @@ $$\mathrm{Var}\, 1_{P \geq Q} = A(1-A)\qquad \Box$$
 
 This means that, for any $i,j$, $\mathrm{Var}\, 1_{ij} = A(1-A)$. Thus the first term above will be simplified.
 
-Using this result in $(*)$ we get
+Using this result in $(\star)$ we get
 
 $$
 \begin{align*}
@@ -552,7 +552,7 @@ $$p_{Z_i}(z) = \int p(z|P_i=p) p(P_i=p) dp;$$
 
 but $P_i \; \sim \; \mathrm{Uniform}([0,1])$, and hence its PDF is just the identity on $[0,1]$. Letting
 
-$$f(x|\mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp\left\{ - \frac{(x-\mu)^2}{2\sigma^2} \right\}$$
+$$f(x | \mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{(x-\mu)^2}{2\sigma^2} \right\}$$
 
 be the Gaussian PDF, we obtain
 
@@ -647,7 +647,8 @@ $$\boxed{\widehat{\mathrm{AUC}} \approx \frac{1}{n} \sum_{i: y_i=1} P_i} \quad \
 
 In what follows, we write $N-n \equiv M$ to unclutter notation.
 
-**Proof of Proposition 1**: by direct evaluation, using that the variable $1_{P_i \geq Q_j}\,|Q_j$ is Bernoulli with parameter $1-Q_j$, we get
+**Proof of Proposition 1**: by direct evaluation, using that the variable $1_{P_i \geq Q_j} \, \vert Q_j$ is Bernoulli with parameter $1-Q_j$, we get
+
 $$
 \begin{align*}
 \mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] &= \frac{1}{M} \sum_j \mathbb E[1_{P_i \geq Q_j}\,|Q_j]- \mathbb E[P_i]\\
@@ -698,7 +699,7 @@ $$
 \end{align*}
 $$
 
-Finally, for $(*)$, the procedure is technically more involved but basically identical:
+Finally, for $(\star)$, the procedure is technically more involved but basically identical:
 
 $$
 \begin{align*}
