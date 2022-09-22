@@ -1,3 +1,13 @@
+---
+layout: post
+title: "Linear trees in LightGBM: how to use"
+author: "Alessandro Morita"
+categories: posts
+tags: [datascience]
+image: linear_trees.jpg
+---
+
+
 # What are linear trees?
 
 From [this post](https://towardsdatascience.com/linear-tree-the-perfect-mix-of-linear-model-and-decision-tree-2eaed21936b7):
