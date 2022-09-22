@@ -141,7 +141,11 @@ $$
 \end{align*}
 $$
 
-where $1_{ij,kl}$ denotes $1_{P_i \geq Q_j, P_k \geq Q_l}$ and we see the AUC $A$ appear since 
+where we used the shorthand
+
+$$1_{ij,kl} \equiv 1_{P_i \geq Q_j, P_k \geq Q_l}$$
+
+and we see the AUC $A$ appear since 
 
 $$\mathbb E[1_{ij}] = \mathbb E[1_{P_i \geq Q_j}] = \mathbb P(P_i \geq Q_j) = A.$$
 
@@ -158,13 +162,17 @@ $$
 
 Now, the summand in the last term is (explicitly) $\mathbb E[1_{P_i \geq Q_j,P_k \geq Q_l}]$.
 
- But since $i \neq k$ and $j \neq l$, the events $P_i \geq Q_j$ is completely independent from $P_k \geq Q_l$, and we can split the expectation into 
+But since $i \neq k$ and $j \neq l$, the events $P_i \geq Q_j$ is completely independent from $P_k \geq Q_l$, and we can split the expectation into 
  
  $$\mathbb E[1_{P_i \geq Q_j}] \mathbb E[1_{P_k \geq Q_l}] = A^2,$$
 
 which cancels the other $A^2$ term. 
 
-Furthermore, it is easy to see that the term $\mathbb E[1_{ij,il}]$ is exactly the $P_{XYY}$ term defined above: it is the probability that a single score in class 1 (the P) is greater than two random scores from class 0 (the Q's). An analogous reasoning shows that 
+Furthermore, it is easy to see that 
+
+$$\mathbb E[1_{ij,il}] = P_{XYY};$$
+
+it is exactly the term $P_{XYY}$ term defined above: it is the probability that a single score in class 1 (the P) is greater than two random scores from class 0 (the Q's). An analogous reasoning shows that 
 
 $$\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}.$$
 
