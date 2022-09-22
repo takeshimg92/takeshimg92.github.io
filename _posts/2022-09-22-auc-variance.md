@@ -830,8 +830,7 @@ We see everything works: in this extremely imbalanced case,  indeed the ROC AUC 
 
 # References
 
-[1] Cortes, Corinna and Mohri, Mehryar, *Confidence Intervals for the Area Under the ROC Curve*. Advances in Neural Information Processing Systems, 17 (2004).
-Available at https://proceedings.neurips.cc/paper/2004/file/a7789ef88d599b8df86bbee632b2994d-Paper.pdf
-
-[2] S. Shirahata, *Estimate of variance of Wilcoxon-Mann-Whitney statistic.* J. Japanese Soc. Comp. Statist. 6.2(1993), 1-10. Available at: https://www.jstage.jst.go.jp/article/jjscs1988/6/2/6_2_1/_pdf/-char/en
+[1] Cortes, Corinna and Mohri, Mehryar, [*Confidence Intervals for the Area Under the ROC Curve*](https://proceedings.neurips.cc/paper/2004/file/a7789ef88d599b8df86bbee632b2994d-Paper.pdf
+). Advances in Neural Information Processing Systems, 17 (2004).
+[2] S. Shirahata, [*Estimate of variance of Wilcoxon-Mann-Whitney statistic.*](https://www.jstage.jst.go.jp/article/jjscs1988/6/2/6_2_1/_pdf/-char/en) J. Japanese Soc. Comp. Statist. 6.2(1993), 1-10.
 
