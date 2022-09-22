@@ -22,7 +22,7 @@ More specifically, we will approximate the integrals as Riemann sums: let $L >0 
 $$\begin{align*}
 f(x) &\approx f(y) + f'(y)(x-y)  \\
      &+ \sum_{i=0}^{N} f''(z_i)(z_i-x)^+\quad \mbox{where}\quad z_i \equiv -L + i \Delta z, \quad \Delta z = \frac{y+L}{N}\\
-     &+ \sum_{j=0}^{N} f''(z_j)(x-z_j)^+\quad \mbox{where}\quad z_j \equiv y + i \Delta z, \quad \Delta z = \frac{L-y}{N}.\\
+     &+ \sum_{j=0}^{N} f''(z_j)(x-z_j)^+\quad \mbox{where}\quad z_j \equiv y + j \Delta z, \quad \Delta z = \frac{L-y}{N}.\\
 \end{align*}
 $$
 
