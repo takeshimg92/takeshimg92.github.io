@@ -270,7 +270,7 @@ If either $n_0$ or $n_1$ is sufficiently large,
 
 $$\boxed{\hat A _\mathrm{random\, classifier} \approx \mathcal N \left( \frac 12, \frac{n_0+n_1+1}{12 n_0 n_1}\right)}$$
 
-as we have already seenÅI
+as we have already seen!
 
 ### Experimental test
 
