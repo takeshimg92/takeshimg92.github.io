@@ -115,7 +115,7 @@ for any $Q, Q'$.
 
 ### Proof:
 
-In what follows, $1_{ij} \equiv 1_{P_i \geq Q_j}$ will be a shorthand notation.
+In what follows, ${1}_{ij} \equiv {1}_{P_i \geq Q_j}$ will be a shorthand notation.
 
 By definition,
 
@@ -137,7 +137,9 @@ $$
 \end{align*}
 $$
 
-where $1_{ij, kl}$ denotes $1_{P_i\geq Q_j, P_k \geq Q_l}$ and we see the AUC $A$ appear since $\mathbb E[1_{ij}] = \mathbb E[1_{P_i \geq Q_j}] = \mathbb P(P_i \geq Q_j) = A$.
+where $1_{ij,kl}$ denotes $1_{P_i \geq Q_j, P_k \geq Q_l}$ and we see the AUC $A$ appear since 
+
+$$\mathbb E[1_{ij}] = \mathbb E[1_{P_i \geq Q_j}] = \mathbb P(P_i \geq Q_j) = A.$$
 
 Hence,
 
@@ -150,9 +152,15 @@ n_0^2 n_1^2 \mathrm{Var}\, \hat A =  \sum_{ij} \mathrm{Var} (1_{ij}) +
 \end{align*}
 $$
 
-Now, the summand in the last term is (explicitly) $\mathbb E[1_{P_i \geq Q_j, P_k \geq Q_l}]$. But since $i\neq k$ and $j \neq l$, the events $P_i \geq Q_j$ is completely independent from $P_k \geq Q_l$, and we can split the expectation into $\mathbb E[1_{P_i \geq Q_j}] \mathbb E[1_{P_k \geq Q_l}] = A^2$, which cancels the other $A^2$ term. 
+Now, the summand in the last term is (explicitly) $\mathbb E[1_{P_i \geq Q_j,P_k \geq Q_l}]$.
 
-Furthermore, it is easy to see that the term $\mathbb E[1_{ij, il}]$ is exactly the $P_{XYY}$ term defined above: it is the probability that a single score in class 1 ($P_i$) is greater than two random scores from class 0 ($Q_j$ and $Q_l$). An analogous reasoning shows that $\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}$.
+ But since $i \neq k$ and $j \neq l$, the events $P_i \geq Q_j$ is completely independent from $P_k \geq Q_l$, and we can split the expectation into 
+ 
+ $$\mathbb E[1_{P_i \geq Q_j}] \mathbb E[1_{P_k \geq Q_l}] = A^2,$$
+
+which cancels the other $A^2$ term. 
+
+Furthermore, it is easy to see that the term $\mathbb E[1_{ij,il}]$ is exactly the $P_{XYY}$ term defined above: it is the probability that a single score in class 1 ($P_i$) is greater than two random scores from class 0 ($Q_j$ and $Q_l$). An analogous reasoning shows that $\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}$.
 
 Putting these together, we are left with
 
@@ -244,7 +252,7 @@ $$
  \mathrm{Var}\, \hat A =  \frac{1}{n_0^2 n_1^2} \left[
  \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} A(1-A) +
     \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} \sum_{l=1\\ l \neq j}^{n_0} \left( P_{XYY} - A^2 \right) +
-    \sum_{j=1}^{n_0} \sum_{i=1}^{n_1} \sum_{k =1\\k\neq i}^{n_1} \left( P_{XXY} - A^2 \right) 
+    \sum_{j=1}^{n_0} \sum_{i=1}^{n_1} \sum_{k =1\\ k \neq i}^{n_1} \left( P_{XXY} - A^2 \right) 
  \right], 
 \end{align*}
 $$
@@ -616,10 +624,12 @@ for t in [0.1, 0.2, 0.3, 0.4]:
 ## Proof that ROC AUC becomes the sum of scores for class 1 
 
 Recall that, above, we defined $Z_i$ as
+
 $$\hat A = \frac{1}{n(N-n)} \sum_{i=1}^{n} \sum_{j=1}^{N-n} 1_{P_i \geq Q_j} = \frac{1}{n} \sum_{i=1}^n Z_i$$
 
 where
-$$Z_i \equiv Z_i^{(N)} = \frac{1}{N-n} \sum_{j\in J} 1_{P_i \geq Q_j}$$
+
+$$Z_i \equiv Z_i^{(N)} = \frac{1}{N-n} \sum_{j\in J} 1_{P_i \geq Q_j}.$$
 
 We have shown that as $N$ grows this variable becomes uniform. We can actually prove something stronger: that **$Z_i$ essentially becomes $P_i$ itself!**
 
