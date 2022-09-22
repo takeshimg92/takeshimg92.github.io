@@ -7,6 +7,7 @@ tags: [datascience]
 image: linear_trees.jpg
 ---
 
+> This was originally written as a "Hello world" kind of program aimed at giving my team at the [DataLab](https://www.serasaexperian.com.br/datalab/) some help getting started with less noisy variants of GBDTs.
 
 # What are linear trees?
 

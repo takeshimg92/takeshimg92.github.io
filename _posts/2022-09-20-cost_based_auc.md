@@ -6,6 +6,7 @@ categories: posts
 tags: [datascience]
 image: cost_aucs.png
 ---
+> This was originally written as a quick intro to partial AUCs, aimed at giving my team at the [DataLab](https://www.serasaexperian.com.br/datalab/) some insights into cost-based classification.
 
 Below, we consider the standard binary classification problem.
 
