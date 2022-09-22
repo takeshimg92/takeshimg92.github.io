@@ -119,31 +119,36 @@ In what follows, $1_{ij} \equiv 1_{P_i \geq Q_j}$ will be a shorthand notation.
 
 By definition,
 
+$$
 \begin{align*}
 \mathrm{Var}\, (n_0 n_1 \hat A) &= \mathrm{Var}\, \left( \sum_{ij} 1_{ij} \right)\\
 &= \sum_{ij} \sum_{kl} \mathrm{cov}\,(1_{ij}, 1_{kl})\\
 &= \sum_{ij} \sum_{kl} \mathrm{cov}\,(1_{ij}, 1_{kl}) \left[ 1_{i=k\\ j= l} + 1_{i=k\\ j \neq l}+ 1_{i\neq k\\ j= l}+ 1_{i\neq k\\ j \neq l} \right]\\
 &= \sum_{ij} \mathrm{Var} (1_{ij}) + \sum_i \sum_{j\neq l} \mathrm{cov}\,(1_{ij}, 1_{il}) + \sum_j \sum_{i\neq k} \mathrm{cov}\,(1_{ij}, 1_{kj}) + \sum_{i\neq k} \sum_{j\neq l} \mathrm{cov}\,(1_{ij}, 1_{kl})
 \end{align*}
+$$
 
 Now, we can simplify a bit by noting that 
 
+$$
 \begin{align*}
 \mathrm{cov}\,(1_{ij}, 1_{kl}) &\equiv \mathbb E[1_{ij} 1_{kl}] - \mathbb E[1_{ij}] \mathbb E[1_{kl}]\\
 &= \mathbb E[1_{ij, kl}] - A^2
 \end{align*}
-
+$$
 
 where $1_{ij, kl}$ denotes $1_{P_i\geq Q_j, P_k \geq Q_l}$ and we see the AUC $A$ appear since $\mathbb E[1_{ij}] = \mathbb E[1_{P_i \geq Q_j}] = \mathbb P(P_i \geq Q_j) = A$.
 
 Hence,
 
+$$
 \begin{align*}
 n_0^2 n_1^2 \mathrm{Var}\, \hat A =  \sum_{ij} \mathrm{Var} (1_{ij}) +
     \sum_i \sum_{j\neq l} \left( \mathbb E[1_{ij, il}] - A^2 \right) +
     \sum_j \sum_{i\neq k} \left( \mathbb E[1_{ij, kj}] - A^2 \right) + 
     \sum_{i \neq k} \sum_{j\neq l} \left( \mathbb E[1_{ij, kl}] - A^2 \right)
 \end{align*}
+$$
 
 Now, the summand in the last term is (explicitly) $\mathbb E[1_{P_i \geq Q_j, P_k \geq Q_l}]$. But since $i\neq k$ and $j \neq l$, the events $P_i \geq Q_j$ is completely independent from $P_k \geq Q_l$, and we can split the expectation into $\mathbb E[1_{P_i \geq Q_j}] \mathbb E[1_{P_k \geq Q_l}] = A^2$, which cancels the other $A^2$ term. 
 
@@ -151,6 +156,7 @@ Furthermore, it is easy to see that the term $\mathbb E[1_{ij, il}]$ is exactly 
 
 Putting these together, we are left with
 
+$$
 \begin{align*}
  \mathrm{Var}\, \hat A =  \frac{1}{n_0^2 n_1^2} \left[
  \sum_{ij} \mathrm{Var} (1_{ij}) +
@@ -158,6 +164,7 @@ Putting these together, we are left with
     \sum_j \sum_{i\neq k} \left( P_{XXY} - A^2 \right)
  \right] \qquad (*)
 \end{align*}
+$$
 
 To go further, we need an intermediate result:
 
@@ -173,11 +180,13 @@ $$\mathrm{Var}\, 1_{P \geq Q} = \mathbb E[\mathrm{Var}\,(1_{P \geq Q}|Q)] + \mat
 
 Now, it is not too hard to see how the variable $1_{P\geq Q}|Q$ is distributed. Since it takes values on $\{0,1\}$ is is in the Bernoulli familly; recall that $X \sim \mathrm{Bernoulli}(p)$ means that $\mathbb P(X=1) = 1-\mathbb P(X=0) = p$. In our case,
 
+$$
 \begin{align*}
 \mathbb P(1_{P\geq Q} = 1|Q) &= \mathbb P(P \geq Q|Q)\\
 &= 1 - \mathbb P(P \leq Q|Q)\\
 &\equiv 1 - F_P(Q)
 \end{align*}
+$$
 
 where $F_P$ is the CDF of $P$. Hence, 
 
@@ -189,6 +198,7 @@ $$\mathbb E[1_{P\geq Q}|Q] = 1 - F_P(Q),\qquad \mathrm{Var}\, (1_{P\geq Q}|Q) = 
 
 and plugging these into the original expression for the variance we get
 
+$$
 \begin{align*}
 \mathrm{Var}\, 1_{P \geq Q} &= \mathbb E[\mathrm{Var}\,(1_{P \geq Q}|Q)] + \mathrm{Var}\,(\mathbb E[1_{P\geq Q}|Q])\\
 &= \mathbb E[F_P(Q) (1 - F_P(Q))] + \mathrm{Var}\,(1 - F_P(Q))\\
@@ -196,9 +206,11 @@ and plugging these into the original expression for the variance we get
 &= \mathbb E[F_P(Q)] - \mathbb E[F_P^2(Q)] + \mathbb E[F_P^2(Q)]  - (\mathbb E[F_P(Q)])^2\\
 &= \mathbb E[F_P(Q)] (1 - \mathbb E[F_P(Q)])
 \end{align*}
+$$
 
 How much is $\mathbb E[F_P(Q)]$? This is indeed $\mathbb E_Q[F_P(Q)]$; let $f_P, f_Q$ denote the respective PDFs of $P$ and $Q$. Then
 
+$$
 \begin{align*}
 \mathbb E[F_P(Q)] &= \int_0^1 F_P(q) f_Q(q) dq\\
 &= \int_0^1 dq\;f_Q(q)  \int_0^q dp \;f_P(p)\\
@@ -206,6 +218,7 @@ How much is $\mathbb E[F_P(Q)]$? This is indeed $\mathbb E_Q[F_P(Q)]$; let $f_P,
 &= \mathbb E[1_{P\leq Q}] = 1 - \mathbb P(P\geq Q)\\
 &= 1- A.
 \end{align*}
+$$
 
 Finally, 
 $$\mathrm{Var}\, 1_{P \geq Q} = A(1-A)\qquad \Box$$
@@ -214,6 +227,7 @@ This means that, for any $i,j$, $\mathrm{Var}\, 1_{ij} = A(1-A)$. Thus the first
 
 Using this result in $(*)$ we get
 
+$$
 \begin{align*}
  \mathrm{Var}\, \hat A =  \frac{1}{n_0^2 n_1^2} \left[
  \sum_{ij} A(1-A) +
@@ -221,9 +235,11 @@ Using this result in $(*)$ we get
     \sum_j \sum_{i\neq k} \left( P_{XXY} - A^2 \right) 
  \right], 
 \end{align*}
+$$
 
 or, writing the sums explicitly,
 
+$$
 \begin{align*}
  \mathrm{Var}\, \hat A =  \frac{1}{n_0^2 n_1^2} \left[
  \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} A(1-A) +
@@ -231,6 +247,7 @@ or, writing the sums explicitly,
     \sum_{j=1}^{n_0} \sum_{i=1}^{n_1} \sum_{k =1\\k\neq i}^{n_1} \left( P_{XXY} - A^2 \right) 
  \right], 
 \end{align*}
+$$
 
 None of the terms depend on the indices $i,j,k,l$ anymore. The first term will output a factor of $n_0 n_1$; the second one, $n_1 n_0 (n_0-1)$, and the third one $n_0 n_1 (n_1-1)$, hence
 
@@ -246,25 +263,31 @@ $$P_{XXY} = P_{YXX} = \frac 13,$$
 
 since
 
+$$
 \begin{align*}
 P_{XXY} &= \mathbb P(P_1 \geq Q, P_2 \geq Q)\\
 &= \int_0^1 \mathbb P(P_1 \geq Q, P_2 \geq Q | Q=q) p(q) dq
 \end{align*}
+$$
 
 where $p(q) = 1$ is the uniform PDF. Now, conditioned on $Q$, the two events above are independent and we have
 
+$$
 \begin{align*}
 P_{XXY} &= \int_0^1 \mathbb P(P_1 \geq q) \mathbb P(P_2 \geq q) dq\\
 &= \int_0^1 (1-q)^2 dq\\
 &= \frac 13.
 \end{align*}
+$$
 
 Plugging this into the variance equation we get
 
+$$
 \begin{align*}
 (\mathrm{Var}\, \hat A)_\mathrm{random\, classifier} &= \frac{1}{n_0 n_1} \left[ \frac 14 + (n_0-1 + n_1-1) \left (\frac 13 - \frac 14\right)\right]\\
 &= \frac{n_0+n_1+1}{12 n_0 n_1}
 \end{align*}
+$$
 
 If either $n_0$ or $n_1$ is sufficiently large, 
 
@@ -625,20 +648,23 @@ $$\boxed{\widehat{\mathrm{AUC}} \approx \frac{1}{n} \sum_{i: y_i=1} P_i} \quad \
 In what follows, we write $N-n \equiv M$ to unclutter notation.
 
 **Proof of Proposition 1**: by direct evaluation, using that the variable $1_{P_i \geq Q_j}\,|Q_j$ is Bernoulli with parameter $1-Q_j$, we get
-
+$$
 \begin{align*}
 \mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] &= \frac{1}{M} \sum_j \mathbb E[1_{P_i \geq Q_j}\,|Q_j]- \mathbb E[P_i]\\
 &=\frac 1M \sum_j (1-Q_j) - \frac 12\\
 &= \frac 12 - \frac 1M \sum_{j\in J} Q_j
 \end{align*}
+$$
 
 As $M$ (thus $N$) grows larger, intuitively, the $Q_j$ cover $[0,1]$ and so the sum above becomes a Riemann sum. We get
 
+$$
 \begin{align*}
 \lim_{N\to\infty}\mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] &= \frac 12 - \int_0^1 q\, dq \\
 &=\frac 12 - \frac 12\\
 &= 0
 \end{align*}
+$$
 
 as we wanted to prove.
 
@@ -662,6 +688,7 @@ $$\mathbb E\left[\left.P_i^2\,\right|Q_J\right] = \frac 13$$
 
 For $(**)$, we need to explicitly compute the expectation; then, taking the limit, we will find a Riemann sum. We have
 
+$$
 \begin{align*}
 \mathbb E\left[\left. P_i Z_i^{(N)} \,\right|Q_J\right] &= \frac 1M \sum_j \mathbb E\left[\left. P_i 1_{P_i \geq Q_j}\,\right|Q_j\right] \\
 &= \frac 1M \sum_j \int_0^1 p 1_{p \geq Q_j} \, dp = \frac 1M \sum_j \int_{Q_j}^1 p\, dp \\
@@ -669,16 +696,20 @@ For $(**)$, we need to explicitly compute the expectation; then, taking the limi
 &\xrightarrow[N \to \infty]{} \int_0^1 \frac{1 - q^2}{2} dq\\
 &= \frac 13
 \end{align*}
+$$
 
 Finally, for $(*)$, the procedure is technically more involved but basically identical:
 
+$$
 \begin{align*}
 \mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &= \mathbb E \left[\left. \frac{1}{M^2} \sum_{j \in J} \sum_{k\in J} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right|Q_J\right]\\
 &=\frac{1}{M^2}  \mathbb E \left[\left.\sum_{j \in J}  1_{P_i \geq Q_j} + 2 \sum_j \sum_{k < j} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right|Q_J\right]\\
 \end{align*}
+$$
 
 With no loss of generality, order the $Q_j$'s in an ascending order, so that $Q_j \geq Q_k$ if $j > k$. We can then simplify the second sum by considering that $P_i$ must be larger than $\max(Q_j, Q_k) = Q_j$. Hence
 
+$$
 \begin{align*}
 \mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &= \frac{1}{M^2}\left\{
     \sum_j \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right|Q_j\right] +
@@ -687,14 +718,17 @@ With no loss of generality, order the $Q_j$'s in an ascending order, so that $Q_
 &= \frac{1}{M^2}\left\{\sum_j (1-Q_j) + 2 \sum_j \sum_{k < j} (1-Q_j)\right\}\\
 &= \frac{1}{M} \left[\frac{1}{M}\sum_j (1-Q_j)\right] + \frac{2}{M^2} \sum_j \sum_{k < j} (1-Q_j)
 \end{align*}
+$$
 
 Upon taking the limit, the first term will be killed by the excess $1/M$ term in front; the second one becomes the double sum
 
+$$
 \begin{align*}
 \mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &\xrightarrow[N \to \infty]{} 0 + 2 \int_0^1 dq \int_0^q dx \, (1-q)\\
 &= 2 \int_0^1 dq \, q(1-q)\\
 &= \frac 13.
 \end{align*}
+$$
 
 Hence, putting all results $(*)$ to $(***)$ together, we get
 
