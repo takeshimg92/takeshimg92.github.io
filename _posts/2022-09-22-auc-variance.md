@@ -99,7 +99,7 @@ Notice how both results are identical.
 
 It is easily seen that $\mathbb E[\hat A] = A$, and thus one might ask what is the variance of this estimator. We will prove the following result (eq. (2) of [1] and eq. (6) of [2]):
 
-**Theorem**. Under tha hypothesis that all points in a given class are independent (ie. $P$'s are iid among themselves, as are the $Q$') then the variance of the Mann-Whitney-Wilcoxon statistic is
+**Theorem**. Under the hypothesis that all points in a given class are independent (ie. $P$'s are iid among themselves, as are the $Q$') then the variance of the Mann-Whitney-Wilcoxon statistic is
 
 $$\boxed{\mathrm{Var}\; \hat A = \frac{A(1-A) + (n_0 - 1)(P_{XYY} - A^2) + (n_1 - 1)(P_{XXY} - A^2)}{n_0 n_1},}$$
 
@@ -663,6 +663,8 @@ More precisely: let $Q_J \equiv \{Q_j: j \in J\}$ be a shorthand for all the sco
 
   $$\boxed{\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = 0}$$
 
+> Proposition 2 alone [implies](https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_mean) Proposition 1 and the Corollary. We leave them here for completeness, and because the machinery is basically the same.
+
 Since $P_i$ is independent of $Q_J$, this shows that the (conditional on $Q_J$) variable $Z_i$ converges to the (unconditional on $Q_J$) variable $P_i$. The problem is so unbalanced that the probabilities of the majority class are essentially "integrated out", and only the scores of the minority class remain.
 
 In practice, this means that
@@ -705,13 +707,13 @@ $$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\righ
 
 To do that, we compute the square
 
-$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right]}_{(\star)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right]}_{(**)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right]}_{(***)}$$
+$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right]}_{(\star)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right]}_{(\star \star)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right]}_{(\star \star \star)}$$
 
-We compute one term at a time. ${(***)}$ is the easiest: since $P_i \,\sim\,\mathrm{Uniform}([0,1])$ is independent of $Q_J$, this is just 
+We compute one term at a time. ${(\star \star \star)}$ is the easiest: since $P_i \,\sim\,\mathrm{Uniform}([0,1])$ is independent of $Q_J$, this is just 
 
 $$\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right] = \frac 13$$
 
-For $(**)$, we need to explicitly compute the expectation; then, taking the limit, we will find a Riemann sum. We have
+For $(\star \star)$, we need to explicitly compute the expectation; then, taking the limit, we will find a Riemann sum. We have
 
 $$
 \begin{align*}
