@@ -103,8 +103,10 @@ plt.show()
 
 
     
-![svg](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/output_17_0.svg)
+![svg](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/linear_trees/output_17_0.svg)
+ 
     
+
 
 Assessing error:
 
@@ -141,7 +143,7 @@ ax.fill_between(np.linspace(6,8), -1.2, 1.2, facecolor='gray', alpha=0.1)
 plt.show()
 ```
     
-![svg](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/imgoutput_23_0.svg)
+![svg](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/linear_trees/output_23_0.svg)
     
 
 We see that exptrapolation happens exactly as we might have expected: linear trees extrapolate as linear functions (which thus diverge off) whereas usual trees stagnate. **None of the options is great**, and you must be careful on how you extrapolate to unseen data outside your training range. 
