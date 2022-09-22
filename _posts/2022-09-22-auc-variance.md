@@ -22,9 +22,9 @@ Let $(X,Y)$ be jointly distributed with $Y$ taking values in $\{0,1\}$. This is 
 
 The ROC AUC [measures the likelihood that a point in class 1 is scored higher than a point in class 0](https://en.wikipedia.org/wiki/Receiver_operating_characteristic#Probabilistic_interpretation):
 
-$$\boxed{A := \mathbb P(f(X) \geq f(X') | Y=1, Y'=0).}$$
+$$\boxed{A := \mathbb P(f(X) \geq f(X') \vert Y=1, Y'=0).}$$
 
-If we write $P = \; [f(X)|Y=1]$ and $Q = \, [f(X)|Y=0]$, this can be rephrased as
+If we write $P = \; [f(X)\vert Y=1]$ and $Q = \, [f(X)\vert Y=0]$, this can be rephrased as
 $$A = \mathbb P(P \geq Q)$$
 
 
@@ -36,7 +36,7 @@ $$\boxed{\hat A = \frac{1}{n_0 n_1} \sum_{i=1}^{n_1} \sum_{j=1}^{n_0} 1_{P_i \ge
 
 where $P_i$ refers to the score of a point in class 1, and $Q_j$ of one in class 0: 
 
-$$P_i \equiv f(X_i)|Y_i=1,\qquad Q_j \equiv f(X_j)|Y_j=0$$
+$$P_i \equiv f(X_i)\vert Y_i=1,\qquad Q_j \equiv f(X_j)\vert Y_j=0$$
 
 via the fact that $\mathbb E[\hat A] = A$.
 
@@ -172,35 +172,35 @@ To go further, we need an intermediate result:
 
 *Proof*: we will need the expression for conditional variance: if $X, Y$ are random variables,
 
-$$\mathrm{Var}\, X = \mathbb E[\mathrm{Var}\,(X|Y)] + \mathrm{Var}\,(\mathbb E[X|Y])$$
+$$\mathrm{Var}\, X = \mathbb E[\mathrm{Var}\,(X\vert Y)] + \mathrm{Var}\,(\mathbb E[X\vert Y])$$
 
 For any $P$ and $Q$, it then follows that
 
-$$\mathrm{Var}\, 1_{P \geq Q} = \mathbb E[\mathrm{Var}\,(1_{P \geq Q}|Q)] + \mathrm{Var}\,(\mathbb E[1_{P\geq Q}|Q])$$
+$$\mathrm{Var}\, 1_{P \geq Q} = \mathbb E[\mathrm{Var}\,(1_{P \geq Q}\vert Q)] + \mathrm{Var}\,(\mathbb E[1_{P\geq Q}\vert Q])$$
 
-Now, it is not too hard to see how the variable $1_{P\geq Q}|Q$ is distributed. Since it takes values on $\{0,1\}$ is is in the Bernoulli familly; recall that $X \sim \mathrm{Bernoulli}(p)$ means that $\mathbb P(X=1) = 1-\mathbb P(X=0) = p$. In our case,
+Now, it is not too hard to see how the variable $1_{P\geq Q}\vert Q$ is distributed. Since it takes values on $\{0,1\}$ is is in the Bernoulli familly; recall that $X \sim \mathrm{Bernoulli}(p)$ means that $\mathbb P(X=1) = 1-\mathbb P(X=0) = p$. In our case,
 
 $$
 \begin{align*}
-\mathbb P(1_{P\geq Q} = 1|Q) &= \mathbb P(P \geq Q|Q)\\
-&= 1 - \mathbb P(P \leq Q|Q)\\
+\mathbb P(1_{P\geq Q} = 1\vert Q) &= \mathbb P(P \geq Q\vert Q)\\
+&= 1 - \mathbb P(P \leq Q\vert Q)\\
 &\equiv 1 - F_P(Q)
 \end{align*}
 $$
 
 where $F_P$ is the CDF of $P$. Hence, 
 
-$$1_{P\geq Q}|Q \,\sim\,\mathrm{Bernoulli}(1 - F_P(Q))$$
+$$1_{P\geq Q}\vert Q \,\sim\,\mathrm{Bernoulli}(1 - F_P(Q))$$
 
 Now, a $\mathrm{Bernoulli}(p)$ variable has expectation $p$ and variance $p(1-p)$. It follows that
 
-$$\mathbb E[1_{P\geq Q}|Q] = 1 - F_P(Q),\qquad \mathrm{Var}\, (1_{P\geq Q}|Q) = F_P(Q) (1 - F_P(Q))$$
+$$\mathbb E[1_{P\geq Q}\vert Q] = 1 - F_P(Q),\qquad \mathrm{Var}\, (1_{P\geq Q}\vert Q) = F_P(Q) (1 - F_P(Q))$$
 
 and plugging these into the original expression for the variance we get
 
 $$
 \begin{align*}
-\mathrm{Var}\, 1_{P \geq Q} &= \mathbb E[\mathrm{Var}\,(1_{P \geq Q}|Q)] + \mathrm{Var}\,(\mathbb E[1_{P\geq Q}|Q])\\
+\mathrm{Var}\, 1_{P \geq Q} &= \mathbb E[\mathrm{Var}\,(1_{P \geq Q}\vert Q)] + \mathrm{Var}\,(\mathbb E[1_{P\geq Q}\vert Q])\\
 &= \mathbb E[F_P(Q) (1 - F_P(Q))] + \mathrm{Var}\,(1 - F_P(Q))\\
 &= \mathbb E[F_P(Q)] - \mathbb E[F_P^2(Q)] + \mathrm{Var}\,(F_P(Q));\qquad \mbox{ but } \mathrm{Var}\, X = \mathbb E[X^2] - \mathbb E[X]^2\\
 &= \mathbb E[F_P(Q)] - \mathbb E[F_P^2(Q)] + \mathbb E[F_P^2(Q)]  - (\mathbb E[F_P(Q)])^2\\
@@ -266,7 +266,7 @@ since
 $$
 \begin{align*}
 P_{XXY} &= \mathbb P(P_1 \geq Q, P_2 \geq Q)\\
-&= \int_0^1 \mathbb P(P_1 \geq Q, P_2 \geq Q | Q=q) p(q) dq
+&= \int_0^1 \mathbb P(P_1 \geq Q, P_2 \geq Q \vert  Q=q) p(q) dq
 \end{align*}
 $$
 
@@ -532,35 +532,35 @@ $$\hat A = \frac{1}{n(N-n)} \sum_{i=1}^{n} \sum_{j=1}^{N-n} 1_{P_i \geq Q_j}$$
 
 First, we have a trivial result: for all $i \in I$, $j \in J$, if $P_i, Q_j$ iid distributed as $\mathrm{Uniform}([0,1])$ then
 
-$$1_{P_i \geq Q_j} | P_i \; \sim \;\mathrm{Bernoulli}(P_i)$$
+$$1_{P_i \geq Q_j} \vert  P_i \; \sim \;\mathrm{Bernoulli}(P_i)$$
 
 Since a binomial variable is built from a sum of independent Bernoulli ones, we have a corollary: for all $i \in I$, 
 
-$$\sum_{j \in J}\left. 1_{P_i \geq Q_j} \right| P_i \; \sim \; \mathrm{Binomial}(N-n, P_i)$$
+$$\sum_{j \in J}\left. 1_{P_i \geq Q_j} \right\vert  P_i \; \sim \; \mathrm{Binomial}(N-n, P_i)$$
 
 Now, for large $N-n$, we may use the normal approximation to the binomial, namely a $\mathrm{Binomial}(n,p)$ variable converges to a $\mathcal N(\mu=np, \sigma^2 = np(1-p))$ variable as $n$ grows. Hence
 
-$$\sum_{j \in J}\left. 1_{P_i \geq Q_j} \right| P_i \; \sim \; \mathcal N\left( (N-n)P_i,  (N-n)P_i (1-P_i) \right)$$
+$$\sum_{j \in J}\left. 1_{P_i \geq Q_j} \right\vert  P_i \; \sim \; \mathcal N\left( (N-n)P_i,  (N-n)P_i (1-P_i) \right)$$
 
 It follows that, for all $i\in I$,
 
-$$Z_i |P_i := \frac{1}{N-n} \sum_{j \in J} \left.1_{P_i \geq Q_j}\right| \, P_i \;\sim \; \mathcal N \left(P_i, \frac{P_i (1-P_i)}{N-n}\right)$$
+$$Z_i \vert P_i := \frac{1}{N-n} \sum_{j \in J} \left.1_{P_i \geq Q_j}\right\vert  \, P_i \;\sim \; \mathcal N \left(P_i, \frac{P_i (1-P_i)}{N-n}\right)$$
 
 This defines a set of $n$ variables $Z_i$. To obtain their marginal distribution, notice that for any $Z_i$ its PDF is given by
 
-$$p_{Z_i}(z) = \int p(z|P_i=p) p(P_i=p) dp;$$
+$$p_{Z_i}(z) = \int p(z\vert P_i=p) p(P_i=p) dp;$$
 
 but $P_i \; \sim \; \mathrm{Uniform}([0,1])$, and hence its PDF is just the identity on $[0,1]$. Letting
 
-$$f(x | \mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{(x-\mu)^2}{2\sigma^2} \right\}$$
+$$f(x \vert  \mu,\sigma^2) \equiv \frac{1}{\sqrt{2\pi \sigma^2}} \exp \left\{ - \frac{(x-\mu)^2}{2\sigma^2} \right\}$$
 
 be the Gaussian PDF, we obtain
 
-$$p_{Z_i}(z) = \int_0^1 f \left(\left. z  \right|\, p, \frac{p(1-p)}{N-n} \right) dp$$
+$$p_{Z_i}(z) = \int_0^1 f \left(\left. z  \right\vert \, p, \frac{p(1-p)}{N-n} \right) dp$$
 
 For $N-n$ large (as is our hypothesis), the integrand (as a function of $p$) is basically a very sharp peak centered at $p=z$. In fact, we may approximate it as a Dirac delta function
 
-$$f\left(z \left.  \right|\, p, \frac{p(1-p)}{N-n} \right) \approx \delta(z-p)$$
+$$f\left(z \left.  \right\vert \, p, \frac{p(1-p)}{N-n} \right) \approx \delta(z-p)$$
 
 to obtain
 
@@ -590,11 +590,11 @@ The first result is not surprising: we know that for a random scoring function t
 
 We can now use this result to calculate how likely a statistical fluke is to happen: recall Chebyshev's inequality for any (square-integrable) random variable $X$:
 
-$$\mathbb P(|X - \mu| \geq t) \leq \frac{\mathrm{Var} \, X}{t^2}$$
+$$\mathbb P(\vert X - \mu\vert  \geq t) \leq \frac{\mathrm{Var} \, X}{t^2}$$
 
 for our random AUC, this gives
 
-$$\boxed{\mathbb P \left(\left|\, \widehat{\mathrm{AUC}}_\mathrm{random} - \frac 12 \right| \geq t \right) \leq \frac{1}{12 n t^2}}$$
+$$\boxed{\mathbb P \left(\left\vert \, \widehat{\mathrm{AUC}}_\mathrm{random} - \frac 12 \right\vert  \geq t \right) \leq \frac{1}{12 n t^2}}$$
 
 **Examples**: 
 
@@ -627,17 +627,17 @@ The intuition here is that, as $N$ grows large, the $Q_j$'s basically cover the 
 
 More precisely: let $Q_J \equiv \{Q_j: j \in J\}$ be a shorthand for all the scores in class 0. We will show three results:
 
-* **Proposition 1:** $Z_i|Q_J$ converges on the mean to $P_i$, ie. 
+* **Proposition 1:** $Z_i\vert Q_J$ converges on the mean to $P_i$, ie. 
 
-  $$\lim_{N\to\infty} \mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] = 0$$
+  $$\lim_{N\to\infty} \mathbb E\left[\left.Z_i^{(N)} - P_i \;\right\vert  Q_J\right] = 0$$
   
-* **Corollary**: $Z_i|Q_J$ converges in probability to $P_i$, ie. 
+* **Corollary**: $Z_i\vert Q_J$ converges in probability to $P_i$, ie. 
 
-  $$\lim_{N\to\infty} \mathbb P\left(\left.|Z_i^{(N)} - P_i| \geq a \;\right| Q_J\right) = 0,\qquad \forall a > 0$$
+  $$\lim_{N\to\infty} \mathbb P\left(\left.\vert Z_i^{(N)} - P_i\vert  \geq a \;\right\vert  Q_J\right) = 0,\qquad \forall a > 0$$
   
-* **Proposition 2:** $Z_i|Q_J$ converges in the mean-squared sense to $P_i$, ie. 
+* **Proposition 2:** $Z_i\vert Q_J$ converges in the mean-squared sense to $P_i$, ie. 
 
-  $$\boxed{\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right| Q_J\right] = 0}$$
+  $$\boxed{\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = 0}$$
 
 Since $P_i$ is independent of $Q_J$, this shows that the (conditional on $Q_J$) variable $Z_i$ converges to the (unconditional on $Q_J$) variable $P_i$. The problem is so unbalanced that the probabilities of the majority class are essentially "integrated out", and only the scores of the minority class remain.
 
@@ -651,7 +651,7 @@ In what follows, we write $N-n \equiv M$ to unclutter notation.
 
 $$
 \begin{align*}
-\mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] &= \frac{1}{M} \sum_j \mathbb E[1_{P_i \geq Q_j}\,|Q_j]- \mathbb E[P_i]\\
+\mathbb E\left[\left.Z_i^{(N)} - P_i \;\right\vert  Q_J\right] &= \frac{1}{M} \sum_j \mathbb E[1_{P_i \geq Q_j}\,\vert Q_j]- \mathbb E[P_i]\\
 &=\frac 1M \sum_j (1-Q_j) - \frac 12\\
 &= \frac 12 - \frac 1M \sum_{j\in J} Q_j
 \end{align*}
@@ -661,7 +661,7 @@ As $M$ (thus $N$) grows larger, intuitively, the $Q_j$ cover $[0,1]$ and so the 
 
 $$
 \begin{align*}
-\lim_{N\to\infty}\mathbb E\left[\left.Z_i^{(N)} - P_i \;\right| Q_J\right] &= \frac 12 - \int_0^1 q\, dq \\
+\lim_{N\to\infty}\mathbb E\left[\left.Z_i^{(N)} - P_i \;\right\vert  Q_J\right] &= \frac 12 - \int_0^1 q\, dq \\
 &=\frac 12 - \frac 12\\
 &= 0
 \end{align*}
@@ -673,25 +673,25 @@ as we wanted to prove.
 
 $$\mathbb P(X \geq t) \leq \frac{\mathbb E[X]}{t}$$
 
-Setting $X = (\left.Z_i^{(N)} - P_i )\;\right| Q_J$ and taking the limit gives the proof.
+Setting $X = (\left.Z_i^{(N)} - P_i )\;\right\vert  Q_J$ and taking the limit gives the proof.
 
 **Proof of Proposition 2**: we want to prove that 
 
-$$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right| Q_J\right] = 0.$$
+$$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = 0.$$
 
 To do that, we compute the square
 
-$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right| Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right]}_{(*)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right|Q_J\right]}_{(**)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right|Q_J\right]}_{(***)}$$
+$$\mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \underbrace{\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right]}_{(*)} - 2 \underbrace{\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right]}_{(**)} + \underbrace{\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right]}_{(***)}$$
 
 We compute one term at a time. ${(***)}$ is the easiest: since $P_i \,\sim\,\mathrm{Uniform}([0,1])$ is independent of $Q_J$, this is just 
 
-$$\mathbb E\left[\left.P_i^2\,\right|Q_J\right] = \frac 13$$
+$$\mathbb E\left[\left.P_i^2\,\right\vert Q_J\right] = \frac 13$$
 
 For $(**)$, we need to explicitly compute the expectation; then, taking the limit, we will find a Riemann sum. We have
 
 $$
 \begin{align*}
-\mathbb E\left[\left. P_i Z_i^{(N)} \,\right|Q_J\right] &= \frac 1M \sum_j \mathbb E\left[\left. P_i 1_{P_i \geq Q_j}\,\right|Q_j\right] \\
+\mathbb E\left[\left. P_i Z_i^{(N)} \,\right\vert Q_J\right] &= \frac 1M \sum_j \mathbb E\left[\left. P_i 1_{P_i \geq Q_j}\,\right\vert Q_j\right] \\
 &= \frac 1M \sum_j \int_0^1 p 1_{p \geq Q_j} \, dp = \frac 1M \sum_j \int_{Q_j}^1 p\, dp \\
 &= \frac 1M \sum_j \left( \frac{1-Q_j^2}{2}\right)\\
 &\xrightarrow[N \to \infty]{} \int_0^1 \frac{1 - q^2}{2} dq\\
@@ -703,8 +703,8 @@ Finally, for $(\star)$, the procedure is technically more involved but basically
 
 $$
 \begin{align*}
-\mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &= \mathbb E \left[\left. \frac{1}{M^2} \sum_{j \in J} \sum_{k\in J} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right|Q_J\right]\\
-&=\frac{1}{M^2}  \mathbb E \left[\left.\sum_{j \in J}  1_{P_i \geq Q_j} + 2 \sum_j \sum_{k < j} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right|Q_J\right]\\
+\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right] &= \mathbb E \left[\left. \frac{1}{M^2} \sum_{j \in J} \sum_{k\in J} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right\vert Q_J\right]\\
+&=\frac{1}{M^2}  \mathbb E \left[\left.\sum_{j \in J}  1_{P_i \geq Q_j} + 2 \sum_j \sum_{k < j} 1_{P_i \geq Q_j} 1_{P_i \geq Q_k} \;\right\vert Q_J\right]\\
 \end{align*}
 $$
 
@@ -712,9 +712,9 @@ With no loss of generality, order the $Q_j$'s in an ascending order, so that $Q_
 
 $$
 \begin{align*}
-\mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &= \frac{1}{M^2}\left\{
-    \sum_j \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right|Q_j\right] +
-    2 \sum_j \sum_{k < j} \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right|Q_j\right]
+\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right] &= \frac{1}{M^2}\left\{
+    \sum_j \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right\vert Q_j\right] +
+    2 \sum_j \sum_{k < j} \mathbb E\left[\left.1_{P_i \geq Q_j}\,\right\vert Q_j\right]
     \right\}\\
 &= \frac{1}{M^2}\left\{\sum_j (1-Q_j) + 2 \sum_j \sum_{k < j} (1-Q_j)\right\}\\
 &= \frac{1}{M} \left[\frac{1}{M}\sum_j (1-Q_j)\right] + \frac{2}{M^2} \sum_j \sum_{k < j} (1-Q_j)
@@ -725,7 +725,7 @@ Upon taking the limit, the first term will be killed by the excess $1/M$ term in
 
 $$
 \begin{align*}
-\mathbb E\left[\left.(Z_i^{(N)})^2\,\right|Q_J\right] &\xrightarrow[N \to \infty]{} 0 + 2 \int_0^1 dq \int_0^q dx \, (1-q)\\
+\mathbb E\left[\left.(Z_i^{(N)})^2\,\right\vert Q_J\right] &\xrightarrow[N \to \infty]{} 0 + 2 \int_0^1 dq \int_0^q dx \, (1-q)\\
 &= 2 \int_0^1 dq \, q(1-q)\\
 &= \frac 13.
 \end{align*}
@@ -733,7 +733,7 @@ $$
 
 Hence, putting all results $(*)$ to $(***)$ together, we get
 
-$$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right| Q_J\right] = \frac 13 - 2 \cdot \frac 13 + \frac 13 = 0$$
+$$\lim_{N\to\infty} \mathbb E\left[\left. \left(Z_i^{(N)} - P_i \right)^2\;\right\vert  Q_J\right] = \frac 13 - 2 \cdot \frac 13 + \frac 13 = 0$$
 
 This proves Proposition 2.
 
