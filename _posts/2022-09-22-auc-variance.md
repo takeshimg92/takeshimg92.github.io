@@ -174,7 +174,7 @@ $$\mathbb E[1_{ij,il}] = P_{XYY};$$
 
 it is exactly the term $P_{XYY}$ term defined above: it is the probability that a single score in class 1 (the P) is greater than two random scores from class 0 (the Q's). An analogous reasoning shows that 
 
-$$\mathbb E[1_{ij, jk}] = \mathbb P_{XXY}.$$
+$$\mathbb E[1_{ij, jk}] = P_{XXY}.$$
 
 Putting these together, we are left with
 
@@ -512,7 +512,7 @@ We need to ask them for a dataset to prove our product's performance. The datase
 
 From the formula for a (random) classifier's AUC,
 
-$$\sigma^2 \approx \frac{n_1+n_0}{{12 n_1 n_0}}$$
+$$\sigma^2 \approx \frac{n_1+n_0}{12 n_1 n_0}$$
 
 if we write $n_1 = \alpha N$, $n_0 = (1-\alpha) N$ we get
 
