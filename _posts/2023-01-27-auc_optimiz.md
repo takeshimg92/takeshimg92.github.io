@@ -153,11 +153,11 @@ base = LogisticRegression().fit(X_train, y_train)
 
 ```python
 print("Train AUC: {0:.3f}".format(roc_auc_score(y_train, base.predict_proba(X_train)[:,1])))
-print("Train AUC: {0:.3f}".format(roc_auc_score(y_test, base.predict_proba(X_test)[:,1])))
+print("Test AUC: {0:.3f}".format(roc_auc_score(y_test, base.predict_proba(X_test)[:,1])))
 ```
 
     Train AUC: 0.899
-    Train AUC: 0.895
+    Test AUC: 0.895
     
 
 ### Regularized kernel ROC AUC
