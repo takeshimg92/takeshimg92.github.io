@@ -15,7 +15,7 @@ A common application of binary classification models is *ranking*, more than *cl
 [Learning to rank](https://en.wikipedia.org/wiki/Learning_to_rank) is a whole recent area in machine learning. Here, we focus on the binary case, which is our main concern in domains such as credit and insurance, where an individual will be compared against peers for credit or better insurance policies.
 
 
-In the binary case, the [ROC AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) is a standard metric which I have previously discussed (see [here](https://takeshimg92.github.io/posts/auc-variance.html) and [here](https://takeshimg92.github.io/posts/cost_based_auc.html)). A quick review: in the supervised learning setting, where we have jointly distributed variables $(X,Y)$ (with $X$ taking values in some inner product space $\mathcal X$, and $Y$ being either 0 or 1), and a trained classifier $f: \mathcal X \to [0,1]$, the ROC AUC measures how likely $p$ is to give a higher score to a point in class 1 than to a point in class 0:
+In the binary case, the [ROC AUC](https://en.wikipedia.org/wiki/Receiver_operating_characteristic) is a standard metric which I have previously discussed (see [here](https://takeshimg92.github.io/posts/auc-variance.html) and [here](https://takeshimg92.github.io/posts/cost_based_auc.html)). A quick review: in the supervised learning setting, where we have jointly distributed variables $(X,Y)$ (with $X$ taking values in some inner product space $\mathcal X$, and $Y$ being either 0 or 1), and a trained classifier $p: \mathcal X \to [0,1]$, the ROC AUC measures how likely $p$ is to give a higher score to a point in class 1 than to a point in class 0:
 
 $$\mathrm{AUC} = \mathbb P(p(X) \geq p(X') | Y=1, Y'=0)$$
 
