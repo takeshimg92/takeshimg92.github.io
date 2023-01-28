@@ -4,7 +4,7 @@ title: "AUC as Loss: directly fitting to optimize ROC AUC"
 author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
-image: target.jfif
+image: archer.jpg
 ---
 
 A common application of binary classification models is *ranking*, more than *classification* itself. The difference between the two is subtle:
@@ -263,7 +263,7 @@ to write this as
 
 $$\begin{align*}
 \frac{\partial}{\partial \theta} \mathrm{rAUC} &= \mathbf E \left[\sigma_\varepsilon(p_\theta(X) - p_\theta(X'))[1 - \sigma_\varepsilon(p_\theta(X) - p_\theta(X'))] \right.\times\\
-& \left.\frac{1}{\varepsilon} \frac{\partial}{\partial \theta} (p_\theta(X) - p_\theta(X'))  \left| \atop \right.  Y=1, Y'=0 \right]
+& \qquad\left.\frac{1}{\varepsilon} \frac{\partial}{\partial \theta} (p_\theta(X) - p_\theta(X'))  \left| \atop \right.  Y=1, Y'=0 \right]
 \end{align*}$$
 
 To reduce clutter, call
@@ -275,7 +275,10 @@ $$\begin{align*}
 
 whence
 
-$$\frac{\partial}{\partial \theta} \mathrm{rAUC} = \frac{1}{\varepsilon}\mathbf E \left[\sigma_\varepsilon(\Delta p_\theta(X, X'))[1 - \sigma_\varepsilon(\Delta p_\theta(X, X'))] \Delta p'_\theta(X, X') \left| \atop \right.  Y=1, Y'=0 \right]\qquad (5)$$
+$$\begin{align*}
+\frac{\partial}{\partial \theta} \mathrm{rAUC} &= \frac{1}{\varepsilon}\mathbf E \left[\sigma_\varepsilon(\Delta p_\theta(X, X'))[1 - \sigma_\varepsilon(\Delta p_\theta(X, X'))] \times \right.\\
+&\qquad \left.\Delta p'_\theta(X, X') \left| \atop \right.  Y=1, Y'=0 \right]\qquad (5)
+\end{align*}$$
 
 Now, let us approximate $\mathbf E[\cdot]$ by an average over pairs $(i,j)$. We will use a Monte-Carlo approximation - our experience shows it is *much* faster than iterating over the whole set of pairs - so
 
