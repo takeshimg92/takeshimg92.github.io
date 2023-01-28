@@ -5,7 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: target.jfif
-
+---
 
 A common application of binary classification models is *ranking*, more than *classification* itself. The difference between the two is subtle:
 
@@ -32,7 +32,17 @@ Everything in ROC AUC analysis comes from the fact that we can write the equatio
 
 $$\mathrm{AUC} = \mathbf E \left[ 1_{p(X) \geq p(X')} | Y=1, Y'=0\right]\qquad (1)$$
 
-where $1_A$ is the identity function which takes the value 1 over events in which $A$ is true and zero otherwise. Numerically, this is often approximated as the Wilcoxon-Mann-Whitney statistic: given a set of observations $\{(x_i, y_i)\}_{i=1}^n$, out of which $n_1$ are in class 1 and $n_0 = n-n_1$ are in class 0, it is given by
+where 
+
+$$1_A$$
+
+ is the identity function which takes the value 1 over events in which $A$ is true and zero otherwise.
+
+Numerically, this is often approximated as the Wilcoxon-Mann-Whitney statistic: given a set of observations 
+
+$$\{(x_i, y_i)\}_{i=1}^n,$$
+
+out of which $n_1$ are in class 1 and $n_0 = n-n_1$ are in class 0, it is given by
 
 $$\widehat{\mathrm{AUC}} = \frac{1}{n_0 n_1} \sum_{i: y_i = 1} \sum_{j: y_j=0} 1_{p(x_i) \geq p(x_j)} \qquad (2)$$
 
@@ -186,7 +196,11 @@ plt.show()
 
 See how $\varepsilon=0.01$ or lower already gives a fantastic approximation to the Heaviside function.
 
-Our approach will then be to formally substitute $1_{x\geq 0}$ by $\sigma_\varepsilon(x)$. Define a **regularized kernel ROC AUC** as 
+Our approach will then be to formally substitute 
+
+$$1_{x\geq 0} \longrightarrow \sigma_\varepsilon(x).$$
+
+Define a **regularized kernel ROC AUC** as 
 
 $$\mathrm{rAUC} = \mathbf E[\sigma_\varepsilon(p_\theta(X) - p_\theta(X')) | Y=1, Y'=0].\qquad (4)$$
 
@@ -247,7 +261,10 @@ $$\sigma'(x) = \sigma(x)(1-\sigma(x))$$
 
 to write this as
 
-$$\frac{\partial}{\partial \theta} \mathrm{rAUC} = \mathbf E \left[\sigma_\varepsilon(p_\theta(X) - p_\theta(X'))[1 - \sigma_\varepsilon(p_\theta(X) - p_\theta(X'))] \frac{1}{\varepsilon} \frac{\partial}{\partial \theta} (p_\theta(X) - p_\theta(X'))  \left| \atop \right.  Y=1, Y'=0 \right]$$
+$$\begin{align*}
+\frac{\partial}{\partial \theta} \mathrm{rAUC} &= \mathbf E \left[\sigma_\varepsilon(p_\theta(X) - p_\theta(X'))[1 - \sigma_\varepsilon(p_\theta(X) - p_\theta(X'))] \right.\times\\
+& \left.\frac{1}{\varepsilon} \frac{\partial}{\partial \theta} (p_\theta(X) - p_\theta(X'))  \left| \atop \right.  Y=1, Y'=0 \right]
+\end{align*}$$
 
 To reduce clutter, call
 
@@ -395,7 +412,11 @@ Explicitly: assume we want to differentiate the function $g: \mathbf R^n \to \ma
 
 $$g(x) = 1_{f(x) \geq 0}$$
 
-where $f$ is a $C^\infty$ function. Let $\Omega = \{x: f(x) \geq 0\}$, so we can equivalently write $g$ as $1_\Omega$. Further let $\varphi$ be a test function. By definition of the derivative of a distribution,
+where $f$ is a $C^\infty$ function. Let 
+
+$$\Omega = \{x: f(x) \geq 0\},$$
+
+so we can equivalently write $g$ as $1_\Omega$. Further let $\varphi$ be a test function. By definition of the derivative of a distribution,
 
 $$\langle \nabla 1_\Omega, \varphi\rangle = - \langle  1_\Omega, \nabla\varphi\rangle = - \int_\Omega \nabla \varphi \, dV$$
 
