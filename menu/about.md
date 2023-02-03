@@ -18,6 +18,7 @@ I can be seen in my natural habitat enjoying things like
 * Anything physics-related.
 
 I also lead the data science teams at the Experian DataLabs in São Paulo, Brazil.
+Recently, some colleagues and I published a [book on imbalanced binary classification](https://pibieta.github.io/imbalanced_learning/notebooks/Introduction.html).
 
 In previous iterations, I was a management consultant and data scientist at the Boston Consulting Group, working in Brazil and Japan.
 
