@@ -37,7 +37,11 @@ Fix one of the vertices, say $A$. Prove that the **product of the distances betw
 To help make this statement more concrete, let us do the $n=4$ example below:
 ![image.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/math_problem/markdown_5_attachment_0_0.png)
 
-We pick $A$ as the upper vertex, and via straightforward geometry we obtain $|AB|=|AD|=\sqrt 2$ and $|AC|=2$, which yields
+We pick $A$ as the upper vertex, and via straightforward geometry we obtain 
+
+$$|AB|=|AD|=\sqrt 2 \quad \mbox{and} \quad |AC|=2,$$
+
+which yields
 
 $$|AB||AC||AD| = \sqrt 2 \times 2 \times \sqrt 2 = 4.$$
 
@@ -59,11 +63,11 @@ has $n$ complex roots:
 
 $$\omega_k = e^{2\pi i k/n},\quad k \in \{0,\ldots, n-1\}$$
 
-The distance between two complex numbers $z$ and $w$ is just $|z-w|$. Hence, we can elegantly describe the product of the distances from one vertex (which we will pick to be $\omega_0=1$) to all the others as
+The distance between two complex numbers $z$ and $w$ is just $\vert z-w\vert|$. Hence, we can elegantly describe the product of the distances from one vertex (which we will pick to be $\omega_0=1$) to all the others as
 
 $$\prod_{k=1}^{n-1}|1-\omega_k| = |1-\omega_1||1-\omega_2|\ldots|1-\omega_{n-1}|$$
 
-Now, $|zw| = |z||w|$, so this is equivalent to
+Now, $\vert zw \vert = \vert z \vert \vert w \vert$, so this is equivalent to
 
 $$\left|\;\prod_{k=1}^{n-1}(1-\omega_k)\;\right| = |(1-\omega_1)(1-\omega_2)\ldots(1-\omega_{n-1})| \quad (*)$$
 
@@ -71,7 +75,7 @@ Let us consider the polynomial
 
 $$p(z) = \prod_{k=1}^{n-1}(z-\omega_k).$$
 
-Notice that the right-hand side above is just $|p(1)|$. 
+Notice that the right-hand side above is just $\vert p(1)\vert$. 
 
 Remember that if a polynomial equation $f(z) = 0$ has solutions $\alpha_1,\ldots,\alpha_n$, this means that $f(z)$ can be rewritten as
 
@@ -87,7 +91,7 @@ $$p(z) = \frac{z^n-1}{z-1}$$
 
 Now, $p(1)$ is no longer well-defined, but we can evaluate the limit of this expression as $z \to 1$. For that, we can use l'Hôpital's rule:
 
-![9275552f.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/math_problem/markdown_18_attachment_0_0.png)
+$$\lim_{z\to 1} \frac{z^n-1}{z-1} = \lim_{z\to 1} n z^{n-1} = n.$$
 
 Hence, plugging this back on $(*)$, we get
 
