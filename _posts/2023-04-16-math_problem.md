@@ -4,7 +4,7 @@ title: "My favorite math problem"
 author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
-image: complex_function.jpg
+image: complex_function2.jpg
 ---
 
 Back in the second year of high school, a friend shared with me a problem that his geometry teacher had shown him.
@@ -32,20 +32,28 @@ Consider a regular polygon with $n$ sides. We choose the "radius" of the polygon
 
 ![image.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/math_problem/markdown_3_attachment_0_0.png)
 
-Fix one of the vertices, say $A$. Prove that the **product of the distances between $A$ and all other vertices** is $n$.
+Fix one of the vertices, say $A$. Prove that the **product of the distances between $A$ and all other vertices** is $n$. 
 
-To help make this statement more concrete, let us do the $n=4$ example below:
+Expressed in symbols: let $A_1,\ldots, A_n$ be the vertices of the polygon. Write the distance between vertex $i$ and vertex $j$ as $\vert A_i A_j \vert$. Then, we want to prove that
+
+$$\vert A_1 A_2 \vert \vert A_1 A_3 \vert \ldots \vert A_1 A_n \vert = n.$$
+
+
+For illustration purposes, let us do the $n=4$ example below:
+
 ![image.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/math_problem/markdown_5_attachment_0_0.png)
 
-We pick $A$ as the upper vertex, and via straightforward geometry we obtain 
+We pick $A=A_1$ as the upper vertex, and via straightforward geometry we obtain 
 
 $$|AB|=|AD|=\sqrt 2 \quad \mbox{and} \quad |AC|=2,$$
 
 which yields
 
-$$|AB||AC||AD| = \sqrt 2 \times 2 \times \sqrt 2 = 4.$$
+$$|AB||AC||AD| = \sqrt 2 \times 2 \times \sqrt 2 = 4,$$
 
-This is the problem. Go ahead and try to solve it. The solution is down below.
+so it works in the $n=$ case.
+
+This is the problem. Go ahead and try to solve it, preferably before reading the solution down below.
 
 # The solution
 
@@ -63,7 +71,7 @@ has $n$ complex roots:
 
 $$\omega_k = e^{2\pi i k/n},\quad k \in \{0,\ldots, n-1\}$$
 
-The distance between two complex numbers $z$ and $w$ is just $\vert z-w\vert|$. Hence, we can elegantly describe the product of the distances from one vertex (which we will pick to be $\omega_0=1$) to all the others as
+The distance between two complex numbers $z$ and $w$ is just $\vert z-w\vert$. Hence, we can elegantly describe the product of the distances from one vertex (which we will pick to be $\omega_0=1$) to all the others as
 
 $$\prod_{k=1}^{n-1}|1-\omega_k| = |1-\omega_1||1-\omega_2|\ldots|1-\omega_{n-1}|$$
 
@@ -106,4 +114,4 @@ $$\prod_{k=1}^{n-1}|1-\omega_k| = \left|\;\prod_{k=1}^{n-1}(1-\omega_k)\;\right|
 
 # Final remarks
 
-What I really like about this problem is how it uses complex numbers, in particular the $n$-th roots of unity, to map a difficult geometric problem into an algebraic one. It also requires us to understand complex polynomials and how they are decomposed into their roots. Finally, we obtain the solution via a limit, something that wasn't so obvious to me in high school. Hope you enjoy this problem as I did!
+What I really like about this problem is how it uses complex numbers, in particular the $n$-th roots of unity, to map a difficult geometric problem into an algebraic one. It also requires us to understand complex polynomials and how they are decomposed into their roots. Finally, we obtain the solution via a limit, something that wasn't so obvious to me in high school. Hope you enjoy this problem the same way I did more than 10 years ago!
