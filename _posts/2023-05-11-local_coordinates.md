@@ -4,7 +4,7 @@ title: "How Cartesian can we make coordinates on Earth?"
 author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
-image: simplex.jpg
+image: earth.jpeg
 ---
 
 
@@ -22,13 +22,13 @@ $$d_\mathrm{Euclidean} = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.$$
 
 This is simply not true in other coordinate systems. As a counterexample: let us consider that $A$ and $B$ have latitudes/longitudes $(\lambda_1, \phi_1)$ and $(\lambda_2, \phi_2)$. If $R$ is the Earth's radius, and we consider the Earth to be a sphere, then the exact distance $d$ between the two points is given by the famous [haversine formula](https://en.wikipedia.org/wiki/Haversine_formula):
 
-![706a69be.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_3_attachment_0_0.png)
+$$\sin^2 \frac{d}{2R} = \sin^2 \frac{\lambda_1-\lambda_2}{2} + \cos\lambda_1 \cos\lambda_2 \sin^2 \frac{\phi_1-\phi_2}{2}.$$ 
 
 This is evidently nothing like the Pythagorean theorem.
 
 Very well: how do we **build** Riemann normal coordinates? Building them is, in fact, a very interesting exercise from a mathematical perspective -- hence we will do it below. 
 
-### For data science: distances and neighbors
+## For data science: distances and neighbors
 
 Having a localized coordinate system is useful to data science problems: we commonly deal with geospatial data, where one would like to use nearest-neighbor methods. Using the Haversine formula of course works, but is slow; it would be nice if we could just use Euclidean distances. 
 
@@ -58,12 +58,23 @@ Our goal here is then threefold:
 
 It is important to notice that our analysis is very Brazil-centric; however, it is fully generalizable to other geographies.
 
+
 # Setup
 
 In all that follows, we consider a sphere of unit radius (which we can do with no loss of generality; we need only multiply all results by a physical radius later if necessary). 
 
 I employ the physicists' convention for spherical coordinates, where $\phi$ denotes the longitude and $\theta$ is sometimes called the colatitude:
-![image-2.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_14_attachment_0_0.png)
+
+$$\begin{cases}
+x &= r\sin\theta \cos\phi \\
+y &= r\sin\theta \sin\phi \\
+z &= r\cos\theta 
+\end{cases},\qquad \begin{cases}
+r &= \sqrt{x^2+y^2+z^2}\\
+\theta &= \arccos \displaystyle \frac{z}{\sqrt{x^2+y^2+z^2}}\\
+\phi &= \mathrm{atan2}(y,x)
+\end{cases}
+$$
 
 > These notations vary wildly across literature, so be careful to adapt to your convention if necessary.
 
@@ -174,8 +185,7 @@ q_3 &= \cos\theta &  p_3 &= \cos\theta_0\\
 
 then
 
-![f65a2c6b.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_46_attachment_0_0.png)
-
+$$\binom{q_x}{q_y} = \Delta_{pq} \binom{\sin\theta \sin(\phi-\phi_0)}{\sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)}$$
 where 
 
 $$\Delta_{pq} \equiv \cos \theta_0 \cos \theta + \sin \theta_0 \sin \theta \cos(\phi-\phi_0)$$
@@ -335,7 +345,7 @@ Let us use these vectors to calculate distances and see how normal coordinates a
 
 We can obtain the great circle distance between the two points as:
 
-![5f7ff5db.png](How%20Cartesian%20can%20we%20make%20coordinates%20on%20Earth%3F_files/markdown_75_attachment_0_0.png)
+$$d = 2 \arcsin \frac{|\vec p-\vec q|}{2} = \arccos(\vec p \cdot \vec q).$$
 
 > Of course, we should multiply by the Earth's radius afterwards. We are ignoring that here.
 
@@ -562,7 +572,9 @@ We see that using coordinates centered on Brazil's centroid essentially renders 
 
 This is useful because we can just use the $q_\parallel$ components described above:
 
-![da48642e.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_104_attachment_0_0.png)
+$$x = \sin\theta \sin(\phi-\phi_0)$$
+
+$$y = \sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)$$
 
 where $\theta_0, \phi_0$ refer to Brazil's centroid:
 
@@ -684,7 +696,13 @@ We are in place to use [Rodrigues' rotation formula](https://en.wikipedia.org/wi
 * $\vec k$ is the unit vector defining the axis of rotation around which we want to rotate;
 * $\theta$ is the angle of rotation. 
 
-In our case, $\vec u = \vec p$ and $\theta = \vert\vec v\vert$; the unit vector $\vec k$ can be found by clever use of the cross product, $$\vec k = \vec p \times \frac{\vec v}{\vert\vec v\vert}.$$ This can be seen to be unit-length since $\vert\vec p\vert=1$. Then, by straightforward application of the [vector triple product](https://en.wikipedia.org/wiki/Triple_product#Vector_triple_product), we find $$\vec k \times\vec u = \frac{\vec v}{\vert\vec v\vert},$$ and 
+In our case, $\vec u = \vec p$ and $\theta = \vert\vec v\vert$; the unit vector $\vec k$ can be found by clever use of the cross product, $$\vec k = \vec p \times \frac{\vec v}{\vert\vec v\vert}.$$ This can be seen to be unit-length since $\vert\vec p\vert=1$. Then, by straightforward application of the [vector triple product](https://en.wikipedia.org/wiki/Triple_product#Vector_triple_product), we find 
+
+$$\vec k \times\vec u = \frac{\vec v}{\vert\vec v\vert},$$ 
+
+and
+
+
 $$\exp_p(\vec v) = \vec p \cos(\vert\vec v\vert)+\frac{\vec v}{\vert\vec v\vert}\sin(\vert\vec v\vert).$$
 
 ## The inverse exponential map
@@ -701,11 +719,12 @@ If $\vec q$ is not parallel to $\vec p$, we can find its projection onto $T_pS$ 
 $$ q_\parallel \equiv (\mathbf 1 - \vec p \otimes \vec p) \cdot \vec q = \vec q-(\vec q \cdot \vec p)\vec p$$
 is the orthogonal projection (we use a parallel mark because it is parallel to the tangent plane). Hence, if we define
 
-$$\vec v = \arccos(\vec p \cdot \vec q) \frac{q_\parallel}{\vertq_\parallel\vert}$$ 
+$$\vec v = \arccos(\vec p \cdot \vec q) \frac{q_\parallel}{\vert q_\parallel\vert}$$ 
 
 then this vector has the right length and direction, and is the inverse exponential map. 
 
 More precisely,
+
 $$\exp_p^{-1}(\vec q)=\arccos(\vec p\cdot \vec q)\frac{\vec q - (\vec q \cdot \vec p)\vec p}{\vert\vec q - (\vec q \cdot \vec p)\vec p\vert}.$$
 
 
@@ -766,11 +785,11 @@ $$\vec q_\parallel = \binom{q_x}{q_y} =  \binom{\sin\theta \sin(\phi-\phi_0)}{\s
 
 (below, we drop the arrows to avoid notational clutter)
 
-First, the expression $\vertk \times p\vert$ is just $\vert\sin \theta_0\vert = \sin\theta_0$. Writing out the expression for $q_x$, we have
+First, the expression $\vert k \times p\vert$ is just $\vert\sin \theta_0\vert = \sin\theta_0$. Writing out the expression for $q_x$, we have
 
 
 $$\begin{align*}
-q_x &= [q - (p\cdot q) p] \cdot \frac{k \times p}{\vertk\times p\vert}\\
+q_x &= [q - (p\cdot q) p] \cdot \frac{k \times p}{\vert k\times p\vert}\\
     &= \frac{1}{\sin\theta_0} q\cdot (k\times p)\\
     &= \frac{1}{\sin\theta_0} k \cdot (p \times q)
 \end{align*}$$
