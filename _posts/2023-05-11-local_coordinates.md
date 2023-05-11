@@ -720,6 +720,7 @@ We can illustrate this configuration with a figure very similar to Figure A. Her
 If $\vec q$ is not parallel to $\vec p$, we can find its projection onto $T_pS$ by finding its component orthogonal to $\vec p$. Since $\mathbf 1 - \vec p\otimes \vec p$ is the orthogonal projector to $\vec p$, it follows that
 
 $$ q_\parallel \equiv (\mathbf 1 - \vec p \otimes \vec p) \cdot \vec q = \vec q-(\vec q \cdot \vec p)\vec p$$
+
 is the orthogonal projection (we use a parallel mark because it is parallel to the tangent plane). Hence, if we define
 
 $$\vec v = \arccos(\vec p \cdot \vec q) \frac{q_\parallel}{\vert q_\parallel\vert}$$ 
