@@ -170,8 +170,14 @@ Let us summarize the steps so far:
 **From points on the sphere to Riemann normal coordinates:**
 
 Inputs: a reference point $\vec p$ and any point $\vec q$ on the unit sphere
-* Calculate the inverse exponential map of $\vec q$ via $$\tilde q = \exp_p^{-1}(\vec q) = \arccos(\vec p \cdot \vec q) \displaystyle \frac{\vec q - (\vec p \cdot \vec q) \vec p}{\vert\vec q - (\vec p \cdot \vec q) \vec p\vert};$$
-* Construct the basis vectors $$\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \hat y = \vec p \times \hat x\;$$
+* Calculate the inverse exponential map of $\vec q$ via 
+
+$$\tilde q = \exp_p^{-1}(\vec q) = \arccos(\vec p \cdot \vec q) \displaystyle \frac{\vec q - (\vec p \cdot \vec q) \vec p}{\vert\vec q - (\vec p \cdot \vec q) \vec p\vert};$$
+
+* Construct the basis vectors 
+
+$$\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \hat y = \vec p \times \hat x\;$$
+
 * Calculate $q_x = \tilde q \cdot \hat x$, $q_y = \tilde q\cdot \hat y$;
 * Return $(q_x, q_y)$
 
@@ -782,6 +788,7 @@ $$q_x = \vec q_\parallel \cdot \hat x,\quad q_y = \vec q_\parallel \cdot \hat y$
 where, as usual, 
 
 $$\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \hat y = \vec p \times \hat x$$
+
 and $k$ is the unit vector along the $z$ direction.
 
 We will prove that
