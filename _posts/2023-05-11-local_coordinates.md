@@ -13,7 +13,7 @@ This is true not only for the (surface of) the Earth, but for any so-called [Rie
 
 For every point in a manifold, there is a special coordinate system called [Riemann normal coordinates](https://en.wikipedia.org/wiki/Normal_coordinates). These coordinates translate the fact above: they represent a space that is flat -- in the sense that distances are measured via the Pythagorean theorem -- at least in a neighborhood of that point. 
 
-To be concrete, Suppose we have Riemann normal coordinates centered on a point $P$. If we have two points with Riemann normal coordinates $A: (x_1, y_1)$ and $B: (x_2, y_2)$, then their distance will be very well approximated by 
+To be concrete, suppose we have Riemann normal coordinates centered on a point $P$. If we have two points with Riemann normal coordinates $A: (x_1, y_1)$ and $B: (x_2, y_2)$, then their distance will be very well approximated by 
 
 $$d_\mathrm{Euclidean} = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.$$
 
@@ -23,7 +23,7 @@ $$\sin^2 \frac{d}{2R} = \sin^2 \frac{\lambda_1-\lambda_2}{2} + \cos\lambda_1 \co
 
 This is evidently nothing like the Pythagorean theorem.
 
-Very well: how do we **build** Riemann normal coordinates? Building them is, in fact, a very interesting exercise from a mathematical perspective -- hence we will do it below. 
+Very well: how do we *build* Riemann normal coordinates? Building them is, in fact, a very interesting exercise from a mathematical perspective -- hence we will do it below. 
 
 ## For data science: distances and neighbors
 
@@ -182,7 +182,7 @@ $$\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \h
 * Calculate $q_x = \tilde q \cdot \hat x$, $q_y = \tilde q\cdot \hat y$;
 * Return $(q_x, q_y)$
 
-There is actually a nice analytical outcome of all of this: these two formulas derived in Appendix II: if we write the 3D components of $\vec q$ and $\vec p$ as
+There is actually a nice analytical outcome of all of this: these two formulas derived in Appendix II. If we write the 3D components of $\vec q$ and $\vec p$ as
 
 $$\begin{align*}
 q_1 &= \sin\theta \cos\phi &  p_1 &= \sin\theta_0\cos\phi_0\\
