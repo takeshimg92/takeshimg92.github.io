@@ -153,7 +153,7 @@ We can easily construct this coordinate system from some analytical geometry. We
 
 From our reference point $\vec p$ and $k$, we can build the ENU basis as follows. Define
 
-$$\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \hat y = \vec p \times \hat x = \frac{\vec k - (\vec p\cdot \vec k) \vec p}{\vert\vec k \times \vec p\vert}.$$
+$$\boxed{\hat x = \frac{\vec k \times \vec p}{\vert \vec k \times \vec p\vert},\quad \hat y = \vec p \times \hat x = \frac{\vec k - (\vec p\cdot \vec k) \vec p}{\vert\vec k \times \vec p\vert}.}$$
 
 
 where the last equality follows from using the [triple product](https://en.wikipedia.org/wiki/Triple_product). Then $(\hat x, \hat y, p)$ are, by construction, an orthonormal basis for the whole space.
@@ -185,10 +185,11 @@ q_3 &= \cos\theta &  p_3 &= \cos\theta_0\\
 
 then
 
-$$\binom{q_x}{q_y} = \Delta_{pq} \binom{\sin\theta \sin(\phi-\phi_0)}{\sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)}$$
+$$\boxed{\binom{q_x}{q_y} = \Delta_{pq} \binom{\sin\theta \sin(\phi-\phi_0)}{\sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)}}$$
+
 where 
 
-$$\Delta_{pq} \equiv \cos \theta_0 \cos \theta + \sin \theta_0 \sin \theta \cos(\phi-\phi_0)$$
+$$\boxed{\Delta_{pq} \equiv \cos \theta_0 \cos \theta + \sin \theta_0 \sin \theta \cos(\phi-\phi_0)}$$
 
 Here, $\Delta_{pq}$ is the arc-cosine of the distance between the two points; note that, if one takes the limit $\theta\to\theta_0, \phi\to\phi_0$ we have $\Delta_{pq} \to 1$.
 
@@ -423,7 +424,7 @@ $$\tilde q = (\tilde q \cdot \hat x, \tilde q \cdot \hat y),\quad q_\parallel = 
 
 Both are parallel and differ by a factor of $\Delta_{pq}$ as defined above. The naive projection has components
 
-$$q_\parallel = \binom{\sin\theta \sin(\phi-\phi_0)}{\sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)}$$
+$$\boxed{q_\parallel = \binom{\sin\theta \sin(\phi-\phi_0)}{\sin\theta_0 \cos\theta - \cos\theta_0 \sin\theta \cos(\phi-\phi_0)}}$$
 
 and the inverse exponential map is $\Delta_{pq} q_\parallel$.
 
@@ -691,7 +692,11 @@ Consider then a vector $\vec v$ in $T_p S$. We may visualize it as follows: sinc
 
 We use without proof the fact that [geodesics on a sphere are great circles](https://www.damtp.cam.ac.uk/user/reh10/lectures/nst-mmii-handout2.pdf). Hence, the solution to the geodesic equation is the circle we see in Figure A. More precisely, it is the curve starting at $\vec p$ and rotating clockwise with constant  speed $\vert\vec v\vert$.  If we call $\theta(t)$ the angle spanned by this curve(with $\theta = 0$ being point $\vec p$), then $$\theta(t) = \vert\vec v\vert t.$$The point given by $\exp_p(v)$ will then be that at $\theta(1)$, at an angular distance $\vert\vec v\vert$. In other words, it will be a rotation of $\vec p$ by an angle of $\vert\vec v\vert$ around an axis which is perpendicular to the planed spanned by $\vec v$ and $\vec p$.
 
-We are in place to use [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula): $$\vec u_\mathrm{rot} = \vec u \cos \theta + \vec k \times \vec u \sin\theta + \vec k(\vec k \cdot \vec u)(1-\cos\theta),$$ where:
+We are in place to use [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula): 
+
+$$\vec u_\mathrm{rot} = \vec u \cos \theta + \vec k \times \vec u \sin\theta + \vec k(\vec k \cdot \vec u)(1-\cos\theta),$$ 
+
+where:
 * $\vec u$ is the vector we want to rotate;
 * $\vec k$ is the unit vector defining the axis of rotation around which we want to rotate;
 * $\theta$ is the angle of rotation. 
