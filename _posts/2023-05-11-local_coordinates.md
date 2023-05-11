@@ -7,9 +7,6 @@ tags: [datascience]
 image: earth.jpeg
 ---
 
-
-# Cartesian coordinates centered on a point on Earth
-
 Earth is locally flat.
 
 This is true not only for the (surface of) the Earth, but for any so-called [Riemannian manifold](https://en.wikipedia.org/wiki/Riemannian_manifold), a generalization of surfaces to any number of dimensions. Even though there is curvature, if one zooms enough into a point, curvature disappears and their neighborhood will look flat. This is why some individuals in our planet, with a very literal narrow view, think the world is flat: they extrapolate local apparent flatness to the whole surface of the Earth. 
