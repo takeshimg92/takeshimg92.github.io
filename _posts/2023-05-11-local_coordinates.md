@@ -13,7 +13,7 @@ This is true not only for the (surface of) the Earth, but for any so-called [Rie
 
 For every point in a manifold, there is a special coordinate system called [Riemann normal coordinates](https://en.wikipedia.org/wiki/Normal_coordinates). These coordinates translate the fact above: they represent a space that is flat -- in the sense that distances are measured via the Pythagorean theorem -- at least in a neighborhood of that point. 
 
-To be concrete, suppose we have Riemann normal coordinates centered on a point $P$. If we have two points with Riemann normal coordinates $A: (x_1, y_1)$ and $B: (x_2, y_2)$, then their distance will be very well approximated by 
+To be concrete, suppose we have Riemann normal coordinates centered on a point $P$. If we have two points with Riemann normal coordinates $A: (x_1, y_1)$ and $B: (x_2, y_2)$, then their distance will be very well approximated by   
 
 $$d_\mathrm{Euclidean} = \sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.$$
 
