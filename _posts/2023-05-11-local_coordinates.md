@@ -697,7 +697,11 @@ Consider then a vector $\vec v$ in $T_p S$. We may visualize it as follows: sinc
 
 ![image.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_118_attachment_0_0.png)
 
-We use without proof the fact that [geodesics on a sphere are great circles](https://www.damtp.cam.ac.uk/user/reh10/lectures/nst-mmii-handout2.pdf). Hence, the solution to the geodesic equation is the circle we see in Figure A. More precisely, it is the curve starting at $\vec p$ and rotating clockwise with constant  speed $\vert\vec v\vert$.  If we call $\theta(t)$ the angle spanned by this curve(with $\theta = 0$ being point $\vec p$), then $$\theta(t) = \vert\vec v\vert t.$$The point given by $\exp_p(v)$ will then be that at $\theta(1)$, at an angular distance $\vert\vec v\vert$. In other words, it will be a rotation of $\vec p$ by an angle of $\vert\vec v\vert$ around an axis which is perpendicular to the planed spanned by $\vec v$ and $\vec p$.
+We use without proof the fact that [geodesics on a sphere are great circles](https://www.damtp.cam.ac.uk/user/reh10/lectures/nst-mmii-handout2.pdf). Hence, the solution to the geodesic equation is the circle we see in Figure A. More precisely, it is the curve starting at $\vec p$ and rotating clockwise with constant  speed $\vert\vec v\vert$.  If we call $\theta(t)$ the angle spanned by this curve(with $\theta = 0$ being point $\vec p$), then 
+
+$$\theta(t) = \vert\vec v\vert t.$$
+
+The point given by $\exp_p(v)$ will then be that at $\theta(1)$, at an angular distance $\vert\vec v\vert$. In other words, it will be a rotation of $\vec p$ by an angle of $\vert\vec v\vert$ around an axis which is perpendicular to the planed spanned by $\vec v$ and $\vec p$.
 
 We are in place to use [Rodrigues' rotation formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula): 
 
