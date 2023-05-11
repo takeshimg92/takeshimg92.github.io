@@ -55,6 +55,13 @@ Our goal here is then threefold:
 
 It is important to notice that our analysis is very Brazil-centric; however, it is fully generalizable to other geographies.
 
+TL;DR: for Brazil, we don't need to go as far as building the exponential map -- direct projection of points onto the plane tangent to latitude -10.80677, longitude -53.05434 is enough. For a point of latitude $\lambda$ and longitude $\phi$ this becomes
+
+$$\boxed{\begin{align*}
+y &= 0.982265 \sin \lambda + 0.18749 \cos\lambda \cos(\phi+0.92597)\\
+x &= \cos \lambda \sin(\phi +0.92597)\\
+\end{align*}}$$
+
 
 # Setup
 
