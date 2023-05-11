@@ -77,7 +77,16 @@ $$
 
 Their ranges are defined as $\theta \in [0,\pi]$, $\phi \in ]-\pi, \pi]$. With these ranges, we can write the transformations to/from Cartesian coordinates as
 
-![33213c44.png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/markdown_17_attachment_0_0.png)
+$$\begin{cases}
+x &= r\sin\theta \cos\phi \\
+y &= r\sin\theta \sin\phi \\
+z &= r\cos\theta 
+\end{cases},\qquad \begin{cases}
+r &= \sqrt{x^2+y^2+z^2}\\
+\theta &= \arccos \displaystyle \frac{z}{\sqrt{x^2+y^2+z^2}}\\
+\phi &= \mathrm{atan2}(y,x)
+\end{cases}
+$$
 
 where we have used the [atan2](https://en.wikipedia.org/wiki/Atan2) function.
 
