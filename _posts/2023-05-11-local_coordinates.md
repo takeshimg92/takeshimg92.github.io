@@ -73,23 +73,9 @@ r &= \sqrt{x^2+y^2+z^2}\\
 \end{cases}
 $$
 
-> These notations vary wildly across literature, so be careful to adapt to your convention if necessary.
-
-Their ranges are defined as $\theta \in [0,\pi]$, $\phi \in ]-\pi, \pi]$. With these ranges, we can write the transformations to/from Cartesian coordinates as
-
-$$\begin{cases}
-x &= r\sin\theta \cos\phi \\
-y &= r\sin\theta \sin\phi \\
-z &= r\cos\theta 
-\end{cases},\qquad \begin{cases}
-r &= \sqrt{x^2+y^2+z^2}\\
-\theta &= \arccos \displaystyle \frac{z}{\sqrt{x^2+y^2+z^2}}\\
-\phi &= \mathrm{atan2}(y,x)
-\end{cases}
-$$
-
 where we have used the [atan2](https://en.wikipedia.org/wiki/Atan2) function.
 
+> These notations vary wildly across literature, so be careful to adapt to your convention if necessary.
 
 ```python
 import numpy as np
