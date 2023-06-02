@@ -624,24 +624,6 @@ def brazil_centric_coordinates(lat, lon):
 ```
 
 
-```python
-# plot to double-check
-fig, ax = plt.subplots(figsize=(5,5))
-coords = pd.DataFrame({'lat': np.pi/180 * pointdf['geometry'].apply(lambda aux: aux.y),
-                       'lon': np.pi/180 * pointdf['geometry'].apply(lambda aux: aux.x)})
-
-projection = pd.DataFrame(coords.apply(lambda row: brazil_centric_coordinates(*row), axis=1).values.tolist())
-projection.plot.scatter(x=0, y=1, s=0.5, ax=ax)
-
-plt.gca().set_aspect('equal')
-```
-
-
-    
-![png](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/riemann/output_110_0.png)
-    
-
-
 # Conclusion
 
 * We introduced the concept of the exponential map from differential geometry;
