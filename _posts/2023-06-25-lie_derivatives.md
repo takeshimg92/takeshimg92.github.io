@@ -21,11 +21,20 @@ Being much less enlightened than both Wald and Stewart, I always had some diffic
 
 2. The proof of the main result, namely that the Lie derivative of a vector along another equals their commutator, always involves choosing one of them as a coordinate basis vector; I would love a more "general", albeit more involved version, to work without this requirement.
 
-Hence, I am posting here for any other students of differential geometry of general relativity my own proof which is, cluttered as can be, very transparent on what is going on.
+Hence, I am posting here for any other students of differential geometry or general relativity my own proof which is, cluttered as can be, very transparent (for me, of courseon what is going on.
 
 ## Set-up: pushforwards and pullbacks
 
-Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X = d/d\lambda$.  We will present the rules that allow for the quick rule-of-thumb 
+Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X$, also called $X$'s orbits; this means that $\phi_t$ is the solution to the initial value problem below, where $x^a$ is local coordinate chart defined around a point $p$:
+
+$$\begin{cases}
+\frac{d x^a(t)}{dt} &= X^a(x(t))\\
+x^a(t=0) &= x_p^a
+\end{cases}$$
+
+Provided $X$ is smooth, the solution exists and is unique at least on a neighborhood of $p = \phi_t(0)$; we will assume to be on such a region during the whole discussion below.
+
+First, we will present the rules that allow for the quick rule-of-thumb 
 
 $$\boxed{\mbox{(pushforward of $T$)(stuff) = $T$(pullback of stuff)}},$$ 
 
@@ -143,7 +152,9 @@ $$(\phi_t^*)_p=\begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t\end{pmatrix},
 
  Notice how the sign has changed with the formal replacement of $t \mapsto -t$. Also, we changed the subscript from $p$ to $\phi_t(p)$ for clarity. 
 
-Note: an important point here is the use of matrices. In the expression for $(\phi_{t})_{p}$, we used matrices as a compact notation of how coordinate systems changed. For the pushforward, however, the matrices actually act on vectors in one space and give vectors in another space. Explicitly, $(\phi_t^*)_p$ takes vectors in $T_pM$ to vectors in $T_{\phi_t(p)}M.$
+Note: an important point here is the use of matrices. In the expression for $(\phi_{t})_{p}$, we used matrices as a compact notation of how coordinate systems changed. For the pushforward, however, the matrices actually act on vectors in one space and give vectors in another space. Explicitly, 
+
+$$(\phi_t^*)_p$ : T_p M \to T_{\phi_t(p)} M.$$
 
 We have all the ingredients we need. We want to calculate
 
