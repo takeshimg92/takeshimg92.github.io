@@ -27,7 +27,7 @@ Hence, I am posting here for any other students of differential geometry of gene
 
 ## Set-up: pushforwards and pullbacks
 
-Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $v = d/d\lambda$.  We will present the rules that allow for the quick rule-of-thumb 
+Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X = d/d\lambda$.  We will present the rules that allow for the quick rule-of-thumb 
 
 $$\boxed{\mbox{(pushforward of $T$)(stuff) = $T$(pullback of stuff)}},$$ 
 
@@ -45,9 +45,9 @@ This means that the pullback applied to point $P$ will be equivalent to $f$ appl
 
 ### Pushforward of vectors
 
-Let $v \in T_p M$. We define a new vector $\phi_t^*v \in T_{\phi_t(p)}M$ via its action on functions, 
+Let $X \in T_p M$. We define a new vector $\phi_t^*X \in T_{\phi_t(p)}M$ via its action on functions, 
 
-$$(\phi_t^*v)(f):= v(f\circ \phi_t) = v(\phi_{t*}f).$$
+$$(\phi_t^*X)(f):= v(f\circ \phi_t) = X(\phi_{t*}f).$$
 
 That is, the pushforward of a vector, applied to a function, is the vector applied to that function's pullback! (confusing I know)
 > (Pushforward of vector)(function) = Vector(pullback of function).
@@ -56,7 +56,7 @@ That is, the pushforward of a vector, applied to a function, is the vector appli
 
 This line of thought can be generalized to covectors, and posteriorly to tensors. Pullback of 1-form, applied to vector = 1-form applied to the pushforward of that vector:
 
-$$(\phi_{t*} \omega)(v) = \omega(\phi_t^* v).$$
+$$(\phi_{t*} \omega)(X) = \omega(\phi_t^* X).$$
 
 > (Pullback of 1-form)(vector) = (1-form)(pushforward of vector).
 
@@ -70,7 +70,7 @@ we can define pushforwards for any tensors. F
 
 or example, let $T^a_b$ be a (1,1)-tensor in abstract index notation. I'll write $T(v,\omega)$ as its explicit action on a one-form and a vector. It follows that
 
-$$(\phi_t^*T)(v,\omega):= T(\phi_{t*}v, \phi_{t*}\omega)=T(\phi_{-t}^*v, \phi_{t*}\omega).$$
+$$(\phi_t^*T)(X,\omega):= T(\phi_{t*}X, \phi_{t*}\omega)=T(\phi_{-t}^*X, \phi_{t*}\omega).$$
 
 All of the quantities in the RHS are well-defined (pushforward on vector, pullback on 1-form). 
 
@@ -82,7 +82,7 @@ First, we write $T_p$ instead of $T$ to make sure the point where the tensor is 
 
 Also, for pushforwards, we write down a subscript showing where the pushforward "acts on". For example: if $\phi_t: p \mapsto \phi_t(p)$, then the pushforward will be written 
 
-$$(\phi_t^*)_p: V_p \mapsto (\phi_t^*)_p V \in T_{\phi_t(p)}M.$$
+$$(\phi_t^*)_p: X_p \mapsto (\phi_t^*)_p X \in T_{\phi_t(p)}M.$$
 
 In this notation, we also make explicit the pullback 
 
@@ -90,19 +90,19 @@ $$\boxed{(\phi_{-t}^*)_{\phi_t(p)}:T_{\phi_t(p)} M \to T_p M.}$$
 
 Then
 
-$$\boxed{(\mathcal L_v T)_p := \lim_{t\to 0}\frac{(\phi_{-t}^*)_{\phi_t(p)}(T_{\phi_t(p)}) - T_p }{t}.}$$ 
+$$\boxed{(\mathcal L_X T)_p := \lim_{t\to 0}\frac{(\phi_{-t}^*)_{\phi_t(p)}(T_{\phi_t(p)}) - T_p }{t}.}$$ 
 
 This also fits Carroll's formula B.4-B.5; he uses $\phi_{t*}$ instead (also notice that his positions of the asterisk in pullbacks / pushforwards is opposite to ours). We also made explicit the origin of the pushforward: it starts from $\phi_t(p)$. 
 
 Let's do this calculation for a function. As a tensor, it does not vary from point to point, even though its value when *calculated* at different points does. What I mean is that $f_p = f_q = f$ for any two points $p, q$, but usually $f(p) \neq f(q)$. As such, since we only have pullbacks well-defined for functions, we can use the pullback-based expression: $\phi_{t*}f = f \circ \phi_t$, hence
 
-$$(\mathcal L_v f)(p) = \lim_{t\to 0}\frac{f(\phi_t(p)) -  f(p)}{t}.$$
+$$(\mathcal L_X f)(p) = \lim_{t\to 0}\frac{f(\phi_t(p)) -  f(p)}{t}.$$
 
-To calculate the expression on the RHS, construct a local coordinate where $p$ has coordinates $\vec x$ and $\phi_t(p) = \vec x + t \vec v$ where $\vec v$ are the local coordinates of the vector field generating $\phi_t$. Then, Taylor expanding, we get a RHS of $v^i \partial_i f$ which is just $v(f)$ calculated at $p$. It follows that 
+To calculate the expression on the RHS, construct a local coordinate where $p$ has coordinates $\vec x$ and $\phi_t(p) = \vec x + t \vec X$ where $\vec X$ are the local coordinates of the vector field generating $\phi_t$. Then, Taylor expanding, we get a RHS of $X^i \partial_i f$ which is just $X(f)$ calculated at $p$. It follows that 
 
-$$\mathcal L_v f = v(f).$$
+$$\mathcal L_X f = X(f).$$
 
-Well then; what about vectors? The spoiler is: 
+Well then; what about acting on vectors? The spoiler is: 
 
 $$\mathcal L_X Y = [X, Y];$$
 
