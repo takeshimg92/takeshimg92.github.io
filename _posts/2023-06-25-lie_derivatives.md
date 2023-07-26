@@ -55,7 +55,7 @@ This means that the pullback applied to point $P$ will be equivalent to $f$ appl
 
 ### Pushforward of vectors
 
-Let $X \in T_p M$. We define a new vector $\phi_t^*X \in T_{\phi_t(p)}M$, its *pushforward*, via its action on functions:
+Let $X \in T_p M$. We define a new vector $\phi_t^\ast X \in T_{\phi_t(p)}M$, its *pushforward*, via its action on functions:
 
 $$(\phi_t^*X)(f):= X(f\circ \phi_t) = X(\phi_{t*}f).$$
 
