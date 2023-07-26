@@ -25,7 +25,7 @@ Hence, I am posting here for any other students of differential geometry or gene
 
 ## Set-up: pushforwards and pullbacks
 
-Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X$, also called $X$'s orbits; this means that $\phi_t$ is the solution to the initial value problem below, where $x^a$ is local coordinate chart centered around a point $p$:
+Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X$, also called $X$'s orbits; this means that $\phi_t$ is the solution to the following initial value problem, where $x^a$ is local coordinate chart centered around a point $p$, which we will fix throughout the whole discussion:
 
 $$\begin{cases}
 \displaystyle \frac{d x^a(t)}{dt} &= X^a(x(t))\\
@@ -34,7 +34,7 @@ x^a(0) &= 0
 
 where $X^a(x(t))$ is the value of the components of the vector field $X$ at point $x(t)$.
 
-Provided $X$ is smooth, the solution exists and is unique at least on a neighborhood of $p = \phi_t(0)$; we will assume to be on such a region during the whole discussion below.
+Provided $X$ is smooth, the solution exists and is unique at least on a neighborhood of $p$; we will assume to be on such a region during the whole discussion below. Notice that what $\phi_t$ does is to map points on the manifold along the direction of the vector field $X$; in particular, $\phi_t(p)$ maps the origin $p$ onto a point at a parameter distance $t$ along the orbits of $X$.
 
 First, we will present the rules that allow for the quick rule-of-thumb 
 
@@ -50,14 +50,23 @@ Given a map $\phi_t$, define a function's *pullback* as
 
 $$\phi_{t*}f:=f\circ\phi_t.$$
 
-This means that the pullback applied to point $P$ will be equivalent to $f$ applied to $\phi_t(P)$. 
+This means that the pullback applied to point $q$ will be equivalent to $f$ applied to $\phi_t(q)$: 
+
+$$(\phi_{t*}f)(q) = f(\phi_t(q)).$$
+
 > Pullback of function = function composition.
 
 ### Pushforward of vectors
 
-Let $X \in T_p M$. We define a new vector $\phi_t^\ast X \in T_{\phi_t(p)}M$, its *pushforward*, via its action on functions:
+First, recall that in differential geometry one often thinks of vectors as differential operators: let $T_q M$ be the tangent space to a point $q$ in the manifold. There exists a coordinate chart $x^a$ (where $a$ ranges from 1 to the dimension of the manifold) such that $T_q M$ is the span of $\partial/\partial x^a$. Any vector $X \in T_q M$ is then of the form
 
-$$(\phi_t^*X)(f):= X(f\circ \phi_t) = X(\phi_{t*}f).$$
+$$X = X^a \left( \frac{\partial}{\partial x^a}\right)_q$$
+
+and operations such as $X(f)$ are well-defined, where $f$ is a function defined on the manifold.
+
+Now, let $X \in T_p M$. We define a new vector $\phi_t^\ast X \in T_{\phi_t(p)}M$, its *pushforward*, via its action on functions:
+
+$$(\phi_t^\ast X)(f):= X(f\circ \phi_t) = X(\phi_{t\ast }f).$$
 
 That is, the pushforward of a vector, applied to a function, is the vector applied to that function's pullback! (confusing, I know)
 > (Pushforward of vector)(function) = Vector(pullback of function).
