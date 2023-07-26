@@ -25,12 +25,14 @@ Hence, I am posting here for any other students of differential geometry or gene
 
 ## Set-up: pushforwards and pullbacks
 
-Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X$, also called $X$'s orbits; this means that $\phi_t$ is the solution to the initial value problem below, where $x^a$ is local coordinate chart defined around a point $p$:
+Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector field $X$, also called $X$'s orbits; this means that $\phi_t$ is the solution to the initial value problem below, where $x^a$ is local coordinate chart centered around a point $p$:
 
 $$\begin{cases}
-\frac{d x^a(t)}{dt} &= X^a(x(t))\\
-x^a(t=0) &= x_p^a
+\displaystyle \frac{d x^a(t)}{dt} &= X^a(x(t))\\
+x^a(0) &= 0
 \end{cases}$$
+
+where $X^a(x(t))$ is the value of the components of the vector field $X$ at point $x(t)$.
 
 Provided $X$ is smooth, the solution exists and is unique at least on a neighborhood of $p = \phi_t(0)$; we will assume to be on such a region during the whole discussion below.
 
@@ -44,7 +46,7 @@ where $T$ is some tensor.
 
 ### Pullbacks of functions
 
-Given a map $\phi_t$, define a function's **pullback** as 
+Given a map $\phi_t$, define a function's *pullback* as 
 
 $$\phi_{t*}f:=f\circ\phi_t.$$
 
@@ -53,11 +55,11 @@ This means that the pullback applied to point $P$ will be equivalent to $f$ appl
 
 ### Pushforward of vectors
 
-Let $X \in T_p M$. We define a new vector $\phi_t^*X \in T_{\phi_t(p)}M$ via its action on functions, 
+Let $X \in T_p M$. We define a new vector $\phi_t^*X \in T_{\phi_t(p)}M$, its *pushforward*, via its action on functions:
 
-$$(\phi_t^*X)(f):= v(f\circ \phi_t) = X(\phi_{t*}f).$$
+$$(\phi_t^*X)(f):= X(f\circ \phi_t) = X(\phi_{t*}f).$$
 
-That is, the pushforward of a vector, applied to a function, is the vector applied to that function's pullback! (confusing I know)
+That is, the pushforward of a vector, applied to a function, is the vector applied to that function's pullback! (confusing, I know)
 > (Pushforward of vector)(function) = Vector(pullback of function).
 
 ### Pullbacks of 1-forms
@@ -146,27 +148,27 @@ Notice that in this particular case $\phi_t$ is linear - this won't always be th
 
 $$(\phi_t^*)_p=\begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t\end{pmatrix},$$
 
- and, for the opposite direction,
+and, for the opposite direction,
 
- $$(\phi_{-t}^*)_{\phi_t(p)}=\begin{pmatrix} \cos t & \sin t \\ -\sin t & \cos t\end{pmatrix}.$$
+$$(\phi_{-t}^*)_{\phi_t(p)}=\begin{pmatrix} \cos t & \sin t \\ -\sin t & \cos t\end{pmatrix}.$$
 
- Notice how the sign has changed with the formal replacement of $t \mapsto -t$. Also, we changed the subscript from $p$ to $\phi_t(p)$ for clarity. 
+Notice how the sign has changed with the formal replacement of $t \mapsto -t$. Also, we changed the subscript from $p$ to $\phi_t(p)$ for clarity. 
 
 Note: an important point here is the use of matrices. In the expression for $(\phi_{t})_{p}$, we used matrices as a compact notation of how coordinate systems changed. For the pushforward, however, the matrices actually act on vectors in one space and give vectors in another space. Explicitly, 
 
-$$(\phi_t^*)_p$ : T_p M \to T_{\phi_t(p)} M.$$
+$$(\phi_t^*)_p : T_p M \to T_{\phi_t(p)} M.$$
 
 We have all the ingredients we need. We want to calculate
 
  $$(\mathcal L_X Y)_p := \lim_{t\to 0}\frac{(\phi_{-t}^*)_{\phi_t(p)}(Y_{\phi_t(p)}) - Y_p }{t}.$$
 
-  First, we calculate $Y_{\phi_t(p)}$. It is simply 
+First, we calculate $Y_{\phi_t(p)}$. It is simply 
 
-  $$Y_{\phi_t(p)} = \left(\frac{\partial}{\partial x}\right)_{\phi_t(p)}.$$
+$$Y_{\phi_t(p)} = \left(\frac{\partial}{\partial x}\right)_{\phi_t(p)}.$$
 
-  Then
+Then
 
-  $$(\phi_{-t}^*)_{\phi_t(p)}(Y_{\phi_t(p)}) = \begin{pmatrix} \cos t & \sin t \\ -\sin t & \cos t\end{pmatrix} \binom{1}{0} = \cos t \left(\frac{\partial}{\partial x}\right)_p-\sin t\left(\frac{\partial}{\partial y}\right)_p.$$
+$$(\phi_{-t}^*)_{\phi_t(p)}(Y_{\phi_t(p)}) = \begin{pmatrix} \cos t & \sin t \\ -\sin t & \cos t\end{pmatrix} \binom{1}{0} = \cos t \left(\frac{\partial}{\partial x}\right)_p-\sin t\left(\frac{\partial}{\partial y}\right)_p.$$
 
 Finally, plugging back into the definition of the Lie derivative, we get
 
@@ -232,9 +234,9 @@ $$\begin{align*}
 &=[X,Y]^i_p.
 \end{align*}$$
 
-Thus, we have the proof! $\Box$
+Thus, we have the proof! 
 
-Also check [this reference here](https://cefns.nau.edu/~schulz/lieder.pdf) for a proof without using Taylor series.
+> Also check [this reference here](https://cefns.nau.edu/~schulz/lieder.pdf) for a proof without using Taylor series.
 
 
 
