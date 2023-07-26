@@ -109,7 +109,7 @@ Then, we define the Lie derivative once and for all as
 
 $$\boxed{(\mathcal L_X T)_p := \lim_{t\to 0}\frac{(\phi_{-t}^*)_{\phi_t(p)}(T_{\phi_t(p)}) - T_p }{t}.}$$ 
 
-This also fits Carroll's formula B.4-B.5; he uses $\phi_{t*}$ instead (also notice that his positions of the asterisk in pullbacks / pushforwards is opposite to ours). We also made explicit the origin of the pushforward: it starts from $\phi_t(p)$. 
+This also fits [Carroll's](https://www.amazon.com/Spacetime-Geometry-Introduction-General-Relativity/dp/0805387323) formula B.4-B.5 (but he uses $\phi_{t*}$ and an opposite convention for the asterisk position), and [Isham's](https://www.amazon.com/Differential-Geometry-Physicists-Scientific-Lecture/dp/9810235623) formula 3.2.21. We also made explicit the origin of the pushforward: it starts from $\phi_t(p)$. 
 
 Does this definition make sense? The tensor $T_p$ is explicitly defined at point $p$; the other term, $T_{\phi_t(p)}$, is not, but it is "brought back" to $p$ via the pullback operation, which is "based" on $\phi_t(p)$ and drags the tensor back by a parameter value of $-t$, effectively arriving at $p$. All is well-defined.
 
