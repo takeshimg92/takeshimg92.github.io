@@ -32,6 +32,7 @@ Below, $\phi_t$ is a 1-parameter family of diffeomorphisms induced by a vector f
 $$\boxed{\mbox{(pushforward of $T$)(stuff) = $T$(pullback of stuff)}},$$ 
 
 where $T$ is some tensor.
+> It is crucial here that we deal with diffeomorphisms (which are, in particular, *invertible*); otherwise we could not take inverses and this argument wouldn't work.
 
 
 ### Pullbacks of functions
@@ -66,9 +67,7 @@ Identifying
 
 $$\boxed{\phi_{t*} = \phi_{-t}^* }$$
 
-we can define pushforwards for any tensors. F
-
-or example, let $T^a_b$ be a (1,1)-tensor in abstract index notation. I'll write $T(v,\omega)$ as its explicit action on a one-form and a vector. It follows that
+we can define pushforwards for any tensors. For example, let $T^a_b$ be a (1,1)-tensor in abstract index notation. I'll write $T(X,\omega)$ as its explicit action on a one-form and a vector. It follows that
 
 $$(\phi_t^*T)(X,\omega):= T(\phi_{t*}X, \phi_{t*}\omega)=T(\phi_{-t}^*X, \phi_{t*}\omega).$$
 
@@ -76,41 +75,43 @@ All of the quantities in the RHS are well-defined (pushforward on vector, pullba
 
 ## Lie derivatives
 
-A big chunk of what we do below follows[this reference](https://www.math.brown.edu/cdaly2/Notes/Lie_Derivative.pdf).
+A big chunk of what we do below follows [this reference](https://www.math.brown.edu/cdaly2/Notes/Lie_Derivative.pdf).
 
-First, we write $T_p$ instead of $T$ to make sure the point where the tensor is calculated is explicit.
+First, we write $T_p$ for a vector field evaluated at a point $p$: this notation will make explicit at which point where the tensor is defined.
 
-Also, for pushforwards, we write down a subscript showing where the pushforward "acts on". For example: if $\phi_t: p \mapsto \phi_t(p)$, then the pushforward will be written 
+Also, for pushforwards, we write down a subscript showing where the pushforward "acts on". For example: if $\phi_t: p \mapsto \phi_t(p)$, then the pushforward will be written with a subscript $p$ as well:
 
 $$(\phi_t^*)_p: X_p \mapsto (\phi_t^*)_p X \in T_{\phi_t(p)}M.$$
 
-In this notation, we also make explicit the pullback 
+In this notation, we also make explicit the pullback, which "departs" from $\phi_t(p)$:
 
 $$\boxed{(\phi_{-t}^*)_{\phi_t(p)}:T_{\phi_t(p)} M \to T_p M.}$$ 
 
-Then
+Then, we define the Lie derivative once and for all as
 
 $$\boxed{(\mathcal L_X T)_p := \lim_{t\to 0}\frac{(\phi_{-t}^*)_{\phi_t(p)}(T_{\phi_t(p)}) - T_p }{t}.}$$ 
 
 This also fits Carroll's formula B.4-B.5; he uses $\phi_{t*}$ instead (also notice that his positions of the asterisk in pullbacks / pushforwards is opposite to ours). We also made explicit the origin of the pushforward: it starts from $\phi_t(p)$. 
 
-Let's do this calculation for a function. As a tensor, it does not vary from point to point, even though its value when *calculated* at different points does. What I mean is that $f_p = f_q = f$ for any two points $p, q$, but usually $f(p) \neq f(q)$. As such, since we only have pullbacks well-defined for functions, we can use the pullback-based expression: $\phi_{t*}f = f \circ \phi_t$, hence
+Does this definition make sense? The tensor $T_p$ is explicitly defined at point $p$; the other term, $T_{\phi_t(p)}$, is not, but it is "brought back" to $p$ via the pullback operation, which is "based" on $\phi_t(p)$ and drags the tensor back by a parameter value of $-t$, effectively arriving at $p$. All is well-defined.
+
+### Example of applying this formula
+
+Let's do this calculation for a function. *As a tensor*, it does not vary from point to point, even though its value when *calculated* at different points does. What I mean is that $f_p = f_q = f$ for any two points $p, q$, but usually $f(p) \neq f(q)$. As such, using the equation above, we can use the pullback-based expression $\phi_{t*}f = f \circ \phi_t$, hence
 
 $$(\mathcal L_X f)(p) = \lim_{t\to 0}\frac{f(\phi_t(p)) -  f(p)}{t}.$$
 
-To calculate the expression on the RHS, construct a local coordinate where $p$ has coordinates $\vec x$ and $\phi_t(p) = \vec x + t \vec X$ where $\vec X$ are the local coordinates of the vector field generating $\phi_t$. Then, Taylor expanding, we get a RHS of $X^i \partial_i f$ which is just $X(f)$ calculated at $p$. It follows that 
+To calculate the expression on the RHS, go to a local coordinate chart where $p$ has coordinates $\vec x$ and $\phi_t(p) = \vec x + t \vec X$ where $\vec X$ are the local coordinates of the vector field generating $\phi_t$. Then, Taylor expanding, we get a RHS of $X^i \partial_i f$ which is just $X(f)$ calculated at $p$. It follows that 
 
 $$\mathcal L_X f = X(f).$$
+
+### Calculating the Lie derivative of a vector by hand
 
 Well then; what about acting on vectors? The spoiler is: 
 
 $$\mathcal L_X Y = [X, Y];$$
 
-let's see if this holds.
-
-### Calculating the Lie derivative of a vector by hand
-
-Nothing like a nice manual calculation before we give the more general formula.
+let's see if this holds. Nothing like a nice manual calculation before we give the more general formula.
 
 Let $M= \mathbf R^2$ and consider a base point $p = (x_0, y_0)$. Let 
 
@@ -120,9 +121,9 @@ These are two vector fields. At every point of the manifold, they take values - 
 
 $$X_p = - y_0 \left(\frac{\partial}{\partial x}\right)_p + x_0 \left(\frac{\partial}{\partial y}\right)_p \in T_pM,$$
 
-where the subscript $(.)_p$ doesn't mean much in this particular case for the basis vectors (since we are in Euclidean space), but we keep it because it is correct. 
+where the subscript $(.)_p$ doesn't mean much in this particular case for the basis vectors (since we are in Euclidean space), but we keep it nonetheless. 
 
-Assume we want to compute $(\mathcal L_X Y)_p$. We need to first solve the equation for the flow of $X$; the differential equation for integral curves is 
+Assume we want to compute $(\mathcal L_X Y)_p$. We need to first solve the equation for the flow of $X$, that is, $\phi_t$; the differential equation for integral curves is 
 
 $$\frac{d}{dt} \binom{x(t)}{y(t)}=\binom{-y(t)}{x(t)}.$$
 
@@ -134,7 +135,7 @@ This means that the map $(\phi_t)$ *based on* $p = (x_0, y_0)$ which takes it do
 
 $$(\phi_t)_{p=(x_0, y_0)} = \binom{x_0 \cos t - y_0 \sin t}{x_0\sin t+ y_0 \cos t}.$$
 
-Notice that in this particular case $\phi_t$ is linear - this won't always be the case. The pushforward is obtained by calculating the Jacobian w.r.t the base coordinates of $p$ (which justifies the notation $d(\phi_t)_p$ too). Hence 
+Notice that in this particular case $\phi_t$ is linear - this won't always be the case. The pushforward is obtained by calculating the Jacobian w.r.t the base coordinates of $p$ (which justifies the often-used notation $d(\phi_t)_p$ for the pushforward). Hence 
 
 $$(\phi_t^*)_p=\begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t\end{pmatrix},$$
 
@@ -144,7 +145,7 @@ $$(\phi_t^*)_p=\begin{pmatrix} \cos t & -\sin t \\ \sin t & \cos t\end{pmatrix},
 
  Notice how the sign has changed with the formal replacement of $t \mapsto -t$. Also, we changed the subscript from $p$ to $\phi_t(p)$ for clarity. 
 
-Note: an important point here is the use of matrices. In the expression for $(\phi_t)_p$, we used matrices as a compact notation of how coordinate systems changed. For the pushforward, however, the matrices actually act on vectors in one space and give vectors in another space. Explicitly, $(\phi_t^*)_p$ takes vectors in $T_pM$ to vectors in $T_{\phi_t(p)}M.$
+Note: an important point here is the use of matrices. In the expression for $(\phi_{t})_{p}$, we used matrices as a compact notation of how coordinate systems changed. For the pushforward, however, the matrices actually act on vectors in one space and give vectors in another space. Explicitly, $(\phi_t^*)_p$ takes vectors in $T_pM$ to vectors in $T_{\phi_t(p)}M.$
 
 We have all the ingredients we need. We want to calculate
 
@@ -224,7 +225,7 @@ $$\begin{align*}
 
 Thus, we have the proof! $\Box$
 
-Also check [this reference here](https://cefns.nau.edu/~schulz/lieder.pdf) for a proof without using approximations.
+Also check [this reference here](https://cefns.nau.edu/~schulz/lieder.pdf) for a proof without using Taylor series.
 
 
 
