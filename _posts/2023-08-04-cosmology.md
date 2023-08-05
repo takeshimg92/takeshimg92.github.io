@@ -11,11 +11,17 @@ Some moments in one's life can be awe-inspiring. You know, those moments when yo
 
 Some people would label this feeling as "spiritual"; not being a very spiritual person myself (at least according to the common definition), I don't really know how appropriate this attribution is, but I can see why it could. That feeling of connection is reminiscent of something deeper, something important.
 
-A few moments in my life were like this -- Heda's beautiful sunset is one of the first to come to mind.
+A few moments in my life were like this; for instance, the sunset in Heda, Japan, where I lived while working as an employee at a [beautiful hostel](https://www.tagorehostel.jp/):
 
-A remarkable one related to Physics happened in 2011, when I was 19 years old, and is what I want to talk about today.
+![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/cosmology/heda.jpeg)
+(sadly, I lost the original photograph - this was taken from Instagram)
+
+There is a remarkable memory, a memory related to Physics, which happened in 2011, when I was 19 years old. This is what I want to talk about today.
 
 # "Maybe I should research something"
+
+![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/cosmology/ifusp.jpg)
+(picture of my *alma mater*: the Institute of Physics at the University of São Paulo, Brazil)
 
 I was in the end of my second year undergrad, and had recently started feeling like I was lagging behind. Most of my friends were doing research projects under a faculty member; some, especially those doing experimental work, had been doing it for almost a year at that point. I had never been in a hurry regarding research work; I knew it would come at some point, and felt like I needed to understand the fundamentals better before diving into some problem. I wouldn't even know what I liked in the first place if I didn't take more classes!
 
@@ -30,6 +36,7 @@ If we can find $a(t)$, we can find the large-scale dynamics of spacetime for any
 It so happens that the dynamics of $a$ can be found via the [Einstein field equations](https://en.wikipedia.org/wiki/Einstein_field_equations) of General Relativity, a set of equations that I, an aspiring physicist, had known how to write long before I knew what they really meant:
 
 $$G_{ab} + \Lambda g_{ab} = \frac{8 \pi G}{c^4} T_{ab}$$
+
 where I won't dwell into the details of what each term means -- the left-hand side refers to the curvature of space-time, whereas the right-hand side corresponds the matter, energy and pressure present in it.
 
 > On a side note, I remember when I first saw this equation; it felt magical how Newton's gravitational constant $G$, the speed of light $c$, and the number $\pi$ were all in the same expression. 
@@ -99,15 +106,15 @@ from scipy.integrate import quad
 # cosmological parameters following https://iopscience.iop.org/article/10.3847/1538-4357/aafb30/pdf
 omega_matter = 0.308 
 omega_lambda = 0.6911
-omega_k 	 = 1 - omega_matter - omega_lambda
+omega_k      = 1 - omega_matter - omega_lambda
 H0 = 67.8     # ±0.9, units of km per second per megaparsec
 ```
 
 We also need to convert $H_0$ (which, technically speaking, has units of 1/time) to a proper unit, which we will choose as billions of years:
 
 * $H_0 \mbox{ has units of } \mathrm{km \, seconds^{-1} \, Mpc^{-1}}$;
-* $1 \; \mathrm{Mpc} = 3.086 \times 10^{19} \mathrm{km}$, and;
-* $1 \; \mathrm{year} = 31536000 \mathrm{seconds}$
+* $1 \; \mathrm{Mpc} = 3.086 \times 10^{19} \; \mathrm{km}$, and;
+* $1 \; \mathrm{year} = 31536000 \; \mathrm{seconds}$
 
 ```python
 # Calculate 1/H0 in units of Gyr (i.e. billion years)
@@ -126,3 +133,5 @@ print(round(age, 2), , "billion years")
 ```
 
 And there it is :)
+
+For those who find themselves interested in Cosmology, a great place to start is Leonard Susskind's [introductory lectures in Cosmology](https://www.youtube.com/playlist?list=PLpGHT1n4-mAuVGJ2E1uF9GSwLsx7p1xtm) or Barbara Ryden's [book](http://carina.fcaglp.unlp.edu.ar/extragalactica/Bibliografia/Ryden_IntroCosmo.pdf). 
