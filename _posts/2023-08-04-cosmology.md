@@ -37,9 +37,9 @@ It so happens that the dynamics of $a$ can be found via the [Einstein field equa
 
 $$G_{ab} + \Lambda g_{ab} = \frac{8 \pi G}{c^4} T_{ab}$$
 
-where I won't dwell into the details of what each term means -- the left-hand side refers to the curvature of space-time, whereas the right-hand side corresponds the matter, energy and pressure present in it.
+I won't dwell into the details of what each term means -- the left-hand side refers to the curvature of space-time; the right-hand side corresponds the matter, energy and pressure present in it.
 
-> On a side note, I remember when I first saw this equation; it felt magical how Newton's gravitational constant $G$, the speed of light $c$, and the number $\pi$ were all in the same expression. 
+> On a side note, I remember when I first saw this equation: it felt magical how Newton's gravitational constant $G$, the speed of light $c$, and the number $\pi$ were all in the same expression. 
 
 Plugging the FRW *ansatz* into the Einstein equations yields the so-called [Friedmann equations](https://en.wikipedia.org/wiki/Friedmann_equations) (where we set $c=1$, as most physicists do, for simplicity):
 
@@ -65,7 +65,7 @@ where several new parameters have appeared, and it is worth that we explain what
 
 All these parameters can be inferred from complex cosmological and astronomical observations, such as the [Planck mission](https://www.esa.int/Science_Exploration/Space_Science/Planck_overview) launched in 2009. 
 
-For me, at that time, the important thing was not how they were obtained, but the fact that, with some algebraic manipulation, the equation above could be broght into one where we can explicitly calculate the *age of the Universe*! It would suffice to isolate time as a function of the scale factor, and integrate between the Big Bang and now.
+For me, at that time, the important thing was not how they were obtained, but the fact that, with some algebraic manipulation, the equation above could be brought into one where one could explicitly calculate the *age of the Universe*! It would suffice to isolate time as a function of the scale factor, and integrate between the Big Bang and now.
 
 Now, this wasn't explicitly part of my research, but I felt like I had to do it. It just seemed like such an exciting thing to do, and not too complex -- differential equation solvers are available [even in Excel](https://www.exceldemy.com/solve-differential-equation-in-excel/). 
 
@@ -84,7 +84,7 @@ The answer I got: **13.8 billion years**.
 
 That was my awe-inspiring, spiritual-ish moment. I had seen and read this number many times -- it was in the first popular book I read about Physics, in documentaries, and, if rounded up, even in the [opening song for The Big Bang Theory](https://bigbangtheory.fandom.com/wiki/The_History_of_Everything). I would not have expected to be able to calculate such a number by the end of my second year undergrad; and, in hindsight, I only did it because I *severely* glossed over many details, like how the cosmological parameters ($H_0, \Omega_\mathrm{matter}$ and so on) are inferred from observational data in the first place.
 
-Nonetheless, I keep that moment in mind as a very happy memory: I was 19 years old, lanky and ignorant of so much, yet I was able to compute the age of the Universe we live in on my trusty 10.1' [Acer netbook](https://en.wikipedia.org/wiki/Acer_Aspire_One). I felt inspired to learn more about, and that is what I did.
+Nonetheless, I keep that moment in mind as a very happy memory: I was 19 years old, lanky and ignorant of so much, yet I was able to compute the age of the Universe we live in on my trusty 10.1' [Acer netbook](https://en.wikipedia.org/wiki/Acer_Aspire_One). I felt inspired to learn more about Cosmology and gravity, and that is what I did over the following years studying Physics. 
 
 
 
@@ -124,7 +124,10 @@ print(round(inverse_hubble,2), "billion years")
 We can now explicitly compute the integral and multiply by $1/H_0$ to get the age of the Universe:
 
 ```python
-integral = quad(lambda a: 1/(a * np.sqrt((omega_matter)/a**3 + omega_lambda  + omega_k/a**2 )), 0,1)[0]
+integral = quad(lambda a: 1/(a * np.sqrt(
+	(omega_matter)/a**3 + omega_lambda  + omega_k/a**2 )),
+	0,1)[0]
+
 age = integral * inverse_hubble
 print(round(age, 2), , "billion years")
 >>> 13.81 billion years
