@@ -9,14 +9,14 @@ image: universe.jpg
 
 Some moments in one's life can be awe-inspiring. You know, those moments when you feel deeply connected to something; when things make sense.
 
-Some people would label this feeling as "spiritual"; not being a very spiritual person myself (at least according to the common definition), I don't really know how appropriate this attribution is, but I can see why it could. That feeling of connection is reminiscent of something deeper, something important.
+Some people would label this feeling as spiritual; not being a very spiritual person myself (at least according to the common definition), I don't really know how appropriate this attribution is, but I can relate to them. This feeling of connection is reminiscent of something deeper, something important, and that might as well be linked to some higher, unknown entity.
 
-A few moments in my life were like this; for instance, the sunset in Heda, Japan, where I lived while working as an employee at a [beautiful hostel](https://www.tagorehostel.jp/):
+A few moments in my life brought me this kind of awe; for instance, a particular afternoon watching the sunset in Heda, Japan, where I lived while working as an employee at a [beautiful hostel](https://www.tagorehostel.jp/):
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/cosmology/heda.jpeg)
-(sadly, I lost the original photograph - this was taken from Instagram)
+(sadly, I lost the original photograph - this was taken from my Instagram feed)
 
-There is a remarkable memory, a memory related to Physics, which happened in 2011, when I was 19 years old. This is what I want to talk about today.
+There is another remarkable memory, this time related to Physics, which happened in 2011, when I was 19 years old. This is what I want to talk about today.
 
 # "Maybe I should research something"
 
