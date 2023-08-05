@@ -59,7 +59,9 @@ $$\left(\frac{\dot a}{a}\right)^2 = H_0^2 \left( \frac{\Omega_\mathrm{baryons} +
 
 where several new parameters have appeared, and it is worth that we explain what they are:
 * $H_0$ is the so-called **Hubble parameter**: it measures how fast distant galaxies seem to be receding away from us, in the context of [Hubble's law](https://en.wikipedia.org/wiki/Hubble%27s_law);
-* The $\Omega$'s are dimensionless parameters relating to the energy contribution of each component. For example, $\Omega_\mathrm{normal\;matter} \sim 4.86\%$ means that about 4.86 percent of the energy of the Universe comes from regular matter. 
+* The $\Omega$'s are dimensionless parameters relating to the energy contribution of each component. For example, $\Omega_\mathrm{baryons} \sim 4.86\%$ means that about 4.86 percent of the energy of the Universe comes from regular (baryonic) matter. 
+
+> In practice, we can combine dark matter and baryonic matter into a single parameter, and ignore that of radiation which is much smaller than the others. We do this below.
 
 All these parameters can be inferred from complex cosmological and astronomical observations, such as the [Planck mission](https://www.esa.int/Science_Exploration/Space_Science/Planck_overview) launched in 2009. 
 
@@ -69,11 +71,7 @@ Now, this wasn't explicitly part of my research, but I felt like I had to do it.
 
 First, I had to write the equation for the age of the Universe explicitly:
 
-$$\binom{\mbox{age of}}{\mbox{the Universe}} = \frac{1}{H_0} I$$
-
-where
-
-$$I \equiv \int_0^1 \frac{da}{a \sqrt{\displaystyle (\Omega_\mathrm{baryons} + \Omega_\mathrm{dark\;matter})a^{-3} + \Omega_\mathrm{radiation} a^{-4} + \Omega_\mathrm{dark\;energy} + \Omega_\mathrm{curvature} a^{-2}}}.$$
+$$\binom{\mbox{age of}}{\mbox{the Universe}} = \frac{I}{H_0}, \quad I \equiv \int_0^1 \frac{da}{a \sqrt{\displaystyle \Omega_\mathrm{matter} a^{-3} + \Omega_\mathrm{dark\;energy} + \Omega_\mathrm{curvature} a^{-2}}}.$$
 
 It isn't hard to show mathematically that $I\geq 1$, so the age of the Universe is approximately $1/H_0$, with a correction given by this integral. All I had to do was calculate it, and that would only happen using a computer.
 
@@ -84,7 +82,7 @@ So, with the ~1 year experience I had in programming (which I had learned in C -
 
 The answer I got: **13.8 billion years**. 
 
-That was my awe-inspiring, spiritual-ish moment. I had seen and read this number many times -- it was in the first popular book I read about Physics, in documentaries, and, if rounded up, even in the [opening song for The Big Bang Theory](https://bigbangtheory.fandom.com/wiki/The_History_of_Everything). I would not have expected to be able to calculate such a number by the end of my second year undergrad; and, in hindsight, I only did it because I *severely* glossed over many details, like how the cosmological parameters ($H_0, \Omega_\Lambda$ and so on) are inferred from observational data in the first place.
+That was my awe-inspiring, spiritual-ish moment. I had seen and read this number many times -- it was in the first popular book I read about Physics, in documentaries, and, if rounded up, even in the [opening song for The Big Bang Theory](https://bigbangtheory.fandom.com/wiki/The_History_of_Everything). I would not have expected to be able to calculate such a number by the end of my second year undergrad; and, in hindsight, I only did it because I *severely* glossed over many details, like how the cosmological parameters ($H_0, \Omega_\mathrm{matter}$ and so on) are inferred from observational data in the first place.
 
 Nonetheless, I keep that moment in mind as a very happy memory: I was 19 years old, lanky and ignorant of so much, yet I was able to compute the age of the Universe we live in on my trusty 10.1' [Acer netbook](https://en.wikipedia.org/wiki/Acer_Aspire_One). I felt inspired to learn more about, and that is what I did.
 
