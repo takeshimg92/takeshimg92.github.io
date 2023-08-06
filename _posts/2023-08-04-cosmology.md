@@ -69,13 +69,13 @@ For me, at that time, the important thing was not how they were obtained, but th
 
 Now, this wasn't explicitly part of my research, but I felt like I had to do it. It just seemed like such an exciting thing to do, and not too complex -- differential equation solvers are available [even in Excel](https://www.exceldemy.com/solve-differential-equation-in-excel/). 
 
-First, I had to write the equation for the age of the Universe explicitly:
+First, I had to write the equation for the age of the Universe, $t$, explicitly:
 
-$$\binom{\mbox{age of}}{\mbox{the Universe}} = \frac{I}{H_0}, \quad I \equiv \int_0^1 \frac{da}{a \sqrt{\displaystyle \Omega_\mathrm{matter} a^{-3} + \Omega_\mathrm{dark\;energy} + \Omega_\mathrm{curvature} a^{-2}}}.$$
+$$t = \frac{1}{H_0} \int_0^1 \frac{da}{a \sqrt{\displaystyle \Omega_\mathrm{matter} a^{-3} + \Omega_\mathrm{dark\;energy} + \Omega_\mathrm{curvature} a^{-2}}}.$$
 
-It isn't hard to show mathematically that $I\geq 1$, so the age of the Universe is approximately $1/H_0$, with a correction given by this integral. All I had to do was calculate it, and that would only happen using a computer.
+It isn't hard to show mathematically that the integral is less than 1, so the age of the Universe is approximately $1/H_0$, with a correction given by the integral. To solve this integration requires numerical calculations, so I had to resort my limited programming skills.
 
-So, with the ~1 year experience I had in programming (which I had learned in C -- perhaps the most ill-suited language for quick-and-dirty scripting of scientific code), I wrote a whooping 178-lines-long C code to read cosmological data and integrate the Friedmann equation via Runge-Kutta; see below for a screenshot of a report I wrote on this event. 
+So, with the 2-semester experience I had in programming (which I had learned in C -- perhaps the most ill-suited language for quick-and-dirty scripting of scientific code), I wrote a whooping 178-lines-long C code to read cosmological data and integrate the Friedmann equation via Runge-Kutta; see below for a screenshot of a report I wrote on this event. 
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/cosmology/my_code.png)
 
