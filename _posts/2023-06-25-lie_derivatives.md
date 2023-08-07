@@ -21,7 +21,7 @@ Being much less enlightened than both Wald and Stewart, I always had some diffic
 
 2. The proof of the main result, namely that the Lie derivative of a vector along another equals their commutator, always involves choosing one of them as a coordinate basis vector; I would love a more "general", albeit more involved version, to work without this requirement.
 
-Hence, I am posting here for any other students of differential geometry or general relativity my own proof which is, cluttered as can be, very transparent (for me, of courseon what is going on.
+Hence, I am posting here for any other students of differential geometry or general relativity my own proof which is, cluttered as can be, very transparent (for me, at least!).
 
 ## Set-up: pushforwards and pullbacks
 
