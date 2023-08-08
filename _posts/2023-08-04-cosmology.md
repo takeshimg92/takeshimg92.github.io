@@ -133,6 +133,16 @@ print(round(age, 2), , "billion years")
 >>> 13.81 billion years
 ```
 
-And there it is :)
+If you like analytical results, we can do that too if we consider a Universe with only matter and a cosmological constant; this means we will exclude radiation (which affects the integral only slightly) and the curvature term. 
+
+
+As Wolfram Alpha can us calculate, with $\Omega_m + \Omega_\Lambda = 1$, 
+
+$$\begin{align*}
+t &= \frac{1}{H_0}\int_0^1 \frac{da}{a\sqrt{\Omega_m a^{-3} + \Omega_\Lambda}} \\
+&=\frac{2}{3H_0} \frac{ \mathrm{arctanh} \sqrt{\Omega_\Lambda}}{\sqrt{\Omega_\Lambda}}
+\end{align*}$$
+
+which yields $t = 13.80$ billion years using $\Omega_\Lambda = 0.6911$ as before.
 
 For those who find themselves interested in Cosmology, a great place to start is Leonard Susskind's [introductory lectures in Cosmology](https://www.youtube.com/playlist?list=PLpGHT1n4-mAuVGJ2E1uF9GSwLsx7p1xtm) or Barbara Ryden's [book](http://carina.fcaglp.unlp.edu.ar/extragalactica/Bibliografia/Ryden_IntroCosmo.pdf). 
