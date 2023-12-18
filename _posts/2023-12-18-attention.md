@@ -218,7 +218,7 @@ Also, we drop the colors on the different spaces :)
 	
 	$$\tilde V = V \alpha = V \;\mathrm{softmax}\left(\frac{K^T Q}{\sqrt{d_\mathrm{attn}}}\right) \quad (\in \mathrm{Mat}(d_\mathrm{out} \times L_Z)).$$
 
-	Hence, we get a final matrix which contains the output vector for all context vectors. This last formula is, in our notation, the 
+	Hence, we get a final matrix which contains the output vector for all context vectors. This last formula is, in our notation, the first equation in the classic Transformers paper [(Vaswani et al, 2017)](https://arxiv.org/abs/1706.03762).
 
 ## References
 
