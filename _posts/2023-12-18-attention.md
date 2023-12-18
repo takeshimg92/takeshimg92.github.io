@@ -34,7 +34,7 @@ The original Transformers paper [(Vaswani et al, 2017)](https://arxiv.org/abs/17
 
 To make sense of things, I can't help but transpose this notation to a more traditional one where vectors are columns and linear maps happen from left: $x \mapsto A x$. This is also what [Phuong, Hutter (2022)](https://arxiv.org/pdf/2207.09238) do in their notes. 
 
-Finally, in what follows, I use $\mathrm{Mat}(n\times m)$ to denote real matrices with $n$ rows and $m$ columns; I find this a bit easier to read than the more common notation $\mathbb R^{n\times m}$. 
+Finally, in what follows, I use $\mathrm{Mat}(n\times m)$ to denote real matrices with $n$ rows and $m$ columns; I find this a bit easier to read than the more common notation $\mathbb R^{n\times m}$. It is clearly inspired by [a great teacher I've had](https://fma.if.usp.br/~jbarata/). 
 
 ### The basic goal of attention is to "stretch and rotate" word embeddings given their contexts
 
@@ -43,7 +43,7 @@ The goal of attention (and, more specifically, self-attention) is to be a layer 
 
 In other words, **attention is a map taking an input token and its context into a vector representation of the context which is useful for deep learning applications**. 
 
-### Overview of the Attention logic
+## Overview of the Attention logic
 
 We adapt Algorithm 3 in [Phuong, Hutter (2022)](https://arxiv.org/pdf/2207.09238), describing attention for a single token as a means to make the mechanism clearer. We deal with the computationally optimized version afterwards.
 
@@ -75,15 +75,8 @@ It is easy to show that this operation satisfies all properties of an [inner pro
 
 Why do we define it this way? As  [Vaswani et al, 2017](https://arxiv.org/abs/1706.03762) argue, it is because it works: it brings the inner products to numerically treatable values that do not saturate downstream functions. 
 
-> One can ad-hoc justify this choice of scaling the standard dot product by the means of an example: let $X_i, Y_i \sim \mathrm{Uniform}([-a,a])$, for some $a>0$, be the iid. components of two $d$-dimensional random variables. It is easy to show that 
+> One can ad-hoc justify this choice of scaling the standard dot product by the means of an example: let $X_i, Y_i \sim \mathrm{Uniform}([-a,a])$, for some $a>0$, be the iid. components of two $d$-dimensional random variables. It is easy to show that $\mathbb E[\vec X\cdot \vec Y] = 0$ and $\mathrm{Var}[\vec X \cdot \vec Y]=Cd$ with $C$ being constant. Notice how the spread grows linearly with the dimension $d$. Now, using the scaled-dot inner product yields $\mathbb E\langle \vec X, \vec Y\rangle=0$ and $\mathrm{Var}\langle\vec X,\vec Y\rangle=C$ which is a constant that doesn't depend on $d$. Therefore, this scaling helps us keep things within the same order of magnitude. 
 
-$$\mathbb E[\vec X\cdot \vec Y] = 0,\quad \mathrm{Var}[\vec X \cdot \vec Y]=Cd$$
-
-with $C$ being constant. Notice how the spread grows linearly with the dimension $d$. Now, using the scaled-dot inner product yields
-
-$$\mathbb E\langle \vec X, \vec Y\rangle=0,\quad \mathrm{Var}\langle\vec X,\vec Y\rangle=C=\mbox{constant indep. of $d$.}$$
- 
-So the scaling helps us keep things within the same order of magnitude. 
 
 For all that matters, we don't need to think about this scaling too much; simply consider it as our default inner product.
 
@@ -143,7 +136,7 @@ With this preamble done, let's dive into the algorithm:
 
 6. We are ready to compute the output vector. For that, first, map the original context tokens onto the output space via the "values" matrix (plus a bias term), making them almost ready to send forward... 
 	
-	$$v_t = W_v e_t+b_v,\quad \forall t \in\set{1,\ldots,T}\quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}}) \tag{value projection}$$
+	$$v_t = W_v e_t+b_v,\quad \forall t \in \{1,\ldots,T\}\quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}}) \tag{value projection}$$
 
 7. ... and then compute their weighted sum based on the attention weights: 
 
