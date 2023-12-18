@@ -135,4 +135,8 @@ print(round(age, 2), , "billion years")
 
 And there it is :)
 
+A similar calculation actually gives us the explicit scale factor: 
+
+$$a(t) = \left[\frac{\sinh(3 H_0 t \sqrt{\Omega_\Lambda}/2)}{\sqrt{\Omega_\Lambda/\Omega_m}} \right]^{2/3}$$
+
 For those who find themselves interested in Cosmology, a great place to start is Leonard Susskind's [introductory lectures in Cosmology](https://www.youtube.com/playlist?list=PLpGHT1n4-mAuVGJ2E1uF9GSwLsx7p1xtm) or Barbara Ryden's [book](http://carina.fcaglp.unlp.edu.ar/extragalactica/Bibliografia/Ryden_IntroCosmo.pdf). 
