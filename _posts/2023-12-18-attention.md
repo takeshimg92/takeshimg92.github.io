@@ -35,6 +35,7 @@ The original Transformers paper [(Vaswani et al, 2017)](https://arxiv.org/abs/17
 To make sense of things, I can't help but transpose this notation to a more traditional one where vectors are columns and linear maps happen from left: $x \mapsto A x$. This is also what [Phuong, Hutter (2022)](https://arxiv.org/pdf/2207.09238) do in their notes. 
 
 Finally, in what follows, I use $\mathrm{Mat}(n\times m)$ to denote real matrices with $n$ rows and $m$ columns; I find this a bit easier to read than the more common notation $\mathbb R^{n\times m}$. 
+
 ### The basic goal of attention is to "stretch and rotate" word embeddings given their contexts
 
 The goal of attention (and, more specifically, self-attention) is to be a layer that helps a neural network look at other words in the input sentence as it encodes a specific word. It provides a way to convert a word and its context into a useful vector representation, to be sent downstream into the neural network. 
@@ -50,7 +51,7 @@ Consider a sentence $\mathbf x = [x_1 \; x_2 \; \ldots \; x_T]$ with $T$ tokens.
 
 We will assume an initial embedding layer / function is defined, taking tokens to some vector representation in $d_\mathrm{in}$ dimensions. This construction can be as simple as a lookup table for a one-hot encoded vocabulary: see Algorithms 1 and 2 of [Phuong, Hutter (2022)](https://arxiv.org/pdf/2207.09238).
 
-Now, we consider the attention calculation for a given token $x$ and its context $\{x_t\}_{t=1}^T$ . It is divided in two-parts:
+Now, we consider the attention calculation for a given token $x$ and its context $(x_t)_{t=1}^T$ . It is divided in two-parts:
 * **Similarity calculation**: we "compare" the current token with the others via a properly-chosen operation, namely, an inner product;
 * **Value calculation**: we construct a linear combination of all context vectors, weighted by their similarities to the current token. The resulting vector is a proper weighted sum of all context vectors considering how much "attention" each word gives to the chosen token.
 
@@ -107,7 +108,7 @@ With this preamble done, let's dive into the algorithm:
 
 **Inputs**:
 * $e \in \color{blue}{\mathbb R}^{\color{blue}{d_\mathrm{in}}}$: the embedding of the current token being considered;
-* $e_t \in \color{blue}{\mathbb R}^{\color{blue}{d_\mathrm{in}}},\quad t \in \set{1,\ldots, T}$: the embeddings of the tokens in the current token's context (for self-attention, it can be the words in the sentence the current token belongs to). 
+* $e_t \in \color{blue}{\mathbb R}^{\color{blue}{d_\mathrm{in}}},\quad t = 1,\ldots, T$: the embeddings of the tokens in the current token's context (for self-attention, it can be the words in the sentence the current token belongs to). 
 
 > **Obs #1**: Notice that the context *may or may not* contain the current token itself - it will contain it in cases such as self-attention where we compare a sentence to itself, but it may not in cases such as cross-attention in a sequence-to-sequence task. 
 
@@ -125,12 +126,29 @@ With this preamble done, let's dive into the algorithm:
 1. First, we map the embedding of the current token onto Attention space via the "query" linear operator (plus a bias term): 
 
 	$$q = W_q e + b_q\quad (\in \color{orange}{\mathbb R}^{\color{orange}{d_\mathrm{attn}}})\tag{query projection}$$
+
+2. We do the same for all context tokens, through the "keys" linear operator (plus a bias term):
 	
-2. We do the same for all context tokens, through the "keys" linear operator (plus a bias term): $$k_t = W_k e_t + b_k,\quad \forall t \in\set{1,\ldots,T}\quad (\in \color{orange}{\mathbb R}^{\color{orange}{d_\mathrm{attn}}})\tag{``key'' projection}$$
-3. We compute the similarity scores between these vectors in Attention space, via the scaled-dot product: $$s_{qt} \equiv \langle q, k_t\rangle=\frac{q\cdot k_t}{\sqrt{\color{orange}{d_\mathrm{attn}}}}\tag{similarity calculation}$$
-4. We create weights $\alpha_t$ for each context vector; these are positive, normalized, and such that highly similar vectors (ie. those whose inner product is high) get boosted while highly dissimilar vectors (ie. those with very negative inner product) get very small weights: $$\alpha_t = \frac{\exp s_{qt}}{\sum_u \exp s_{qu}} =: \mathrm{soft}\max_u(s_{qu})\tag{similarity normalization}$$such that $\sum_t \alpha_t = 1$. Any positive, smooth, monotonically increasing function $\phi$ would work here; we could have chosen $\phi(s_{qt})/\sum_u \phi(s_{qu})$ instead of the softmax and everything would work fine.
-6. We are ready to compute the output vector. For that, first, map the original context tokens onto the output space via the "values" matrix (plus a bias term), making them almost ready to send forward... $$v_t = W_v e_t+b_v,\quad \forall t \in\set{1,\ldots,T}\quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}}) \tag{``value'' projection}$$
-7. ... and then compute their weighted sum based on the attention weights: $$\tilde v = \sum_t \alpha_t v_t.\tag{output computation} \quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}})$$
+	$$k_t = W_k e_t + b_k,\quad \forall t \in \{1,\ldots,T\}\quad (\in \color{orange}{\mathbb R}^{\color{orange}{d_\mathrm{attn}}})\tag{key projection}$$
+
+3. We compute the similarity scores between these vectors in Attention space, via the scaled-dot product:
+	
+	$$s_{qt} \equiv \langle q, k_t\rangle=\frac{q\cdot k_t}{\sqrt{\color{orange}{d_\mathrm{attn}}}}\tag{similarity calculation}$$
+
+4. We create weights $\alpha_t$ for each context vector; these are positive, normalized, and such that highly similar vectors (ie. those whose inner product is high) get boosted while highly dissimilar vectors (ie. those with very negative inner product) get very small weights: 
+	
+	$$\alpha_t = \frac{\exp s_{qt}}{\sum_u \exp s_{qu}} =: \mathrm{soft}\max_u(s_{qu})\tag{similarity normalization}$$
+	
+	such that $\sum_t \alpha_t = 1$. Any positive, smooth, monotonically increasing function $\phi$ would work here; we could have chosen $\phi(s_{qt})/\sum_u \phi(s_{qu})$ instead of the softmax and everything would work fine.
+
+6. We are ready to compute the output vector. For that, first, map the original context tokens onto the output space via the "values" matrix (plus a bias term), making them almost ready to send forward... 
+	
+	$$v_t = W_v e_t+b_v,\quad \forall t \in\set{1,\ldots,T}\quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}}) \tag{value projection}$$
+
+7. ... and then compute their weighted sum based on the attention weights: 
+
+	$$\tilde v = \sum_t \alpha_t v_t.\tag{output computation} \quad (\in \color{red}{\mathbb R}^{\color{red}{d_\mathrm{out}}})$$
+
 8. Return $\tilde v$. 
 
 That's it.
@@ -142,14 +160,23 @@ In the cartoon above, we illustrate the Attention mechanism for a context with t
 * By mapping the query and key vectors to Attention space, we see that the key $\color{blue}{k_1} = W_k \color{blue}{e_1}$ is close to the query $\color{orange}{q} = W_q \color{orange}{e}$  and thus will get a big weight $\color{blue}{\alpha_1}$ associated to it;
 * In contrast, the key $\color{green}{k_2}$ is almost perpendicular to $\color{orange}{q}$ and will have a small weight $\color{green}{\alpha_2}$ associated to it. 
 * We store these values and create, in the output space, the final vector $\tilde v = \color{blue}{\alpha_1 v_1} + \color{green}{\alpha_2 v_2}$ where each $v_i$ comes from applying the $W_v$ matrix to the context embeddings $\color{blue}{e_1}$ and $\color{green}{e_2}$.
-### Thinking in terms of (rough) projections
 
-Recall that, in linear algebra, we can construct the **projection** of a vector $u$ onto a subspace $S$ spanned by an orthonormal basis $\set{v_i}$ as $$\mathrm{proj}_S \;u = \sum_i \langle v_i, u\rangle v_i$$This is very similar, in spirit, to what attention is doing. To see this, let's go full hand-wavy and:
+## Thinking in terms of (rough) projections
+
+Recall that, in linear algebra, we can construct the **projection** of a vector $u$ onto a subspace $S$ spanned by an orthonormal basis $\{v_i\}$ as 
+
+$$\mathrm{proj}_S \;u = \sum_i \langle v_i, u\rangle v_i$$
+
+This is, in spirit, similar to what attention is doing. To see this, let's go full hand-wavy and:
 * Ignore the exponentials used in softmax; pretend we just want to use $\langle q, k_t\rangle$ instead of its $\exp$;
 * Assume all dimensions are the same, ie. $\color{blue}{d_\mathrm{in}} = \color{red}{d_\mathrm{out}} = \color{orange}{d_\mathrm{attn}}$;
 * Assume all matrices $W_q, W_k$ and $W_v$ are equal to some matrix $W$. Then, in particular, $k_t = v_t.$
 
-Then, the output computation can be written as $$v = \sum_t \alpha_t v_t \propto\sum_t \langle k_t, q \rangle k_t.$$Now, the expression on the right-hand side is **not** a projection since the $k_t$ are not, generally, orthogonal, nor normalized to 1. I like to think of this expression as a "rough" projection: it is a vector in the space spanned by the $k_t$'s, but it double-counts projections which are linearly dependent of each other, and it gets the scale completely wrong since we are not normalizing anything. 
+Then, the output computation can be written as
+
+$$v = \sum_t \alpha_t v_t \propto\sum_t \langle k_t, q \rangle k_t.$$
+
+Now, the expression on the right-hand side is **not** a projection since the $k_t$ are not, generally, orthogonal, nor normalized to 1. I like to think of this expression as a "rough" projection: it is a vector in the space spanned by the $k_t$'s, but it double-counts projections which are linearly dependent of each other, and it gets the scale completely wrong since we are not normalizing anything. 
 
 ## Parallelizing Attention
 
@@ -173,11 +200,32 @@ Also, we drop the colors on the different spaces :)
 * $\tilde V \in \mathrm{Mat}(d_\mathrm{out} \times L_Z)$: matrix containing total weighted values of all context tokens considered.
 
 **Algorithm**:
-* As before, we map query embeddings to Attention space via $$Q = W_q X+ b_q\mathbf 1 \quad (\in \mathrm{Mat}(d_\mathrm{attn}\times L_X))$$where $\mathbf 1$ is a column vector with all elements equal to 1. 
-* Similarly, we map key embeddings to Attention space via $$K = W_kZ+b_k\mathbf 1\quad (\in \mathrm{Mat}(d_\mathrm{attn}\times L_Z))$$
-* We compute similarity scores as $$\alpha=\mathrm{softmax}\left(\frac{K^T Q}{\sqrt{d_\mathrm{attn}}}\right) \quad (\in \mathrm{Mat}(L_Z\times L_X))$$with the override of the softmax functions to matrices in $\mathrm{Mat}(L_z \times L_X)$ defined component-wise as $$\mathrm{softmax}(A)_{z,x}:= \frac{\exp A_{z,x}}{\sum_{z'} \exp A_{z',x}}.$$ 
-* To obtain the output, we need to first map all key vectors to the Output space, via $$V=W_vZ+b_v \mathbf 1 \quad (\in \mathrm{Mat}(d_\mathrm{out}\times L_Z))$$and then act on them with the weights: $$\tilde V = V \alpha = V \;\mathrm{softmax}\left(\frac{K^T Q}{\sqrt{d_\mathrm{attn}}}\right) \quad (\in \mathrm{Mat}(d_\mathrm{out} \times L_Z)).$$
-Hence, we get a final matrix which contains the output vector for all context vectors. This last formula is, in our notation, the 
+* As before, we map query embeddings to Attention space via 
+
+	$$Q = W_q X+ b_q\mathbf 1 \quad (\in \mathrm{Mat}(d_\mathrm{attn}\times L_X))$$
+	
+	where $\mathbf 1$ is a column vector with all elements equal to 1. 
+* Similarly, we map key embeddings to Attention space via
+
+	$$K = W_kZ+b_k\mathbf 1\quad (\in \mathrm{Mat}(d_\mathrm{attn}\times L_Z))$$
+
+* We compute similarity scores as 
+
+	$$\alpha=\mathrm{softmax}\left(\frac{K^T Q}{\sqrt{d_\mathrm{attn}}}\right) \quad (\in \mathrm{Mat}(L_Z\times L_X))$$
+	
+	with the override of the softmax functions to matrices in $\mathrm{Mat}(L_z \times L_X)$ defined component-wise as 
+	
+	$$\mathrm{softmax}(A)_{z,x}:= \frac{\exp A_{z,x}}{\sum_{z'} \exp A_{z',x}}.$$ 
+
+* To obtain the output, we need to first map all key vectors to the Output space, via
+
+	$$V=W_vZ+b_v \mathbf 1 \quad (\in \mathrm{Mat}(d_\mathrm{out}\times L_Z))$$
+	
+	and then act on them with the weights:
+	
+	$$\tilde V = V \alpha = V \;\mathrm{softmax}\left(\frac{K^T Q}{\sqrt{d_\mathrm{attn}}}\right) \quad (\in \mathrm{Mat}(d_\mathrm{out} \times L_Z)).$$
+
+	Hence, we get a final matrix which contains the output vector for all context vectors. This last formula is, in our notation, the 
 
 ## References
 
