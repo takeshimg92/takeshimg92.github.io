@@ -179,7 +179,7 @@ $$e \mapsto e + \tilde v$$
 
 (this is often accompanied by a Dropout operation). This is done outside the Attention step, but I like to think of this step as really being the one who finishes the Attention calculation. If we add a "time" index $\tau$ to our vectors, such that before Attention we are at "time" $\tau$ and after Attention we are at time $\tau+\Delta \tau$, then one can write, from the considerations above, 
 
-$$\boxed{e_{\tau+\Delta \tau} = e_\tau + \mathrm{Attention}(e_\tau, W\mbox{'s})}.}$$
+$$\boxed{e_{\tau+\Delta \tau} = e_\tau + \mathrm{Attention}(e_\tau, W\mbox{'s}).}$$
 
 This feels like a skip connection, and physicists among you will be itching to somehow take $\Delta \tau \to 0$ and make this into a differential equation; indeed, this is exactly what a few papers do, see [this](https://arxiv.org/pdf/2305.05465.pdf) and [this](https://arxiv.org/abs/2312.10794) reference by Geshkovski and collaborators. 
 
