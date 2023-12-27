@@ -171,7 +171,22 @@ $$v = \sum_t \alpha_t v_t \propto\sum_t \langle k_t, q \rangle k_t.$$
 
 Now, the expression on the right-hand side is **not** a projection since the $k_t$ are not, generally, orthogonal, nor normalized to 1. I like to think of this expression as a "rough" projection: it is a vector in the space spanned by the $k_t$'s, but it double-counts projections which are linearly dependent of each other, and it gets the scale completely wrong since we are not normalizing anything. 
 
+## How things go from here
+
+Once the vector $\tilde v$ is obtained, it is very common across the Transformer-based algorithms to *add it back* to the original query embedding, hence 
+
+$$e \mapsto e + \tilde v$$
+
+(this is often accompanied by a Dropout operation). This is done outside the Attention step, but I like to think of this step as really being the one who finishes the Attention calculation. If we add a "time" index $\tau$ to our vectors, such that before Attention we are at "time" $\tau$ and after Attention we are at time $\tau+\Delta \tau$, then one can write, from the considerations above, 
+
+$$\boxed{e_{\tau+\Delta \tau} = e_\tau + \mathrm{Attention}(e_\tau, W\mbox{'s})}.}$$
+
+This feels like a skip connection, and physicists among you will be itching to somehow take $\Delta \tau \to 0$ and make this into a differential equation; indeed, this is exactly what a few papers do, see [this](https://arxiv.org/pdf/2305.05465.pdf) and [this](https://arxiv.org/abs/2312.10794) reference by Geshkovski and collaborators. 
+
+
 ## Parallelizing Attention
+
+Finally, we comment a bit on the computational side of things. 
 
 The great strength of Attention compared to previous RNN-based approaches is that it can be parallelized, and this is how the algorithm is usually presented. Since we have already gained intuition about the process for a single query vector, we can now generalize to parallel computations.
 
@@ -222,19 +237,19 @@ Also, we drop the colors on the different spaces :)
 
 ## References
 
-[1] These two videos are great, and explain Attention from the point of view of linear transformations:
+[1] These two videos are great, and explain Attention very intuitively from the point of view of linear transformations:
 	Video 1: [link](https://www.youtube.com/watch?v=OxCpWwDCDFQ&list=PLs8w1Cdi-zvYskDS2icIItfZgxclApVLv&index=2)
 	Video 2: [link](https://www.youtube.com/watch?v=UPtG_38Oq8o&list=PLs8w1Cdi-zvYskDS2icIItfZgxclApVLv&index=3) 
 
 [2] Mary Phuong and Marcus Hutter, [Formal Algorithms for Transformers](https://arxiv.org/pdf/2207.09238.pdf), DeepMind, 2022. This was the main reference for the pseudocode here.
 
-[3] A surprisingly good explanation in [Wikipedia](https://en.wikipedia.org/wiki/Attention_(machine_learning)#Core_calculations)
+[3] The 2023 Stanford XCS224U Natural Language Understanding [lecture on Attention](https://www.youtube.com/watch?v=yqV_YfBBtK0&list=PLoROMvodv4rOwvldxftJTmoR3kRcWkJBp&index=5&t=1s) is perhaps the best class I've ever seen on the topic, mixing theory, diagrams and code. In fact, [the whole playlist](https://youtube.com/playlist?list=PLoROMvodv4rOwvldxftJTmoR3kRcWkJBp&si=bl95ji90EiZl3DIs) is a gem worth watching and rewatching.
 
-[4]  [This page](https://machinelearningmastery.com/the-attention-mechanism-from-scratch/) contains a few calculations and toy examples
+[4] A surprisingly good explanation in [Wikipedia](https://en.wikipedia.org/wiki/Attention_(machine_learning)#Core_calculations)
 
 [5] *The Annotated Transformer*. A walkthrough of Attention paper with code: https://nlp.seas.harvard.edu/2018/04/03/attention.html
 
 [6] Jay Allamer's [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
 
-[7] Of course, the original Transformers paper by [Vaswani et al (2017)](https://arxiv.org/abs/1706.03762)
+[7] Of course, the original Transformers paper by [Vaswani et al (2017)](https://arxiv.org/abs/1706.03762) - although I tend to find it rather hard to understand.
 
