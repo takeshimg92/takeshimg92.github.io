@@ -102,9 +102,13 @@ where $\hat n_* \equiv \hat n(x_*)$.
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/diagram.png)
 
 
-> To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat n_*$ is $[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$. From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, $$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*.$$
+To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat n_{*}$ is $[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$. From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
 
-What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to $\hat n_*$, ie. $v_- \cdot \hat n_*$, is inverted after the elastic collision; the perpendicular component $v - ( v_-\cdot \hat n_*)\hat n_*$ is kept equal. Hence, a shock against that wall corresponds to the following map:
+$$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$$
+
+as we wanted to prove.
+
+What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to $\hat{n}_{*}$, ie. $v_- \cdot \hat n_*$, is inverted after the elastic collision; the perpendicular component $v - ( v_-\cdot \hat n_*)\hat n_*$ is kept equal. Hence, a shock against that wall corresponds to the following map:
 
 $$ v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_*) \hat n_*$$
 
@@ -515,13 +519,11 @@ for i, aux in enumerate(positions):
 anim = camera.animate(blit=False, interval=40) #  miliseconds
 ```
 
-
 ```python
 anim.save('collisions2.gif') # save as gif
 ```
 
-
 ```python
 HTML(anim.to_jshtml())
 ```
-![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/collision2.gif)
+![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/collisions2.gif)
