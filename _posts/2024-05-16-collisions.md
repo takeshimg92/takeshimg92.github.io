@@ -104,7 +104,7 @@ where $\hat n_* \equiv \hat n(x_*)$.
 
 To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_{*}$ is 
 
-#$[(x_{i+1}-x_i)\cdot \hat{n}_{*}]\hat{n}_{*}.$$
+$$[(x_{i+1}-x_i)\cdot \hat{n}_{*}]\hat{n}_{*}.$$
 
 From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
 
@@ -112,9 +112,17 @@ $$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$$
 
 as we wanted to prove.
 
-What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to $\hat{n}_{*}$, ie. $v_- \cdot \hat{n}_{*}$, is inverted after the elastic collision; the perpendicular component $v - ( v_{-}\cdot \hat{n}_{*})\hat{n}_{*}$ is kept equal. Hence, a shock against that wall corresponds to the following map:
+What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to the normal, ie. 
 
-$$ v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_*) \hat n_*$$
+$$v_- \cdot \hat{n}_{*},$$
+
+is inverted after the elastic collision; the perpendicular component 
+
+$$v - ( v_{-}\cdot \hat{n}_{*})\hat{n}_{*}$$
+
+is kept equal. Hence, a shock against that wall corresponds to the following map:
+
+$$v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_*) \hat n_*$$
 
 However, what is the best approximation we have for $v_-$? Given $v_i \equiv v(t_i)$, we know that a time of $\lambda_*(t_{i+1} - t_i)$ is elapsed since $t_i$ and the hypothetical collision instant; hence, the velocity right before collision is
 
