@@ -112,11 +112,7 @@ $$x_{i+1}'= x_{i+1} - 2(1-\lambda_\star)[(x_{i+1}-x_i)\cdot \hat n_\star]\hat n_
 
 as we wanted to prove.
 
-What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to the normal, ie. 
-
-$$v_- \cdot \hat{n}_{*},$$
-
-is inverted after the elastic collision; the perpendicular component $v - ( v_{-}\cdot \hat{n}_\star)\hat{n}_\star$ is kept equal. Hence, a shock against that wall corresponds to the following map:
+What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to the normal, ie. $v_- \cdot \hat{n}_\star$ is inverted after the elastic collision; the perpendicular component $v - (v_{-} \cdot \hat{n}_\star)\hat{n}_\star$ is kept equal. Hence, a shock against that wall corresponds to the following map:
 
 $$v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_\star) \hat n_\star$$
 
