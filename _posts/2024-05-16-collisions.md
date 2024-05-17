@@ -26,7 +26,9 @@ The most natural mathematical framework for us is to consider physical space as 
 
 Now, we want to consider a substance moving around here. The (conceptually) simplest description we can use is that of a set of **particles** that don't interact among themselves. We know from [ideal gas theory](https://en.wikipedia.org/wiki/Ideal_gas) that, despite this simplified assumption, we can retrieve many properties of realistic systems from this description.
 
-With that being said, we want our particles to be able to interact with the walls of whatever compartment they are in (this is also what we do for ideal gases). So it makes sense to consider a formalism where we can easily define a volume and its walls. 
+With that being said, we want our particles to be able to interact with the walls of whatever compartment they are in. So it makes sense to consider a formalism where we can easily define a volume and its walls. 
+
+> My endgame is to use these simulations at some point to obtain macroscopic measurements such as pressure and temperature; hence, there is no harm in considering typical assumptions of ideal gases.
 
 ## Geometry: domains and walls
 
@@ -324,6 +326,8 @@ anim.save('collisions1.gif') # save as gif
 ```
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/collisions1.gif)
+
+Great! From visual inspection alone, it seems like our algorithm is working. Particle trajectories seem pretty realistic.
 
 Let us check whether energy conservation holds. Our system's total energy must be the sum of kinetic and potential energies, ie. 
 
