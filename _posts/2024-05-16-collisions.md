@@ -364,7 +364,7 @@ $$I_t = \{A: \omega_A(x_t) > 0\}$$
 
 is non-empty, and counts in which domain(s) the particle is.
 
-Now, consider the wall collision case where $I_{t+1} = \{ \}$ but $I_t = \{A\}$ for some index $A$. Then, we can use the collision conditions for $A$, ie. $\omega_A$, $\nabla \omega_A$ etc. in the same way as above.
+Now, consider the wall collision case where $I_{t+1} = \mathrm{empty}$ but $I_t = A$ for some index $A$. Then, we can use the collision conditions for $A$, ie. $\omega_A$, $\nabla \omega_A$ etc. in the same way as above.
 
 As an implementation, we will slightly modify the `Particle` class to add a method which identifies in which domain it is.
 
