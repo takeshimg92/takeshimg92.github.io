@@ -9,40 +9,40 @@ image: collision-simulation.jpg
 
 I am not a game designer; I have never used any engines such as Unity, nor have I done any 3D modeling before. Buuuuut....
 
-I really like animating physical systems. In my opinion, most Physics undergraduate curricula lack one thing in common: heavyweight numerics, either by solving the differential equations we derive (think of electromagnetic waves, quantum systems) or simulating complex systems, like gravitational N-body simulations. 
+I really like simulating physical systems. In my opinion, most Physics undergraduate curricula lack one thing in common: more emphasis on numerical simulations, be it solving the relevant differential equations (e.g. electromagnetic waves, quantum systems) or simulating complex systems, like gravitational N-body simulations. 
 
-Sometimes, I like to reinvent the wheel. [Someone said](https://academia.stackexchange.com/a/155439):
+On top of that, I often like to reinvent the wheel as a learning mechanism. [Someone said](https://academia.stackexchange.com/a/155439):
 > When you reinvent the wheel, you end up learning a great deal about why wheels are round.
 
-What I do is that, instead of getting a textbook and start learning something, I often prefer the 10x more expensive approach of thinking hard about it and try to derive consequences myself. Once I get tired of this long-winded endeavor and finally decide to refer to real references, there is this warm feeling of reading about something you rediscovered yourself.
+Instead of starting from a textbook, I often prefer the (10x more time-consuming) approach of thinking hard about a problem and trying to solve it myself. Once I get tired of this long-winded endeavor and finally decide to check real references, there is this warm feeling of reading about something I had already rediscovered or, at least, contemplated.
 
-So, on that note -- I will try to build a formalism for how to do particle simulations for particles restricted by walls of any shape. Some day in the future I will actually go read about any of this.
+So, on that note, I will build a formalism for running simulations of particles contained inside a volume of any shape.
 
-> By the way: a lot of things here will be *expensive*, as in $O(n^2)$ or $O(n^3)$ in the number of particles. Maybe it can be optimized in the future, ie. being more careful about partioning space.
+> By the way: most methods here will be *expensive*, as in $O(n^2)$ or $O(n^3)$ in the number of particles. Maybe it can be optimized in the future, for instance by being more careful about partioning space.
 
 # Formalism of things hitting walls
 
-The most natural mathematical framework for us is to consider physical space as being $\mathbf R^n$ (where $n$ can be 2 or 3) and time to be a discrete set of time-steps $\{t_1=0,t_2,\ldots, t_n=T\}$. This is because time-evolution of physical systems needs us to discretize continuous time.
+The most natural mathematical framework for us is to consider physical space as being $\mathbf R^n$ (where $n$ can be 2 or 3) and time to be a discretized set of time-steps $\{t_1=0,t_2,\ldots, t_n=T\}$. 
 
-Now, we want to consider a substance moving around here. The (conceptually) simplest description we can use is that of a set of **particles** that don't interact among themselves. We know from [ideal gas theory](https://en.wikipedia.org/wiki/Ideal_gas) that, despite this simplified assumption, we can retrieve many properties of realistic systems from this description.
+Now, we want to consider a substance moving around inside a volume. The conceptually simplest description we can use is that of **particles** that don't interact among themselves. We know from [ideal gas theory](https://en.wikipedia.org/wiki/Ideal_gas) that, despite this simplified assumption, we can retrieve many properties of realistic systems from this description.
+> And this is indeed the endgame, but I will leave this for some future post.
 
 With that being said, we want our particles to be able to interact with the walls of whatever compartment they are in. So it makes sense to consider a formalism where we can easily define a volume and its walls. 
 
-> My endgame is to use these simulations at some point to obtain macroscopic measurements such as pressure and temperature; hence, there is no harm in considering typical assumptions of ideal gases.
 
 ## Geometry: domains and walls
 
-We define the **domain** where our substance (which we will now think of as a gas) lives as the locus 
+We define the **domain** where our gas lives as the locus 
 
 $$\boxed{\Omega \equiv \{x \in\mathbf R^n:\omega(x) >0\}}$$
 
-where $\omega: \mathbf R^n \to \mathbf R$ is some real-valued function. That is, we consider the domain as the set of points where this function is positive.
+where $\omega: \mathbf R^n \to \mathbf R$ is some real-valued function. 
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/geometrical_domain.png)
 
-> Example: one could choose $\omega(x,y) = 3\exp(-x^2-y^2) - 1$. This function is positive inside the circle of radius $\sqrt{\log 3}$, zero on the circle, and negative outside.
+> Example: one could choose $\omega(x,y) = 3\exp(-x^2-y^2) - 1$. This function is positive inside the circle of radius $\sqrt{\log 3}$, zero on the circle, and negative outside, hence our particles would be living inside the circle.
 
-What do we want of $\omega$? It makes sense to require it to be continuous; we keep hypotheses regarding smoothness on hold for now.
+What do we require of $\omega$? It makes sense for it to be continuous; we keep other hypotheses regarding smoothness on hold for now.
 
 Now let us consider a single particle. Its position at any time $t_i$ is given by a vector $x(t_i)$, which evolves according to Newton's second law. Numerically, we know how to do this via various algorithms, such as the [Euler method](https://en.wikipedia.org/wiki/Euler_method), [leapfrog integration](https://en.wikipedia.org/wiki/Leapfrog_integration) or [Runge-Kutta methods](https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods). 
 
@@ -51,8 +51,9 @@ Now let us consider a single particle. Its position at any time $t_i$ is given b
 We assume that there exists an algorithm $\mathrm{evolution}()$ which takes an initial position, an initial velocity, and a timestep, and returns the next position and velocities:
 
 $$\boxed{x_{t+\Delta t}, v_{t+\Delta t} = \mathrm{evolution}(x_t, v_t, \Delta t).}$$
+> This immediately means we do not consider interactions among the particles; otherwise the right-hand side would containg the whole list of positions and velocities for all particles.
 
-But collisions against walls are not 100% included in this formalism: they are, effectively, an instantaneous infinite force applied to the particle (see Appendix below). Hence we need to come up with a procedure to simulate collisions.
+But collisions against walls are not 100% included in this formalism: they are, effectively, an instantaneous infinite force applied to the particle. Hence we need to come up with a procedure to simulate collisions.
 
 Define the wall as the boundary 
 
@@ -72,7 +73,7 @@ is a well-defined, *inward-* pointing normal vector.
 
 ## Collision detection
 
-Since time is discretized, we can consider a particle's trajectory $x(t)$ really as being sampled on the time steps: $x(t_0), x(t_1),\ldots, x(t_n)$. If we observe a situation where 
+Since time is discretized, we can consider a particle's trajectory $x(t)$ as being sampled over time steps: $x(t_0), x(t_1),\ldots, x(t_n)$. If we observe a situation where 
 
 $$x(t_i) \in \Omega\quad \text{ but }\quad x(t_{i+1})\notin \Omega \qquad (\text{i.e.}\quad  \omega(x(t_i)) > 0,\quad \omega(x(t_{i+1}))\leq 0)$$
 
@@ -103,8 +104,7 @@ where $\hat n_\star \equiv \hat n(x_\star)$.
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/diagram.png)
 
-
-To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_\star$ is 
+The proof is as follows: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_\star$ is 
 
 $$[(x_{i+1}-x_i)\cdot \hat{n}_\star]\hat{n}_\star.$$
 
@@ -114,7 +114,7 @@ $$x_{i+1}'= x_{i+1} - 2(1-\lambda_\star)[(x_{i+1}-x_i)\cdot \hat n_\star]\hat n_
 
 as we wanted to prove.
 
-What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to the normal, ie. 
+What happens to the velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to the wall normal, ie. 
 
 $$v_\parallel \equiv v_- \cdot \hat{n}_\star$$ 
 
@@ -130,8 +130,7 @@ However, what is the best approximation we have for $v_-$? Given $v_i \equiv v(t
 
 $$\underline{\;\;} , v_- = \mathrm{evolution}(x_0 = x(t_i),\; v_0 = v(t_i),\; \Delta t = \lambda_* (t_{i+1} - t_i))$$
 
-
-> This step is very expensive -- it requires another computation of evolution, which may require to compute $n$ forces between particles. For small time steps, it is likely that just using $v_- \approx v(t_i)$ is sufficient.
+> This step is very expensive -- it requires another computation of evolution. For small time steps, it is likely that just using $v_- \approx v(t_i)$ would be sufficient.
 
 Hence, we have all the ingredients for an algorithm. We first tentatively evolve all particles to their next position; then, if any fall out of the domain, we fix their position and velocity via the procedures above.
 
