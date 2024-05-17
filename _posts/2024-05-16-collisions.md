@@ -76,39 +76,39 @@ $$x(t_i) \in \Omega\quad \text{ but }\quad x(t_{i+1})\notin \Omega \qquad (\text
 
 then we can be sure there should have been a collision against the wall at some instant in $]t_{i}, t_{i+1}]$; we then need to artificially change $x(t_{i+1})$ so that it accounts for collision effects.
 
-Can we find out when the collision happened? For simplicity call $x_i \equiv x(t_i)$. Let us assume that the trajectory between $x_i$ and $x_{i+1}$ is approximately linear, so that it can be parameterized by $\lambda \in [0,1]$ as $x_i + \lambda (x_{i+1}-x_i)$. By continuity of $\omega$, there exists $\lambda_*$ such that 
+Can we find out when the collision happened? For simplicity call $x_i \equiv x(t_i)$. Let us assume that the trajectory between $x_i$ and $x_{i+1}$ is approximately linear, so that it can be parameterized by $\lambda \in [0,1]$ as $x_i + \lambda (x_{i+1}-x_i)$. By continuity of $\omega$, there exists $\lambda_\star$ such that 
 
-$$\boxed{\omega(x_i+\lambda_*(x_{i+1}-x_i))=0.}$$
+$$\boxed{\omega(x_i+\lambda_\star(x_{i+1}-x_i))=0.}$$
 
-Assuming $\vert \lambda_* (x_{i+1} - x_i)\vert$ to be small, we can Taylor expand to first order and solve for $\lambda_*$: 
+Assuming $\vert \lambda_\star (x_{i+1} - x_i)\vert$ to be small, we can Taylor expand to first order and solve for $\lambda_\star$: 
 
-$$\lambda_* \approx - \frac{\omega(x_i)}{(x_{i+1} - x_i)\cdot \nabla \omega(x_i)}.$$
+$$\lambda_\star \approx - \frac{\omega(x_i)}{(x_{i+1} - x_i)\cdot \nabla \omega(x_i)}.$$
 
 Notice that calculating this quantity is slightly expensive -- it requires us to compute the gradient at $x_i$.
 > There is an even more precise way: we could expand both around $x_i$ and $x_{i+1}$ and combine the results. 
 
 So now we know how far along the segment between the two points one should find the collision point, namely, 
 
-$$x_*=x_i+\lambda_* (x_{i+1}-x_i).$$
+$$x_*=x_i+\lambda_\star (x_{i+1}-x_i).$$
 
 ## Shifting positions and velocities
 
 By geometry (see discussion below), we can now find that the new position for the reflected particle is 
 
-$$\boxed{x_{i+1}' = x_{i+1}-2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*] \hat n_*}$$
+$$\boxed{x_{i+1}' = x_{i+1}-2(1-\lambda_\star)[(x_{i+1}-x_i)\cdot \hat n_*] \hat n_\star}$$
 
-where $\hat n_* \equiv \hat n(x_*)$.
+where $\hat n_\star \equiv \hat n(x_\star)$.
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/diagram.png)
 
 
-To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_{*}$ is 
+To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_\star$ is 
 
-$$[(x_{i+1}-x_i)\cdot \hat{n}_{*}]\hat{n}_{*}.$$
+$$[(x_{i+1}-x_i)\cdot \hat{n}_\star]\hat{n}_\star.$$
 
-From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_{*}$ to go from $x_i$ to the wall ($x_{*}$), we are left with an amount of $1-\lambda_{*}$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
+From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_\star$ to go from $x_i$ to the wall ($x_\star$), we are left with an amount of $1-\lambda_\star$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
 
-$$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$$
+$$x_{i+1}'= x_{i+1} - 2(1-\lambda_\star)[(x_{i+1}-x_i)\cdot \hat n_\star]\hat n_\star$$
 
 as we wanted to prove.
 
@@ -116,15 +116,11 @@ What happens to velocity? Consider the velocity vector $v_-$ right before collis
 
 $$v_- \cdot \hat{n}_{*},$$
 
-is inverted after the elastic collision; the perpendicular component 
+is inverted after the elastic collision; the perpendicular component $v - ( v_{-}\cdot \hat{n}_\star)\hat{n}_\star$ is kept equal. Hence, a shock against that wall corresponds to the following map:
 
-$$v - ( v_{-}\cdot \hat{n}_{*})\hat{n}_{*}$$
+$$v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_\star) \hat n_\star$$
 
-is kept equal. Hence, a shock against that wall corresponds to the following map:
-
-$$v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_*) \hat n_*$$
-
-However, what is the best approximation we have for $v_-$? Given $v_i \equiv v(t_i)$, we know that a time of $\lambda_*(t_{i+1} - t_i)$ is elapsed since $t_i$ and the hypothetical collision instant; hence, the velocity right before collision is
+However, what is the best approximation we have for $v_-$? Given $v_i \equiv v(t_i)$, we know that a time of $\lambda_\star(t_{i+1} - t_i)$ is elapsed since $t_i$ and the hypothetical collision instant; hence, the velocity right before collision is
 
 $$\underline{\;\;} , v_- = \mathrm{evolution}(x_0 = x(t_i),\; v_0 = v(t_i),\; \Delta t = \lambda_* (t_{i+1} - t_i))$$
 
@@ -327,7 +323,7 @@ anim.save('collisions1.gif') # save as gif
 
 Let us check whether energy conservation holds. Our system's total energy must be the sum of kinetic and potential energies, ie. 
 
-$$E = - \sum_i m  g \cdot x_i \frac 12 m v_i^2$$
+$$E = - \sum_i \left[ m  g \cdot x_i + \frac 12 m v_i^2\right]$$
 
 where $g$ is the gravitational acceleration vector. Furthermore, since all masses are taken to be the same, we can just consider $E/m$.
 
