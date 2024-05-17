@@ -331,7 +331,7 @@ Great! From visual inspection alone, it seems like our algorithm is working. Par
 
 Let us check whether energy conservation holds. Our system's total energy must be the sum of kinetic and potential energies, ie. 
 
-$$E = - \sum_i \left[ m  g \cdot x_i + \frac 12 m v_i^2\right]$$
+$$E = \sum_i \left[ -m  g \cdot x_i + \frac 12 m v_i^2\right]$$
 
 where $g$ is the gravitational acceleration vector. Furthermore, since all masses are taken to be the same, we can just consider $E/m$.
 
