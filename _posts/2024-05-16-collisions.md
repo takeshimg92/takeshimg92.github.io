@@ -1,4 +1,11 @@
-# Reinventing the wheel: simulating collisions
+---
+layout: post
+title: "Reinventing the wheel: simulating collisions"
+author: "Alessandro Morita"
+categories: posts
+tags: [physics,mechanics,simulation,cg,computer graphics]
+image: collision-simulation.jpg
+---
 
 I am not a game designer; I have never used any engines such as Unity, nor have I done any 3D modeling before. Buuuuut....
 
