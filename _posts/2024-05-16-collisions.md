@@ -102,13 +102,17 @@ where $\hat n_* \equiv \hat n(x_*)$.
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/collisions/diagram.png)
 
 
-To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat n_{*}$ is $[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$. From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
+To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_{i+1}-x_i$. Its projection along the surface normal $\hat{n}_{*}$ is 
+
+#$[(x_{i+1}-x_i)\cdot \hat{n}_{*}]\hat{n}_{*}.$$
+
+From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
 
 $$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$$
 
 as we wanted to prove.
 
-What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to $\hat{n}_{*}$, ie. $v_- \cdot \hat n_*$, is inverted after the elastic collision; the perpendicular component $v - ( v_-\cdot \hat n_*)\hat n_*$ is kept equal. Hence, a shock against that wall corresponds to the following map:
+What happens to velocity? Consider the velocity vector $v_-$ right before collision. The component parallel to $\hat{n}_{*}$, ie. $v_- \cdot \hat{n}_{*}$, is inverted after the elastic collision; the perpendicular component $v - ( v_{-}\cdot \hat{n}_{*})\hat{n}_{*}$ is kept equal. Hence, a shock against that wall corresponds to the following map:
 
 $$ v_- \mapsto  v_+ =   v_- - 2( v_-\cdot \hat n_*) \hat n_*$$
 
@@ -298,11 +302,9 @@ ax.set_aspect(1)
 
 for i, aux in enumerate(positions):
     if i % 20 == 0:
-        time = time_range[i]
-        ax.scatter(aux[:,0], aux[:,1], c=colors)
-        circ = plt.Circle(( 0.0 , 0.0 ), 1, alpha=0.1)
+        circ = plt.Circle((0, 0), 1, color='LightGray', zorder=1, alpha=0.5)
         ax.add_artist(circ)
-        ax.set_xlabel(f"t={round(time,3)}")
+        ax.scatter(aux[:,0], aux[:,1], c=colors, zorder=10)
         camera.snap()
     
 anim = camera.animate(blit=False, interval=40) #  miliseconds
@@ -506,14 +508,13 @@ ax.set_aspect(1)
 for i, aux in enumerate(positions):
     if i % 20 == 0:
         time = time_range[i]
-        ax.scatter(aux[:,0], aux[:,1], c=colors)
-        circ1 = plt.Circle((-2,0), 1, alpha=0.1)
-        circ2 = plt.Circle((2,0), 1, alpha=0.1)
-        circ3 = plt.Circle((0,-2), np.sqrt(5), alpha=0.1)        
+        circ1 = plt.Circle((-2,0), 1, color='LightGray', zorder=1, alpha=0.5)
+        circ2 = plt.Circle((2,0),  1, color='LightGray', zorder=2, alpha=0.5)
+        circ3 = plt.Circle((0,-2), np.sqrt(5), color='LightGray', zorder=3, alpha=0.5)
         ax.add_artist(circ1)
         ax.add_artist(circ2)
         ax.add_artist(circ3)
-        plt.xlabel(f"t={round(time,3)}")
+        ax.scatter(aux[:,0], aux[:,1], c=colors, zorder=100)
         camera.snap()
     
 anim = camera.animate(blit=False, interval=40) #  miliseconds
