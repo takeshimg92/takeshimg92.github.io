@@ -106,7 +106,7 @@ To see this: the vector pointing from $x_i$ to $x_{i+1}$ is their difference $x_
 
 $$[(x_{i+1}-x_i)\cdot \hat{n}_{*}]\hat{n}_{*}.$$
 
-From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_*$ to go from $x_i$ to the wall ($x_*$), we are left with an amount of $1-\lambda_*$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
+From $x_{i+1}$, how much do we need to "walk along" the projection? Since it takes "time" $\lambda_{*}$ to go from $x_i$ to the wall ($x_{*}$), we are left with an amount of $1-\lambda_{*}$ of time to go up; we need a factor of 2 to walk the same amount from $x_{i+1}$. Hence, 
 
 $$x_{i+1}'= x_{i+1} - 2(1-\lambda_*)[(x_{i+1}-x_i)\cdot \hat n_*]\hat n_*$$
 
@@ -327,9 +327,9 @@ anim.save('collisions1.gif') # save as gif
 
 Let us check whether energy conservation holds. Our system's total energy must be the sum of kinetic and potential energies, ie. 
 
-$$E = - \sum_i m g h_i + \frac 12 m v_i^2$$
+$$E = - \sum_i m  g \cdot x_i \frac 12 m v_i^2$$
 
-where $h_i$ is each particle's $y$ coordinate as measured with respect to some reference height. Furthermore, since all masses are taken to be the same, we can just consider $E/m$.
+where $g$ is the gravitational acceleration vector. Furthermore, since all masses are taken to be the same, we can just consider $E/m$.
 
 
 ```python
