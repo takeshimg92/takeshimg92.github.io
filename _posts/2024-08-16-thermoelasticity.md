@@ -94,13 +94,14 @@ using that $K = \lambda + 2\mu/3$. Recalling that $\varepsilon_{kk} = \nabla\cdo
 Recall the equations for a linear elastic body are 
 
 $$\rho \frac{\partial^2 u}{\partial t^2}=\mathrm{div}\, \sigma+ f$$
+
 where $f$ is a bulk force (per unit volume). This equation must be supplemented by initial and boundary conditions.
 
 By writing out $\sigma$ as in Eq. (3), we can expand this equation as
 
 $$\boxed{\frac{2(1+\nu)}{E}\rho \frac{\partial^2 u}{\partial t^2}= \Delta u+\frac{1}{1-2\nu} \nabla(\nabla\cdot u)-{\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla T}  + \frac{2(1+\nu)}{E}f}\tag{4}$$
 
-where $E, \nu$ are Young's modulus and Poisson's ratio, respectively, and $u$ is the displacement field. The  $\Nabla T$ denotes how temperature gradients affect the linear elastic equation.
+where $E, \nu$ are Young's modulus and Poisson's ratio, respectively, and $u$ is the displacement field. The $\nabla T$ denotes how temperature gradients affect the linear elastic equation.
 
 We must complement this equation with one for the temperature field, i.e. the heat equation. 
 
@@ -250,4 +251,4 @@ We have seen that, although theoretically coupled, when considering small displa
 
 # References
 
-[1]L. Landau, L. Pitaevskii, E. Lifshitz, and A. Kosevich. *Theory of Elasticity. Course of Theoretical Physics Volume 7*. Butterworth*-Heinemann, 3 edition, (1986)
+[1]L. Landau, L. Pitaevskii, E. Lifshitz, and A. Kosevich. *Theory of Elasticity. Course of Theoretical Physics Volume 7*. Butterworth-Heinemann, 3 edition, (1986)
