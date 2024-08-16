@@ -80,7 +80,7 @@ We have also chosen the constants $\lambda, \mu$ to not depend on $T$; if they d
 
 Again, by differentiation, we find 
 
-$$\boxed{\sigma_{ij}(T)=-K \alpha (T-T_0) \delta_{ij}+2\mu \varepsilon_{ij}+\lambda \varepsilon_{kk} \delta_{ij} \textcolor{lightgray}{+ O(\varepsilon^2, (T-T_0)^2)}}\tag{3}$$
+$$\boxed{\sigma_{ij}(T)=-K \alpha (T-T_0) \delta_{ij}+2\mu \varepsilon_{ij}+\lambda \varepsilon_{kk} \delta_{ij} {+ O(\varepsilon^2, (T-T_0)^2)}}\tag{3}$$
 
 To understand the effect of this new thermal stress term, assume a body not subject to external forces, just undergoing a change in temperature. The body will deform, so $\varepsilon \neq 0$, but there are no stresses, hence $\sigma = 0$. Setting $\sigma_{ij} = 0$ above, we can solve for $\varepsilon$ by contracting indices:
 
@@ -100,7 +100,7 @@ By writing out $\sigma$ as in Eq. (3), we can expand this equation as
 
 $$\boxed{\frac{2(1+\nu)}{E}\rho \frac{\partial^2 u}{\partial t^2}= \Delta u+\frac{1}{1-2\nu} \nabla(\nabla\cdot u)-{\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla T}  + \frac{2(1+\nu)}{E}f}\tag{4}$$
 
-where $E, \nu$ are Young's modulus and Poisson's ratio, respectively, and $u$ is the displacement field. The orange term denotes how temperature gradients affect the linear elastic equation.
+where $E, \nu$ are Young's modulus and Poisson's ratio, respectively, and $u$ is the displacement field. The  $\Nabla T$ denotes how temperature gradients affect the linear elastic equation.
 
 We must complement this equation with one for the temperature field, i.e. the heat equation. 
 
@@ -186,11 +186,14 @@ $$\boxed{\rho c_V\frac{\partial T}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha}
 
 Below, we repeat equations (4) and (9), with a little massaging:
 
-$$\frac{2(1+\nu)}{E}\rho \frac{\partial^2 {u}}{\partial t^2}=  \Delta {u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot {u})-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla {T} +\frac{2(1+\nu)}{E}f\tag{linear elastic eq.}$$
+$$\begin{align*}
+\frac{2(1+\nu)}{E}\rho \frac{\partial^2 {u}}{\partial t^2} &=  \Delta {u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot {u}) \\
+&-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla {T} +\frac{2(1+\nu)}{E}f
+\end{align*}$$
 
-$$\rho c_V\frac{\partial {T}}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla \cdot {u}) = \nabla\cdot(k\nabla {T})\tag{heat equation}$$
+$$\rho c_V\frac{\partial {T}}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla \cdot {u}) = \nabla\cdot(k\nabla {T})$$
 
-From the mixing of the blue and orange terms, the two systems are **coupled** and, in principle, would need to be solved jointly.
+From the presence of $u$ and $T$ in both equations, we see that the two systems are **coupled** and, in principle, would need to be solved jointly.
 
 # What about decoupling?
 
