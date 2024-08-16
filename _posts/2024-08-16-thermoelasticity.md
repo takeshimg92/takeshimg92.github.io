@@ -4,7 +4,7 @@ title: "The interaction between heat and elasticity"
 author: "Alessandro Morita"
 categories: posts
 tags: [physics,mechanics,thermodynamics]
-image: stress-distribution-bracket.png
+image: stress-distribution-bracket.jpg
 ---
 
 When subject to an increase in temperature, a solid object will usually expand, and this expansion will act to increase internal stresses. In this way, variations in temperature affect solids' mechanical properties.
