@@ -7,8 +7,6 @@ tags: [physics,mechanics,thermodynamics]
 image: stress-distribution-bracket.png
 ---
 
-# Introduction
-
 When subject to an increase in temperature, a solid object will usually expand, and this expansion will act to increase internal stresses. In this way, variations in temperature affect solids' mechanical properties.
 
 On the other hand, inside a solid body, heat transfer occurs mostly by diffusion from hot to colder zones. This depends not only on the temperature gradients, but also on the body's geometry. Hence, the thermal conductivity and static elasticity problem are coupled.
@@ -17,7 +15,7 @@ In many multiphysics applications, one decouples this system by solving it seque
 * First solving the heat equation, thus obtaining a temperature profile $T(x)$;
 * Then plugs in this temperature to a thermal stress term in the linear elastic equations, and solves them for the displacement field $u$, which can then be used to derive strains, stresses etc.
 
-In this article we justify why one may decouple the problem in this form in the specific case of solids. Throughout the text we employ the Einstein convention of summing over repeated indices. 
+In this article we justify why one may decouple the problem in this form in the specific case of solids. We will mostly follow the classical text [1] of Landau & Lifschitz. Throughout the text we employ the Einstein convention of summing over repeated indices. 
 
 # Recap: the stress tensor and free energy
 
@@ -74,7 +72,7 @@ If we set a temperature $T \neq T_0$, we expect there to be deformations even in
 $$a(T) \varepsilon_{ii}.$$
 Assuming temperature variations around $T_0$ to be small, we can expand the coefficient $a(T)$ to first order,
 
-$$F(\varepsilon, T)=F_0(T)\textcolor{blue}{-K\alpha (T-T_0) \varepsilon_{ii}} +  \frac \lambda 2 (\varepsilon_{ii})^2 + \mu \varepsilon_{ij} \varepsilon_{ij} + O(\varepsilon^3, (T-T_0)^2)\tag{2}$$
+$$F(\varepsilon, T)=F_0(T){-K\alpha (T-T_0) \varepsilon_{ii}} +  \frac \lambda 2 (\varepsilon_{ii})^2 + \mu \varepsilon_{ij} \varepsilon_{ij} + O(\varepsilon^3, (T-T_0)^2)\tag{2}$$
 
 Above, we chose to write the coefficient of $\varepsilon_{ii}$, with no loss of generality, as the bulk modulus $K$ times a factor $\alpha$ which is yet to be determined. This is a convenient choice since $K$ has units of pressure, and the free energy per unit volume has units of energy/volume = pressure as well. Since $\varepsilon_{ii}$ is unitless, we conclude $\alpha$ has units of inverse temperature. 
 
@@ -100,7 +98,7 @@ where $f$ is a bulk force (per unit volume). This equation must be supplemented 
 
 By writing out $\sigma$ as in Eq. (3), we can expand this equation as
 
-$$\boxed{\frac{2(1+\nu)}{E}\rho \frac{\partial^2 u}{\partial t^2}= \Delta u+\frac{1}{1-2\nu} \nabla(\nabla\cdot u)-\textcolor{orange}{\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla T}  + \frac{2(1+\nu)}{E}f}\tag{4}$$
+$$\boxed{\frac{2(1+\nu)}{E}\rho \frac{\partial^2 u}{\partial t^2}= \Delta u+\frac{1}{1-2\nu} \nabla(\nabla\cdot u)-{\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla T}  + \frac{2(1+\nu)}{E}f}\tag{4}$$
 
 where $E, \nu$ are Young's modulus and Poisson's ratio, respectively, and $u$ is the displacement field. The orange term denotes how temperature gradients affect the linear elastic equation.
 
@@ -121,6 +119,7 @@ The right-hand side is positive since $\nabla T$ points outward, and the diverge
 We can write the left-hand side as a function of entropy per unit volume as 
 
 $$\frac{\delta Q}{dt}=\int_\Omega T\frac{\partial S}{\partial t} dx,$$
+
 from which we derive
 
 $$T \frac{\partial S}{\partial t}=\nabla\cdot(k\nabla T)\tag{5}$$
@@ -128,9 +127,11 @@ $$T \frac{\partial S}{\partial t}=\nabla\cdot(k\nabla T)\tag{5}$$
 Now, we want to get rid of entropy to find an equation for $T$. This can be done as follows. First, remember that, from Eq. (1), we had 
 
 $$dF = -SdT + \sigma_{ij} d\varepsilon_{ij};$$
+
 it follows that 
 
 $$S = -\left(\frac{\partial F}{\partial T}\right)_\varepsilon$$
+
 so we can compute the entropy directly from the free energy. Using Eq. (2), which we repeat here ignoring higher-order terms, 
 
 $$F(\varepsilon, T)=F_0(T)-K\alpha (T-T_0) \varepsilon_{ii} + + \frac \lambda 2 (\varepsilon_{ii})^2 + \mu \varepsilon_{ij} \varepsilon_{ij}$$
@@ -142,6 +143,7 @@ $$\boxed{S(T) =S_0(T)  +K \alpha \varepsilon_{ii}}\tag{6}$$
 where $S_0 \equiv -\partial F_0/\partial T$. Entropy increases as the body expands, which is intuitive. Substituting this into Eq. (5) yields
 
 $$T \frac{\partial S_0}{\partial t}+ K \alpha T \frac{\partial(\nabla\cdot u) }{\partial t}=\nabla\cdot(k\nabla T).$$
+
 where we explicitly wrote $\varepsilon_{ii}$ in terms of the displacement field $u$. 
 
 To further simplify this equation, we need a few ingredients. First, [Mayer's relation](https://en.wikipedia.org/wiki/Relations_between_heat_capacities#Relations) in the form 
@@ -149,13 +151,17 @@ To further simplify this equation, we need a few ingredients. First, [Mayer's re
 $$c_p -c_V=\frac{T}{\rho}\frac{\alpha^2}{\beta}$$
 
 where $\alpha$ is the thermal expansion coefficient and $\beta = 1/K$ is called the isothermal compressibility. We can rewrite this as 
+
 $$K\alpha T = \frac{\rho(c_p-c_V)}{\alpha}$$
+
 which is the term multiplying $\nabla\cdot u$ in the equation; hence
 
 $$T \frac{\partial S_0}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha}  \frac{\partial}{\partial t}\nabla \cdot u = \nabla\cdot(k\nabla T).\tag{7}$$
 
 We note that
+
 $$\frac{\partial S_0}{\partial t}=\frac{\partial S_0}{\partial T} \frac{\partial T}{\partial t}.\tag{8}$$
+
 Now, recall the following fact from thermodynamics. At constant volume, one can relate heat and temperature variation as 
 
 $$\delta Q = C_V dT$$
@@ -176,9 +182,9 @@ $$\boxed{\rho c_V\frac{\partial T}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha}
 
 Below, we repeat equations (4) and (9), with a little massaging:
 
-$$\frac{2(1+\nu)}{E}\rho \frac{\partial^2 \textcolor{blue}{u}}{\partial t^2}=  \Delta \textcolor{blue}{u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot \textcolor{blue}{u})-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla \textcolor{orange}{T} +\frac{2(1+\nu)}{E}f\tag{linear elastic eq.}$$
+$$\frac{2(1+\nu)}{E}\rho \frac{\partial^2 {u}}{\partial t^2}=  \Delta {u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot {u})-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla {T} +\frac{2(1+\nu)}{E}f\tag{linear elastic eq.}$$
 
-$$\rho c_V\frac{\partial \textcolor{orange}{T}}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla \cdot \textcolor{blue}{u}) = \nabla\cdot(k\nabla \textcolor{orange}{T})\tag{heat equation}$$
+$$\rho c_V\frac{\partial {T}}{\partial t} + \frac{\rho (c_p - c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla \cdot {u}) = \nabla\cdot(k\nabla {T})\tag{heat equation}$$
 
 From the mixing of the blue and orange terms, the two systems are **coupled** and, in principle, would need to be solved jointly.
 
@@ -188,19 +194,22 @@ From the mixing of the blue and orange terms, the two systems are **coupled** an
 
 Let us assume steady state, where both $u$ and $T$ have no time dependence. Then, all time derivatives vanish and we are left with
 
-$$ \nabla\cdot(k\nabla \textcolor{orange}{T})=0$$
+$$ \nabla\cdot(k\nabla {T})=0$$
 
-$$ \Delta \textcolor{blue}{u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot \textcolor{blue}{u})-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla \textcolor{orange}{T} +\frac{2(1+\nu)}{E}f$$
+$$ \Delta {u}+\frac{1}{1-2\nu} \nabla(\nabla\cdot {u})-\frac{2 \alpha}{3} \frac{1+\nu}{1-2\nu} \nabla {T} +\frac{2(1+\nu)}{E}f$$
 
 Conveniently, we have no more $u$ dependence in the heat equation, which can then be solved directly and its result can be plugged into the linear elastic equation as an effective additional force. This justifies the approach we usually see, i.e. first solving the heat equation and then using its result as an additional "force" in the linear elastic equation.
 
 ## Case 2: comparing scales
 
 The coupling appears inside the heat equation via the term
+
 $$ \frac{\rho (c_p - c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla \cdot  u)$$
+
 which, as we will argue, *is usually small*: $c_p$ and $c_V$ are very close for solids, and so this term is often completely neglected.
 
 First, from the fact that $\nabla\cdot u = \alpha (T-T_0) \approx \alpha dT$, we conclude that the two terms in the LHS of the heat equation are
+
 $$\begin{align*}
 \text{First term:} & \quad \rho c_V \frac{\partial T}{\partial t}\\
 \text{Second term:} &\quad \frac{\rho(c_p-c_V)}{\alpha} \frac{\partial}{\partial t}(\nabla\cdot u) \approx \rho(c_p-c_V)\frac{\partial T}{\partial t} \approx T \frac{\alpha^2}{\beta} \frac{\partial T}{\partial t} 
@@ -223,7 +232,9 @@ For some common materials at 300 K, we see that indeed the term multiplying $\na
 | Copper   | 49.9                           | 0.0073                            | 3.45                              | 3,450,000              | 102,329                          | 3%    |
 
 Because of this, we can mostly neglect this term and stay with the decoupled heat equation
-$$\rho c_V\frac{\partial \textcolor{orange}{T}}{\partial t}=  \nabla\cdot(k\nabla \textcolor{orange}{T})$$
+
+$$\rho c_V\frac{\partial {T}}{\partial t}=  \nabla\cdot(k\nabla {T})$$
+
 whose result can then be plugged back into the linear elastic equation.
 
 # Conclusion
