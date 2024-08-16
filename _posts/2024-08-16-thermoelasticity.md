@@ -108,7 +108,11 @@ We must complement this equation with one for the temperature field, i.e. the he
 
 In solids, in contrast to fluids, internal convection is not an efficient mechanism for heat transfer. Ignoring radiation, whose effects are usually small, we see that heat diffusion is the only mechanism to consider in the *interior* of a solid body (this is not the case for the body's interface with an external medium, like a fluid -- convection plays an important role here, but this enters as a boundary condition).
 
-Hence, heat flux can be written from Fourier's law as $$q'' = -k\nabla T$$where the heat flux vector $q''$ has units of power per unit area, i.e. energy per unit area per unit second, and $k$ is the body's thermal conductivity. Assume a volume $\Omega$ is at a lower temperature than its surroundings; then, it will absorb heat. From the divergence theorem, the total heat absorbed per unit time is, *in the absence of a volumetric source/sink term*,
+Hence, heat flux can be written from Fourier's law as 
+
+$$q'' = -k\nabla T$$
+
+where the heat flux vector $q''$ has units of power per unit area, i.e. energy per unit area per unit second, and $k$ is the body's thermal conductivity. Assume a volume $\Omega$ is at a lower temperature than its surroundings; then, it will absorb heat. From the divergence theorem, the total heat absorbed per unit time is, *in the absence of a volumetric source/sink term*,
 
 $$\frac{\delta Q}{dt} = \int_\Omega \nabla\cdot(k\nabla T)\,dx$$
 
