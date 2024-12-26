@@ -200,4 +200,9 @@ $$N = \frac{1}{1-p}$$
 
 There is only one transient state, that of still not having a son; this means that we will visit this state $1/(1-p)$ times. We are done: this is the number of children we have before we stop.
 
-Do you have other methods of solving this problem? Share them with me!
+# Takeaways
+
+Even though you can have, in principle, an infinite number of children, do not worry - you're most likely to only have a boy and a girl :)
+
+Happy holidays and a happy 2025!
+
