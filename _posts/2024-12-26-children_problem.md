@@ -39,6 +39,7 @@ Therefore, the expected number of daughters will be
 $$\mathbb E[\text{daughters}]=\sum_{k=0}^\infty k p^kq$$
 
 The sum without the $q=1-p$ factor is found to be
+
 $$\sum_{k=0}^\infty kp^k=\frac{p}{(1-p)^2}$$
 
 which can be derived by:
@@ -69,6 +70,7 @@ $$\boxed{\mathbb E[\text{daughters}]=\frac{p}{1-p}}$$
 
 
 For the total number of children,
+
 $$\boxed{\mathbb E[\text{children}]=1 + \frac{p}{1-p} = \frac{1}{1-p}}$$
 
 With $p=1/2$, we get the result 
@@ -152,7 +154,7 @@ $$\begin{align*}
 np &= p + (1-p) \sum_{k=1}^\infty k p^{k+1}\\
 &=p + (1-p) \sum_{k=1}^\infty (k+1)p^{k+1} - (1-p)\sum_{k=1}^\infty p^{k+1} \quad\text{(add \& subtract)}\\
 &=p + (1-p) \sum_{l=2}^\infty l p^l - p(1-p) \sum_{k=1}^\infty p^k\quad \text{(rename index)}\\
-&=p+(1-p)\left[\sum_{l=1}^\infty lp^l-p \right] -p \cancel{(1-p)} \frac{p}{\cancel{1-p}}\quad\text{(sum series)}\\
+&=p+(1-p)\left[\sum_{l=1}^\infty lp^l-p \right] -p (1-p) \frac{p}{1-p}\quad\text{(sum series)}\\
 &=p+(1-p)\sum_{l=1}^\infty lp^l-p(1-p)-p^2\\
 &=p+(n-1) - p(1-p)-p^2\quad\text{(identify $n$ again)}\\
 &=n-1
