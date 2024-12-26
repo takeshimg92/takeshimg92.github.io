@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "How many children? A nice problem in probability theory"
+title: "Infinite children? A nice problem in probability theory"
 author: "Alessandro Morita"
 categories: posts
 tags: [probability,math,data]
