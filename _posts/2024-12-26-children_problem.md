@@ -152,7 +152,7 @@ Multiplying the expression above by $p$ we get
 
 $$\begin{align*}
 np &= p + (1-p) \sum_{k=1}^\infty k p^{k+1}\\
-&=p + (1-p) \sum_{k=1}^\infty (k+1)p^{k+1} - (1-p)\sum_{k=1}^\infty p^{k+1} \quad\text{(add \& subtract)}\\
+&=p + (1-p) \sum_{k=1}^\infty (k+1)p^{k+1} - (1-p)\sum_{k=1}^\infty p^{k+1} \quad\text{(add and subtract)}\\
 &=p + (1-p) \sum_{l=2}^\infty l p^l - p(1-p) \sum_{k=1}^\infty p^k\quad \text{(rename index)}\\
 &=p+(1-p)\left[\sum_{l=1}^\infty lp^l-p \right] -p (1-p) \frac{p}{1-p}\quad\text{(sum series)}\\
 &=p+(1-p)\sum_{l=1}^\infty lp^l-p(1-p)-p^2\\
