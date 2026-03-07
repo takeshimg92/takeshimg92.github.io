@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [cosmology,general relativity,science]
 image: universe.jpg
+description: "A personal story about solving the Friedmann equations and plotting the entire history of the universe on a tablet screen."
 ---
 
 Some moments in one's life can be awe-inspiring. You know, those moments when you feel deeply connected to something; when things make sense.

@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: auc_variance.jpg
+description: "A full derivation of the variance of the ROC AUC statistic, including the special case of a random classifier under extreme class imbalance."
 ---
 
 The ROC AUC is the most used statistic to assess the predictive power of a classification model. However, few working data scientists know theoretical results about its statistical fluctuations. Here, we show in detail a **derivation of a commonly found result on the variance of the ROC AUC.** 

@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [data science,machine learning,ai,nlp,llm,attention,transformers,bert,gpt]
 image: attention_space_base.jpg
+description: "Understanding the Transformer attention mechanism through the lens of three vector spaces: input embeddings, similarity space, and output space."
 ---
 
 

@@ -1,14 +1,17 @@
 # Site Build Settings
 
-# Jekyll-paginate-v2 configuration
-#  pagination:
-#   enabled: true
-#   per_page: 5
-#   permalink: '/page/:num/'
-#   title: ':title - page :num of :max'
-#   limit: 0
-#   sort_field: 'date'
-#   sort_reverse: true
+# Site metadata (critical for SEO)
+url:                 'https://takeshimg92.github.io'
+baseurl:             ''
+title:               'KakkoKari'
+description:         'Another (data) science blog. By Alessandro Morita'
+author:
+  name:              'Alessandro Morita'
+  email:             'takeshi.gagliardi@gmail.com'
+lang:                'en'
+
+# Default image for social sharing (Open Graph / Twitter cards)
+logo:                '/assets/img/sake.jpg'
 
 # jekyll-paginate configuration
 paginate:            5
@@ -16,13 +19,17 @@ paginate:            5
 # Build settings
 markdown:            kramdown
 highlighter:         rouge
-permalink:           none
+permalink:           /:categories/:title/
 plugins:             [jekyll-paginate, jekyll-sitemap, jekyll-feed, jekyll-seo-tag]
 
-# Customise atom feed settings (this is where Jekyll-Feed gets configuration information)
-title:		           'KakkoKari （仮）'
-description:	       'Another (data) science blog. By Alessandro Morita'
-#author:              'Alessandro Morita'
+# Default front matter
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+      author: "Alessandro Morita"
 
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines
 #feed:
