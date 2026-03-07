@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: archer.jpg
+description: "How to directly optimize the ROC AUC as a loss function using differentiable surrogates, with theory and implementation."
 ---
 
 A common application of binary classification models is *ranking*, more than *classification* itself. The difference between the two is subtle:

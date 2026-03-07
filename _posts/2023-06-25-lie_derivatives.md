@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [differential geometry]
 image: wald.jpg
+description: "An algorithmic, notation-heavy approach to Lie derivatives in differential geometry, bridging abstract and index notation."
 ---
 
 I've always had a love-hate relationship with notation in mathematics. 

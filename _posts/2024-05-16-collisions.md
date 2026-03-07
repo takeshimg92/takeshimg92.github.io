@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [physics,mechanics,simulation,cg,computer graphics]
 image: collision-simulation.jpg
+description: "Building a particle collision simulation from scratch, deriving the physics and implementing it without a game engine."
 ---
 
 I am not a game designer; I have never used any engines such as Unity, nor have I done any 3D modeling before. Buuuuut....

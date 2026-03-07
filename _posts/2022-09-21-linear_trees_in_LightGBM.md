@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: linear_trees.jpg
+description: "A practical guide to using linear trees in LightGBM for piecewise linear models, with code examples and comparisons to standard GBDTs."
 ---
 
 > This was originally written as a "Hello world" kind of program aimed at giving my team at the [DataLab](https://www.serasaexperian.com.br/datalab/) some help getting started with less noisy variants of GBDTs.

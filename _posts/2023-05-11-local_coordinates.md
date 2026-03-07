@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: earth.jpeg
+description: "How Riemann normal coordinates let us use Cartesian-like measurements on Earth's curved surface, and how good the approximation is."
 ---
 
 Earth is locally flat.  

@@ -5,6 +5,7 @@ author: "Alessandro Morita"
 categories: posts
 tags: [datascience]
 image: complex_function2.jpg
+description: "A beautiful high school geometry problem that can be solved in multiple ways, mixing algebra, geometry, and trigonometry."
 ---
 
 Back in the second year of high school, a friend shared with me a problem that his geometry teacher had shown him.
