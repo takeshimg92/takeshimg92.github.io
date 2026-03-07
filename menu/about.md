@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Hello!
+permalink: /menu/about.html
 # image: sake.jpg
 ---
 
