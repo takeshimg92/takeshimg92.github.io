@@ -16,5 +16,31 @@
 
   </div>
 
+  <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+    <i class="fa fa-moon-o" id="theme-icon"></i>
+  </button>
+
+  <script>
+    (function() {
+      var toggle = document.getElementById('theme-toggle');
+      var icon = document.getElementById('theme-icon');
+
+      function updateIcon() {
+        var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+        icon.className = isDark ? 'fa fa-sun-o' : 'fa fa-moon-o';
+      }
+
+      updateIcon();
+
+      toggle.addEventListener('click', function() {
+        var current = document.documentElement.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        updateIcon();
+      });
+    })();
+  </script>
+
 </body>
 </html>
