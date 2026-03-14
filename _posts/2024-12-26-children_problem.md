@@ -11,7 +11,7 @@ description: "Three solutions to a classic probability problem: how many childre
 * TOC
 {:toc}
 
-Consider the following problem:
+## The problem
 
 *A couple decides to have a male child no matter what. If their first child is a son, they stop; if it is a daughter, they continue having more children. There is no upper limit on how many daughters they can have before having a son. What is the average number of sons and daughters they will have?*
 

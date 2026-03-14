@@ -11,6 +11,8 @@ description: "Does it make sense to add two probabilities? We explore how probab
 * TOC
 {:toc}
 
+# Rethinking probabilities
+
 *This post is based on [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2423493/).*
 
 

@@ -11,6 +11,8 @@ description: "A personal story about solving the Friedmann equations and plottin
 * TOC
 {:toc}
 
+## Context
+
 Some moments in one's life can be awe-inspiring. You know, those moments when you feel deeply connected to something; when things make sense.
 
 Some people would label this feeling as spiritual; not being a very spiritual person myself (at least according to the common definition), I don't really know how appropriate this attribution is, but I can relate to them. This feeling of connection is reminiscent of something deeper, something important, and that might as well be linked to some higher, unknown entity.
@@ -22,7 +24,7 @@ A few moments in my life brought me this kind of awe; for instance, a particular
 
 There is another remarkable memory, this time related to Physics, which happened in 2011, when I was 19 years old. This is what I want to talk about today.
 
-# "Maybe I should research something"
+## "Maybe I should research something"
 
 ![img](https://raw.githubusercontent.com/takeshimg92/takeshimg92.github.io/main/assets/img/cosmology/ifusp.jpg)
 (picture of my *alma mater*: the Institute of Physics at the University of São Paulo, Brazil)

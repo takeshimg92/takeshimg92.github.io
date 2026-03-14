@@ -11,6 +11,8 @@ description: "Building a particle collision simulation from scratch, deriving th
 * TOC
 {:toc}
 
+## Our task
+
 I am not a game designer; I have never used any engines such as Unity, nor have I done any 3D modeling before. Buuuuut....
 
 I really like simulating physical systems. In my opinion, most Physics undergraduate curricula lack one thing in common: more emphasis on numerical simulations, be it solving the relevant differential equations (e.g. electromagnetic waves, quantum systems) or simulating complex systems, like gravitational N-body simulations. 

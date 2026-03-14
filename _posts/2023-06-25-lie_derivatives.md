@@ -11,6 +11,8 @@ description: "An algorithmic, notation-heavy approach to Lie derivatives in diff
 * TOC
 {:toc}
 
+## The situation
+
 I've always had a love-hate relationship with notation in mathematics. 
 
 On the one hand, I am an intuitive person who needs to understand the big picture of something before jumping into the details. In this sense, I  prefer my math to be uncluttered and focusing on the key steps of a derivation.

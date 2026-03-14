@@ -14,7 +14,7 @@ title: Home
   </div>
   {% endif %}
   <p>
-    {% assign clean_content = post.content | split: 'id="markdown-toc"' %}{% if clean_content.size > 1 %}{% assign after_toc_parts = clean_content.last | split: '</ul>' %}{% assign after_toc = after_toc_parts | slice: 1, after_toc_parts.size | join: '</ul>' %}{% else %}{% assign after_toc = post.content %}{% endif %}{{ after_toc | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
+    {% assign has_toc = post.content | split: 'id="markdown-toc"' %}{% if has_toc.size > 1 %}{% assign after_first_h2 = post.content | split: '<h2' %}{% assign preview = after_first_h2 | slice: 1, after_first_h2.size | join: '<h2' | prepend: '<h2' %}{% else %}{% assign preview = post.content %}{% endif %}{{ preview | strip_html | truncate: 350 }} <a href="{{ site.github.url }}{{ post.url }}">Read more</a>
     <span class="post-date"><i class="fa fa-calendar" aria-hidden="true"></i> {{ post.date | date_to_string }} - <i class="fa fa-clock-o" aria-hidden="true"></i> {% include read-time.html %}</span>
   </p>
 </div>

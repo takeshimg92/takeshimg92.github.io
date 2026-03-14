@@ -11,6 +11,8 @@ description: "How to incorporate misclassification costs into the ROC AUC metric
 * TOC
 {:toc}
 
+# Context
+
 > This was originally written as a quick intro to partial AUCs, aimed at giving my team at the [DataLab](https://www.serasaexperian.com.br/datalab/) some insights into cost-based classification.
 
 Below, we consider the standard binary classification problem.
