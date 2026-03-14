@@ -8,6 +8,9 @@ image: complex_function2.jpg
 description: "A beautiful high school geometry problem that can be solved in multiple ways, mixing algebra, geometry, and trigonometry."
 ---
 
+* TOC
+{:toc}
+
 Back in the second year of high school, a friend shared with me a problem that his geometry teacher had shown him.
 
 I was going through a small crisis regarding my future career. I couldn't decide whether I wanted to pursue a major in the Humanities (Arts or Design were on the top of the list) or in STEM. Before eventually settling down on Physics, I spent quite a lot of time flirting with Math and Science, and tackling this problem was one of the events that helped me choose.

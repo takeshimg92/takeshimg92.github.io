@@ -8,6 +8,9 @@ image: carr_madan.png
 description: "The Carr-Madan decomposition breaks any payoff into a combination of calls, puts, and a forward. We derive it and show numerical examples."
 ---
 
+* TOC
+{:toc}
+
 The [Carr-Madan decomposition](http://www.frouah.com/finance%20notes/Payoff%20function%20decomposition.pdf) is used in quant finance to break any payoff into a (continuous) combination of calls and puts, plus a forward. Namely, for any twice differentiable function:
 
 $$\boxed{

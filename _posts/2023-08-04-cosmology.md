@@ -8,6 +8,9 @@ image: universe.jpg
 description: "A personal story about solving the Friedmann equations and plotting the entire history of the universe on a tablet screen."
 ---
 
+* TOC
+{:toc}
+
 Some moments in one's life can be awe-inspiring. You know, those moments when you feel deeply connected to something; when things make sense.
 
 Some people would label this feeling as spiritual; not being a very spiritual person myself (at least according to the common definition), I don't really know how appropriate this attribution is, but I can relate to them. This feeling of connection is reminiscent of something deeper, something important, and that might as well be linked to some higher, unknown entity.

@@ -8,6 +8,8 @@ image: attention_space_base.jpg
 description: "Understanding the Transformer attention mechanism through the lens of three vector spaces: input embeddings, similarity space, and output space."
 ---
 
+* TOC
+{:toc}
 
 I admit I always had some trouble understanding Attention in the context of Transformers.
 

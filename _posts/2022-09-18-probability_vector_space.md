@@ -8,6 +8,9 @@ image: simplex.jpg
 description: "Does it make sense to add two probabilities? We explore how probability distributions can inherit a vector space structure using the Aitchison geometry."
 ---
 
+* TOC
+{:toc}
+
 *This post is based on [this article](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2423493/).*
 
 

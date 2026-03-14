@@ -24,13 +24,44 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        processEscapes: true
+      },
+      TeX: {
+        equationNumbers: { autoNumber: "none" },
+        extensions: ["AMSmath.js"]
+      },
+      "HTML-CSS": {
+        styles: {
+          ".MathJax a": {
+            color: "#2a7ae2 !important",
+            "text-decoration": "none"
+          }
+        }
+      },
+      CommonHTML: {
+        styles: {
+          ".mjx-chtml a": {
+            color: "#2a7ae2 !important",
+            "text-decoration": "none"
+          }
+        }
+      },
+      SVG: {
+        styles: {
+          ".MathJax_SVG a": {
+            color: "#2a7ae2 !important",
+            "text-decoration": "none"
+          }
+        }
+      }
+    });
+  </script>
   <script type="text/javascript" async
     src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
-    MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']]
-        }
-      });
   </script>
 
   <!-- Use Jekyll SEO plugin -->

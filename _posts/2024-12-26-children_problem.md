@@ -8,6 +8,8 @@ image: couple_with_children.webp
 description: "Three solutions to a classic probability problem: how many children does a couple have if they keep trying until they get a son?"
 ---
 
+* TOC
+{:toc}
 
 Consider the following problem:
 

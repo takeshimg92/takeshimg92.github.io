@@ -8,6 +8,9 @@ image: archer.jpg
 description: "How to directly optimize the ROC AUC as a loss function using differentiable surrogates, with theory and implementation."
 ---
 
+* TOC
+{:toc}
+
 A common application of binary classification models is *ranking*, more than *classification* itself. The difference between the two is subtle:
 
 * In classification, you want to say how likely a point is to belong to class 1 or class 0;
