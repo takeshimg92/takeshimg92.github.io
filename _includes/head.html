@@ -11,6 +11,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="utf-8">
 
+  <script>
+    (function() {
+      var saved = localStorage.getItem('theme');
+      var theme = saved || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      document.documentElement.setAttribute('data-theme', theme);
+    })();
+  </script>
+
   <link rel="stylesheet" href="{{ site.github.url }}/assets/css/main.css">
   <link rel="stylesheet" href="{{ site.github.url }}/assets/css/syntax.css">
   <!-- Use Atom -->

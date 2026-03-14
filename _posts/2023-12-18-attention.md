@@ -11,6 +11,8 @@ description: "Understanding the Transformer attention mechanism through the lens
 * TOC
 {:toc}
 
+## Motivation
+
 I admit I always had some trouble understanding Attention in the context of Transformers.
 
 There are several good references for this - Jay Alammar's [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) is a common example. Still, I always had some difficulties building a mental model of what the attention mechanism does. Some references explain very thoroughly *how* to make the calculation, but not exactly *why* it works. 

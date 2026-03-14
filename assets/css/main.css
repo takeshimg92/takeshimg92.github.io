@@ -14,14 +14,66 @@
 */
 
 /*
+  CSS Variables for theming
+*/
+
+:root {
+  --bg-color: #fff;
+  --text-color: #515151;
+  --heading-color: #333;
+  --link-color: #333;
+  --link-hover-color: black;
+  --masthead-title-color: #505050;
+  --subtitle-color: #999;
+  --menu-color: #999;
+  --footer-color: #999;
+  --footer-hover-color: #333;
+  --post-date-color: #9a9a9a;
+  --blockquote-border: #ccc;
+  --blockquote-color: #999;
+  --hr-color: #ccc;
+  --code-bg: #f5f5f5;
+  --table-border: black;
+  --pagination-border: #e0e0e0;
+  --pagination-inactive: #999;
+  --pagination-active: black;
+  --pagination-hover-bg: #e0e0e0;
+}
+
+[data-theme="dark"] {
+  --bg-color: #1a1a2e;
+  --text-color: #d4d4d4;
+  --heading-color: #e0e0e0;
+  --link-color: #82aaff;
+  --link-hover-color: #b4d0ff;
+  --masthead-title-color: #d4d4d4;
+  --subtitle-color: #888;
+  --menu-color: #aaa;
+  --footer-color: #888;
+  --footer-hover-color: #ccc;
+  --post-date-color: #888;
+  --blockquote-border: #444;
+  --blockquote-color: #999;
+  --hr-color: #444;
+  --code-bg: #2a2a3e;
+  --table-border: #555;
+  --pagination-border: #444;
+  --pagination-inactive: #888;
+  --pagination-active: #d4d4d4;
+  --pagination-hover-bg: #333;
+}
+
+/*
   Base
 */
 
 body {
   font-family: "PT Serif", Georgia, "Times New Roman", serif;
   font-size: 18px;
-  color: #515151;
+  color: var(--text-color);
+  background-color: var(--bg-color);
   line-height: 1.75rem;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
 
 @media (max-width: 30em) {
@@ -44,16 +96,16 @@ h1 a {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Quattrocento Sans", sans-serif;
-  color: #333;
+  color: var(--heading-color);
 }
 
 a {
   text-decoration: underline;
-  color: #333;
+  color: var(--link-color);
 }
 
 a:hover {
-  color: black;
+  color: var(--link-hover-color);
   border-bottom: none;
 }
 
@@ -67,13 +119,13 @@ img {
 blockquote {
   margin: 10px 20px 10px;
   padding: 0px 15px;
-  border-left: 0.25em solid #ccc;
-  color: #999;
+  border-left: 0.25em solid var(--blockquote-border);
+  color: var(--blockquote-color);
   line-height: 1.5;
 }
 
 hr {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--hr-color);
 }
 
 /*
@@ -106,17 +158,17 @@ hr {
 }
 
 .masthead a:hover {
-  color:black;
+  color: var(--link-hover-color);
 }
 
 .masthead-title a {
   font-size: 2rem;
   text-decoration: none;
-  color: #505050;
+  color: var(--masthead-title-color);
 }
 
 .masthead-subtitle {
-  color: #999;
+  color: var(--subtitle-color);
 }
 
 /*
@@ -153,7 +205,7 @@ hr {
   display: block;
   margin-top:3px;
   margin-bottom: 1rem;
-  color: #9a9a9a;
+  color: var(--post-date-color);
   font-family: 'Quattrocento Sans', sans-serif;
   font-size:0.8rem;
 }
@@ -192,8 +244,8 @@ hr {
 }
 
 .pagination-button {
-  color: #999;
-  border: 1px solid #e0e0e0;
+  color: var(--pagination-inactive);
+  border: 1px solid var(--pagination-border);
   padding: 15px 45px;
   display: inline-block;
   font-size: 16px;
@@ -201,11 +253,11 @@ hr {
 }
 
 .pagination-active {
-  color: black;
+  color: var(--pagination-active);
 }
 
 .pagination-active:hover {
-  background-color: #e0e0e0;
+  background-color: var(--pagination-hover-bg);
 }
 
 /*
@@ -213,19 +265,19 @@ hr {
 */
 
 .footer {
-  color: #999;
+  color: var(--footer-color);
   text-align: center;
   margin: 2rem;
 }
 
 .footer a {
-  color: #999;
+  color: var(--footer-color);
   padding: 10px;
   text-decoration: none;
 }
 
 .footer a:hover {
-  color: #333;
+  color: var(--footer-hover-color);
 }
 
 /*
@@ -242,7 +294,7 @@ hr {
 }
 
 .menu-content a {
-  color: #999;
+  color: var(--menu-color);
   font-size: 1rem;
   padding-right: 10px;
 }
@@ -252,7 +304,7 @@ hr {
 }
 
 .social-icons a {
-  color: #999;
+  color: var(--menu-color);
   font-size: 1rem;
 }
 
@@ -277,7 +329,7 @@ pre {
 code {
   padding: .25em .5em;
   font-size: .8rem;
-  background-color: #f5f5f5;
+  background-color: var(--code-bg);
   border-radius: 3px;
 }
 pre {
@@ -291,7 +343,7 @@ pre {
   white-space: pre-wrap;
   word-break: break-all;
   word-wrap: break-word;
-  background-color: #f5f5f5;
+  background-color: var(--code-bg);
 }
 pre code {
   padding: 0;
@@ -348,7 +400,7 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid var(--table-border);
 }
 
 th, td {
@@ -505,4 +557,49 @@ th, td {
 
 .fa-rss-square:hover {
 	color: #ff6600;
+}
+
+/*
+  Dark mode toggle
+*/
+
+.theme-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  background-color: var(--heading-color);
+  color: var(--bg-color);
+  border: none;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Dark mode: invert MathJax for readability */
+[data-theme="dark"] .MathJax,
+[data-theme="dark"] .MathJax_Display,
+[data-theme="dark"] .mjx-chtml {
+  color: var(--text-color) !important;
+}
+
+/* Dark mode: adjust syntax highlighting */
+[data-theme="dark"] .highlight {
+  background-color: var(--code-bg);
+}
+
+/* Dark mode: images get slight brightness reduction */
+[data-theme="dark"] img {
+  opacity: 0.9;
 }

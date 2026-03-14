@@ -11,6 +11,8 @@ description: "A full derivation of the variance of the ROC AUC statistic, includ
 * TOC
 {:toc}
 
+## AUC status quo
+
 The ROC AUC is the most used statistic to assess the predictive power of a classification model. However, few working data scientists know theoretical results about its statistical fluctuations. Here, we show in detail a **derivation of a commonly found result on the variance of the ROC AUC.** 
 
 We have not found this demonstration done in length in any references, and so write it here for pedagogical reasons.

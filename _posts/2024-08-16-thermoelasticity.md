@@ -11,6 +11,8 @@ description: "How heat and elasticity couple in solids, and why one can usually 
 * TOC
 {:toc}
 
+## The problem
+
 When subject to an increase in temperature, a solid object will usually expand, and this expansion will act to increase internal stresses. In this way, variations in temperature affect solids' mechanical properties.
 
 On the other hand, inside a solid body, heat transfer occurs mostly by diffusion from hot to colder zones. This depends not only on the temperature gradients, but also on the body's geometry. Hence, the thermal conductivity and static elasticity problem are coupled.
