@@ -31,6 +31,13 @@ defaults:
       layout: post
       author: "Alessandro Morita"
 
+# Giscus comments (powered by GitHub Discussions)
+giscus:
+  repo: 'takeshimg92/takeshimg92.github.io'
+  repo_id: 'R_kgDOIBR1Uw'
+  category: 'Announcements'
+  category_id: 'DIC_kwDOIBR1U84C4WnK'
+
 # RSS 2.0 can be used instead of Atom by uncommenting following two lines
 #feed:
 #  path: rss-feed.xml
