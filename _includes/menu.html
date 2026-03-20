@@ -1,7 +1,11 @@
 <div class="menu">
   <nav class="menu-content">
     {% for item in site.data.settings.menu %}
-      <a href="{{ site.github.url }}/{{ item.path }}/{{ item.url }}">{{ item.name }}</a>
+      {% if item.path == 'external' %}
+        <a href="{{ item.url }}" target="_blank" rel="noopener">{{ item.name }}</a>
+      {% else %}
+        <a href="{{ site.github.url }}/{{ item.path }}/{{ item.url }}">{{ item.name }}</a>
+      {% endif %}
     {% endfor %}
   </nav>
   <nav class="social-icons">
